@@ -395,6 +395,16 @@ test("Phase 0 API Exit Gate: /health, /v1/config, /v1/showcase, and Phone OTP si
       body: JSON.stringify({ acceptedCount: 80, rejectedCount: 20 }),
     });
     assert.equal(tuneRes.status, 200);
+
+    // 14. Safety Fallback Check: Malformed JSON returns 400 BAD_JSON problem+json instead of crashing
+    const badJsonRes = await fetch(`${baseUrl}/v1/items`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: "{ malformed json payload",
+    });
+    assert.equal(badJsonRes.status, 400);
+    const badJsonData = (await badJsonRes.json()) as { code: string };
+    assert.equal(badJsonData.code, "BAD_JSON");
   } finally {
     await new Promise<void>((resolve) => server.close(() => resolve()));
   }

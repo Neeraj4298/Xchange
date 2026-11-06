@@ -186,10 +186,29 @@ export class XchangeApiClient {
       headers.set("Authorization", `Bearer ${token}`);
     }
 
-    const response = await this.fetchImpl(`${this.baseUrl}${path}`, {
-      ...init,
-      headers,
-    });
+    let response: Response;
+    try {
+      const timeoutSignal =
+        !init.signal && typeof AbortSignal !== "undefined" && "timeout" in AbortSignal
+          ? AbortSignal.timeout(8000)
+          : init.signal;
+      response = await this.fetchImpl(`${this.baseUrl}${path}`, {
+        ...init,
+        headers,
+        signal: timeoutSignal,
+      });
+    } catch (networkErr) {
+      throw new ApiProblemError({
+        type: "https://xchange.in/problems/network-unavailable",
+        title: "Network or API service temporarily unavailable",
+        status: 503,
+        code: "NETWORK_UNAVAILABLE",
+        detail:
+          networkErr instanceof Error
+            ? networkErr.message
+            : "Could not reach Xchange API server; safety fallback active.",
+      });
+    }
 
     if (!response.ok) {
       let problem: ProblemDetails = {

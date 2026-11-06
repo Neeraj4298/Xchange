@@ -19,7 +19,9 @@
     "test": "npm run test --workspaces --if-present",
     "openapi:generate": "npm --workspace=@xchange/api run openapi:generate",
     "db:seed": "npm --workspace=@xchange/api run db:seed",
-    "docs:convert": "./.venv/bin/python scripts/convert_docs.py"
+    "docs:convert": "./.venv/bin/python scripts/convert_docs.py",
+    "docker:up": "docker compose up --build -d",
+    "docker:down": "docker compose down"
   },
   "devDependencies": {
     "typescript": "^5.7.2"

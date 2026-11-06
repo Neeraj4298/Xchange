@@ -11,14 +11,36 @@ import { AuthService, AuthServiceError } from "./modules/auth/auth.service";
 import { buildOpenApiSpec } from "./openapi/generate-openapi";
 import { createMarketplaceRouter } from "./modules/marketplace/marketplace.router";
 
+const MAX_BODY_BYTES = 1024 * 1024; // 1 MB payload cap
+
 async function readJsonBody(req: IncomingMessage): Promise<Record<string, unknown>> {
   const chunks: Buffer[] = [];
+  let totalBytes = 0;
   for await (const chunk of req) {
-    chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
+    const buf = typeof chunk === "string" ? Buffer.from(chunk) : chunk;
+    totalBytes += buf.length;
+    if (totalBytes > MAX_BODY_BYTES) {
+      throw new AuthServiceError(
+        413,
+        "PAYLOAD_TOO_LARGE",
+        "Request payload exceeds 1 MB limit",
+        "Reduce request body size below 1 MB."
+      );
+    }
+    chunks.push(buf);
   }
   const raw = Buffer.concat(chunks).toString("utf8").trim();
   if (!raw) return {};
-  return JSON.parse(raw) as Record<string, unknown>;
+  try {
+    return JSON.parse(raw) as Record<string, unknown>;
+  } catch {
+    throw new AuthServiceError(
+      400,
+      "BAD_JSON",
+      "Malformed JSON request body",
+      "Ensure request payload is valid UTF-8 JSON."
+    );
+  }
 }
 
 export function createApiServer() {

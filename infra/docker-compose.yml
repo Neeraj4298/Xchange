@@ -59,6 +59,50 @@ services:
       - "1025:1025"
       - "8025:8025"
 
+  api:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      target: api
+    container_name: xchange-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      API_PORT: 4000
+      API_HOST: 0.0.0.0
+      CORS_ORIGIN: http://localhost:3000
+      DATABASE_URL: postgresql://xchange:xchange_local_dev@postgres:5432/xchange?schema=public
+      REDIS_URL: redis://redis:6379
+      S3_ENDPOINT: http://minio:9000
+      S3_BUCKET: xchange-media
+      JWT_ACCESS_SECRET: xchange-docker-jwt-access-secret-key-2026
+    ports:
+      - "4000:4000"
+
+  web:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      target: web
+    container_name: xchange-web
+    restart: unless-stopped
+    depends_on:
+      - api
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+      NEXT_PUBLIC_API_URL: http://localhost:4000
+      NEXT_PUBLIC_WS_URL: ws://localhost:4000/rt
+      NEXT_PUBLIC_CDN_URL: http://localhost:9000/xchange-media
+    ports:
+      - "3000:3000"
+
 volumes:
   postgres_data:
   redis_data:

@@ -10,6 +10,8 @@ test("Web Phase 0 & Phase 1 routes, middleware, 3-Way Cycle Studio, and Core Mar
   const requiredFiles = [
     "middleware.ts",
     "app/layout.tsx",
+    "app/error.tsx",
+    "app/not-found.tsx",
     "app/page.tsx",
     "app/login/page.tsx",
     "app/storybook/page.tsx",

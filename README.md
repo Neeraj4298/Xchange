@@ -41,8 +41,22 @@ Xchange/
 
 ---
 
-## 2. Quick Start & Commands
+## 2. Quick Start & Single-Command Docker Compose
 
+### Option A: One-Command Full Stack with Docker Compose (`postgres`, `redis`, `minio`, `mailhog`, `api`, `web`)
+```bash
+# Launch all 6 containers (PostgreSQL 16 + pgvector, Redis 7, MinIO, MailHog, API :4000, Web :3000)
+docker compose up --build -d
+
+# Check container status & logs
+docker compose ps
+docker compose logs -f api web
+
+# Stop all containers
+docker compose down
+```
+
+### Option B: Local Node.js Development
 ```bash
 # 1. Convert .docx specs to Markdown using the local Python .venv
 npm run docs:convert

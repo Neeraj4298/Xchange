@@ -2,6 +2,16 @@
 
 All notable changes to the **Xchange** monorepo are documented in this file.
 
+## [2.1.0] — Full-Stack Docker Compose & Safety Fallbacks — 2026-11-06
+
+### Added
+- **One-Command Docker Compose Stack (`Dockerfile`, `docker-compose.yml`, `infra/docker-compose.yml`, `.dockerignore`):**
+  - Multi-stage `node:22-alpine` `Dockerfile` (`api` & `web` targets) and root `docker-compose.yml` launching `postgres` (`pgvector/pgvector:pg16`), `redis` (`redis:7-alpine`), `minio`, `mailhog`, `api` (`:4000`), and `web` (`:3000`) with healthchecks via a single `docker compose up --build -d`.
+- **Code Optimizations & Safety Fallbacks:**
+  - `@xchange/api-sdk` (`packages/api-sdk/src/index.ts`): 8-second `AbortSignal.timeout` and `NETWORK_UNAVAILABLE` RFC 9457 fallback.
+  - `@xchange/api` (`apps/api/src/app.ts`, `main.ts`): 1 MB request payload limit (`413 PAYLOAD_TOO_LARGE`), malformed JSON guard (`400 BAD_JSON`), and graceful `SIGTERM`/`SIGINT` container shutdown.
+  - `@xchange/web` (`apps/web/src/lib/api-client.ts`, `app/error.tsx`, `app/not-found.tsx`): Resilient client-side seed fallback proxy + custom Route Error Recovery Boundary and 404 screen.
+
 ## [2.0.0] — Phase 5: Scale (`v1.5–v2.0`) — 2026-11-06
 
 ### Added
