@@ -112,7 +112,7 @@ export function buildOpenApiSpec() {
   };
 }
 
-if (require.main === module) {
+if (process.argv[1]?.includes("generate-openapi")) {
   const spec = buildOpenApiSpec();
   const outPath = path.join(__dirname, "../../openapi.json");
   fs.writeFileSync(outPath, JSON.stringify(spec, null, 2) + "\n", "utf8");
