@@ -7,6 +7,12 @@
 import type {
   AdminMetricsDto,
   AdminReportDto,
+  AiIdentificationResult,
+  AiIdentifyInput,
+  AiSemanticSearchResult,
+  AiTelemetryDto,
+  AiValuateInput,
+  AiValuationFeedbackInput,
   CategoryDto,
   ChainCycleNodeDto,
   ChatMessageDto,
@@ -505,6 +511,47 @@ export class XchangeApiClient {
     return this.request<{ deleted: boolean }>(`/v1/saved-searches/${id}`, {
       method: "DELETE",
     });
+  }
+
+  public aiIdentifyItem(
+    input: AiIdentifyInput
+  ): Promise<{ suggestion: AiIdentificationResult; telemetry: AiTelemetryDto }> {
+    return this.request("/v1/ai/identify", {
+      method: "POST",
+      body: JSON.stringify(input),
+    });
+  }
+
+  public aiEstimateValue(
+    input: AiValuateInput
+  ): Promise<{
+    valuation: AiIdentificationResult["valuation"];
+    telemetry: AiTelemetryDto;
+  }> {
+    return this.request("/v1/ai/value", {
+      method: "POST",
+      body: JSON.stringify(input),
+    });
+  }
+
+  public aiRecordValuationFeedback(
+    input: AiValuationFeedbackInput
+  ): Promise<{ ok: boolean; telemetry: AiTelemetryDto }> {
+    return this.request("/v1/ai/value-feedback", {
+      method: "POST",
+      body: JSON.stringify(input),
+    });
+  }
+
+  public aiSemanticSearch(query: string): Promise<{ results: AiSemanticSearchResult[] }> {
+    return this.request("/v1/ai/semantic-search", {
+      method: "POST",
+      body: JSON.stringify({ query }),
+    });
+  }
+
+  public getAiTelemetry(): Promise<{ telemetry: AiTelemetryDto }> {
+    return this.request("/v1/ai/telemetry");
   }
 }
 

@@ -6,6 +6,7 @@ import { checkProhibitedContent, snapToOneKmGrid, type ItemCondition } from "@xc
 import { apiClient } from "@/lib/api-client";
 import { emitAnalyticsEvent } from "@/lib/observability";
 import { useAppContext } from "@/components/providers/AppProviders";
+import { AiListingAssistPanel } from "@/components/ai/AiListingAssistPanel";
 
 export default function CreateListingPage() {
   const router = useRouter();
@@ -78,6 +79,20 @@ export default function CreateListingPage() {
           WEB-1.3 &amp; WEB-1.4 · CREATE LISTING + WANTS BUILDER
         </span>
         <h1 className="mt-2 text-2xl font-extrabold">List an Item for Barter Exchange</h1>
+
+        <div className="mt-4">
+          <AiListingAssistPanel
+            onAcceptSuggestion={(s) => {
+              setTitle(s.title);
+              setDescription(s.description);
+              setCategorySlug(s.categorySlug);
+              setCondition(s.condition);
+              setMinInr(s.minInr);
+              setMaxInr(s.maxInr);
+              setWantsKeywords(s.wantsKeywords);
+            }}
+          />
+        </div>
 
         <form onSubmit={handlePublish} className="mt-4 space-y-3">
           <div className="rounded-2xl border border-emerald-500/25 p-3 flex items-center justify-between">

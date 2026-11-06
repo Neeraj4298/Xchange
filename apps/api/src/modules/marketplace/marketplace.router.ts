@@ -9,6 +9,7 @@ import { TradesService } from "./trades.service";
 import { ReviewsService } from "./reviews.service";
 import { ChatAdminService } from "./chat-admin.service";
 import { MatchingService } from "./matching.service";
+import { AiAssistService } from "./ai.service";
 
 export function createMarketplaceRouter(authService: AuthService) {
   const store = createInitialMarketplaceStore();
@@ -19,6 +20,7 @@ export function createMarketplaceRouter(authService: AuthService) {
   const reviews = new ReviewsService(store);
   const chatAdmin = new ChatAdminService(store);
   const matching = new MatchingService(store);
+  const aiAssist = new AiAssistService(store);
 
   return async function handleMarketplaceRoute(
     method: string,
@@ -264,6 +266,32 @@ export function createMarketplaceRouter(authService: AuthService) {
     const ssDeleteMatch = pathname.match(/^\/v1\/saved-searches\/([^/]+)$/);
     if (method === "DELETE" && ssDeleteMatch) {
       sendJson(res, 200, matching.deleteSavedSearch(ssDeleteMatch[1]!));
+      return true;
+    }
+
+    // Phase 3 AI Assist Endpoints (BE-3.1..BE-3.5)
+    if (method === "POST" && pathname === "/v1/ai/identify") {
+      const body = await readJsonBody(req);
+      sendJson(res, 200, aiAssist.identify(body));
+      return true;
+    }
+    if (method === "POST" && pathname === "/v1/ai/value") {
+      const body = await readJsonBody(req);
+      sendJson(res, 200, aiAssist.estimateValue(body));
+      return true;
+    }
+    if (method === "POST" && pathname === "/v1/ai/value-feedback") {
+      const body = await readJsonBody(req);
+      sendJson(res, 200, aiAssist.recordValuationFeedback(body));
+      return true;
+    }
+    if (method === "POST" && pathname === "/v1/ai/semantic-search") {
+      const body = await readJsonBody(req);
+      sendJson(res, 200, aiAssist.semanticSearch(String(body.query || "")));
+      return true;
+    }
+    if (method === "GET" && pathname === "/v1/ai/telemetry") {
+      sendJson(res, 200, { telemetry: aiAssist.getTelemetry() });
       return true;
     }
     return false;

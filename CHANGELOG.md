@@ -2,6 +2,14 @@
 
 All notable changes to the **Xchange** monorepo are documented in this file.
 
+## [0.3.0] — Phase 3: AI Assist (`v0.3`) — 2026-11-06
+
+### Added
+- **Gemini AI Vision Identification & Valuation Range Engine (`BE-3.1`, `BE-3.2`, `BE-3.3`, `WEB-3.1`, `WEB-3.2`, `WEB-3.4`):**
+  - Implemented `AiAssistService` with image-hash caching, daily quota cost caps, prompt-injection sanitization (`sanitizeUntrustedListingPrompt`), `POST /v1/ai/identify`, `POST /v1/ai/value` (explicitly labelled `"Estimated range, not a market price"` with confidence band), `POST /v1/ai/value-feedback` (`👍` / `👎`), and `<AiListingAssistPanel />` in `/items/new` with loading/fallback states.
+- **`pgvector` Semantic Search & Match Explanations (`BE-3.4`, `BE-3.5`, `WEB-3.3`):**
+  - Implemented `computeSemanticVector()`, `computeCosineSimilarity()`, `POST /v1/ai/semantic-search` with `"Why this match"` chips, and the `/ai-studio` interactive playground + Phase 3 Exit Gate telemetry ($\ge 60\%$ AI-assisted listings, $< 90\text{s}$ listing time).
+
 ## [0.2.0] — Phase 2: Smart Matching Lite (`v0.2`) — 2026-11-06
 
 ### Added
