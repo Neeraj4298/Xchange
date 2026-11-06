@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { formatInrFromPaise, type MarketplaceItemDto } from "@xchange/shared";
 import { apiClient } from "@/lib/api-client";
 import { emitAnalyticsEvent } from "@/lib/observability";
+import { getProductPhotoUrl } from "@/lib/product-visuals";
 import { useAppContext } from "@/components/providers/AppProviders";
 import { MatchesForYouRail } from "@/components/matching/MatchesForYouRail";
 
@@ -112,33 +114,36 @@ export default function DiscoveryFeedPage() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((item) => {
+        {items.map((item, idx) => {
           const midpoint = Math.round((item.estValueMinPaise + item.estValueMaxPaise) / 2);
+          const photoUrl = getProductPhotoUrl(item.categorySlug, item.title, idx);
           return (
             <article
               key={item.id}
-              className="xc-glass-panel xc-card-lift p-5 flex flex-col justify-between"
+              className="xc-glass-panel xc-card-lift p-4 flex flex-col justify-between"
             >
               <div>
-                <div className="h-32 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] p-3.5 flex justify-between items-start">
-                  <span
-                    className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold"
-                    style={{
-                      backgroundColor: "rgba(32, 167, 134, 0.12)",
-                      color: "var(--success)",
-                    }}
-                  >
-                    Good match · {item.matchScore}%
-                  </span>
+                <div className="relative h-44 overflow-hidden rounded-[12px] bg-[var(--surface)] border border-[var(--border)]">
+                  <img
+                    src={photoUrl}
+                    alt={item.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
                   <button
                     type="button"
                     onClick={() => handleToggleSave(item.id)}
-                    className="rounded-full border border-[var(--border)] bg-[var(--elevated)] px-2.5 py-0.5 text-xs font-medium"
+                    className="absolute right-3 top-3 rounded-full border border-[var(--border)] bg-[var(--background)] px-2.5 py-0.5 text-xs font-medium shadow-sm"
                   >
                     {item.savedByMe ? "♥ Saved" : "♡ Save"}
                   </button>
                 </div>
-                <h2 className="mt-4 font-heading text-[18px] font-semibold">{item.title}</h2>
+                <Link
+                  href={`/items/${item.id}`}
+                  className="mt-4 block font-heading text-[18px] font-semibold hover:text-[var(--brand-primary)]"
+                >
+                  {item.title}
+                </Link>
                 <p className="mt-1.5 font-heading text-2xl font-bold">
                   {formatInrFromPaise(midpoint)}
                 </p>
@@ -150,8 +155,13 @@ export default function DiscoveryFeedPage() {
                   Estimated value · Owner rating {item.ownerRating} ★
                 </p>
               </div>
-              <div className="mt-5 flex items-center justify-between border-t border-[var(--border)] pt-3.5">
-                <span className="text-xs font-medium text-[var(--muted)]">{item.ownerName}</span>
+              <div className="mt-4 flex items-center justify-between border-t border-[var(--border)] pt-3.5">
+                <Link
+                  href={`/items/${item.id}`}
+                  className="text-xs font-semibold text-[var(--brand-primary)] hover:underline"
+                >
+                  View details
+                </Link>
                 <button
                   type="button"
                   onClick={() => handleQuickOffer(item)}
