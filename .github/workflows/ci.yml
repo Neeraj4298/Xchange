@@ -1,0 +1,39 @@
+name: Xchange CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  verify:
+    name: Lint, Typecheck, Test, OpenAPI Contract & Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22 LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint workspaces
+        run: npm run lint
+
+      - name: Typecheck workspaces
+        run: npm run typecheck
+
+      - name: Run unit & integration tests
+        run: npm run test
+
+      - name: Verify OpenAPI generation & SDK sync
+        run: npm run openapi:generate
+
+      - name: Build all packages & applications
+        run: npm run build

@@ -1,0 +1,27 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+test("Web Phase 0 routes, middleware, 3-Way Cycle Studio, and Storybook catalog exist", () => {
+  const requiredFiles = [
+    "middleware.ts",
+    "app/layout.tsx",
+    "app/page.tsx",
+    "app/login/page.tsx",
+    "app/storybook/page.tsx",
+    "app/trust/page.tsx",
+    "components/layout/AppShell.tsx",
+    "components/chain/ThreeWayCycleStudio.tsx",
+    "components/chain/CycleSvgGraph.tsx",
+    "components/listing/FeaturedListingsGrid.tsx",
+  ];
+
+  for (const rel of requiredFiles) {
+    const fullPath = path.join(__dirname, rel);
+    assert.ok(fs.existsSync(fullPath), `Expected web source file to exist: ${rel}`);
+  }
+});

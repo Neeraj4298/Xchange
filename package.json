@@ -1,0 +1,27 @@
+{
+  "name": "xchange-monorepo",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Xchange — Peer-to-Peer Circular Exchange Marketplace (2-way & 3-way Smart Barter)",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "dev:api": "npm --workspace=@xchange/api run dev",
+    "dev:web": "npm --workspace=@xchange/web run dev",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "openapi:generate": "npm --workspace=@xchange/api run openapi:generate",
+    "db:seed": "npm --workspace=@xchange/api run db:seed",
+    "docs:convert": "./.venv/bin/python scripts/convert_docs.py"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

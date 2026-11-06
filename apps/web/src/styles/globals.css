@@ -1,0 +1,92 @@
+@import "@xchange/ui-tokens/tokens.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background-color: var(--xc-bg-canvas);
+    color: var(--xc-text-primary);
+    scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    background-color: var(--xc-bg-canvas);
+    color: var(--xc-text-primary);
+    transition: background-color 320ms var(--xc-ease-out-expo),
+      color 320ms var(--xc-ease-out-expo);
+    overflow-x: hidden;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--xc-brand-primary);
+    outline-offset: 3px;
+  }
+}
+
+/* Kinetic Circular Craft Atmospheric Surfaces & Animations */
+.xc-mesh-backdrop {
+  background-image: radial-gradient(
+      circle at 14% 16%,
+      rgba(16, 185, 129, 0.16) 0%,
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 86% 22%,
+      rgba(6, 182, 212, 0.13) 0%,
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 52% 84%,
+      rgba(245, 158, 11, 0.11) 0%,
+      transparent 45%
+    );
+}
+
+.xc-glass-panel {
+  background: var(--xc-bg-glass);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid var(--xc-border-subtle);
+  transition: transform 340ms var(--xc-ease-out-expo),
+    border-color 340ms var(--xc-ease-out-expo),
+    box-shadow 340ms var(--xc-ease-out-expo);
+}
+
+.xc-glass-panel:hover {
+  border-color: var(--xc-border-strong);
+}
+
+.xc-card-lift {
+  transition: transform 380ms var(--xc-ease-spring),
+    box-shadow 380ms var(--xc-ease-out-expo),
+    border-color 280ms ease;
+}
+
+.xc-card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 42px -14px rgba(16, 185, 129, 0.22);
+}
+
+@keyframes svgDashFlow {
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+
+.xc-svg-flow {
+  stroke-dasharray: 8 6;
+  animation: svgDashFlow 1.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

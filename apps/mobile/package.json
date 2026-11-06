@@ -1,0 +1,22 @@
+{
+  "name": "@xchange/mobile",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Xchange Mobile App Skeleton (Expo React Native — iOS & Android)",
+  "main": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "build": "tsc --noEmit",
+    "test": "node --test src/mobile.test.mjs"
+  },
+  "dependencies": {
+    "@xchange/api-sdk": "*",
+    "@xchange/shared": "*",
+    "@xchange/ui-tokens": "*"
+  },
+  "devDependencies": {
+    "@xchange/tsconfig": "*",
+    "typescript": "^5.7.2"
+  }
+}

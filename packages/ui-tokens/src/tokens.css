@@ -1,0 +1,41 @@
+/* Xchange Design System CSS Custom Properties (Light & Dark Themes) */
+:root,
+[data-theme="dark"] {
+  --xc-bg-canvas: #060b0a;
+  --xc-bg-surface: #0c1513;
+  --xc-bg-elevated: #12201d;
+  --xc-bg-glass: rgba(18, 32, 29, 0.72);
+  --xc-border-subtle: rgba(167, 243, 208, 0.12);
+  --xc-border-strong: rgba(52, 211, 153, 0.34);
+  --xc-text-primary: #f2fbf7;
+  --xc-text-secondary: #9bb8ae;
+  --xc-text-muted: #607d73;
+  --xc-brand-primary: #10b981;
+  --xc-brand-hover: #34d399;
+  --xc-accent-amber: #f59e0b;
+  --xc-accent-cyan: #06b6d4;
+  --xc-success: #10b981;
+  --xc-warning: #f59e0b;
+  --xc-danger: #ef4444;
+  --xc-ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --xc-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-theme="light"] {
+  --xc-bg-canvas: #f7faf8;
+  --xc-bg-surface: #ffffff;
+  --xc-bg-elevated: #edf5f1;
+  --xc-bg-glass: rgba(255, 255, 255, 0.84);
+  --xc-border-subtle: rgba(6, 78, 59, 0.11);
+  --xc-border-strong: rgba(5, 150, 105, 0.30);
+  --xc-text-primary: #071713;
+  --xc-text-secondary: #3b574f;
+  --xc-text-muted: #68857c;
+  --xc-brand-primary: #059669;
+  --xc-brand-hover: #10b981;
+  --xc-accent-amber: #d97706;
+  --xc-accent-cyan: #0891b2;
+  --xc-success: #059669;
+  --xc-warning: #d97706;
+  --xc-danger: #dc2626;
+}

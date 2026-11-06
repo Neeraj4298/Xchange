@@ -1,0 +1,323 @@
+// ============================================================================
+// Xchange — PostgreSQL 16 + PostGIS + pgvector Prisma Schema v1 (P0-T4 / BE-0.3)
+// Source of Truth: docs/03-system-design.md Section 6.1 & 6.2
+// ============================================================================
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [pgcrypto, pg_trgm, vector]
+}
+
+enum UserStatus {
+  active
+  suspended
+  banned
+  deleted
+}
+
+enum VerificationLevel {
+  phone
+  id
+}
+
+enum AuthProvider {
+  phone
+  google
+  apple
+}
+
+enum ItemCondition {
+  new
+  like_new
+  good
+  fair
+  parts
+}
+
+enum ItemStatus {
+  draft
+  active
+  paused
+  locked
+  traded
+  removed
+  expired
+}
+
+enum ValueSource {
+  user
+  ai
+  market
+}
+
+enum OfferStatus {
+  pending
+  countered
+  accepted
+  rejected
+  withdrawn
+  expired
+}
+
+enum CashDirection {
+  none
+  proposer_pays
+  recipient_pays
+}
+
+enum OfferOrigin {
+  manual
+  match
+  chain
+}
+
+enum TradeKind {
+  direct
+  chain
+}
+
+enum TradeStatus {
+  scheduling
+  scheduled
+  partially_confirmed
+  completed
+  cancelled
+  disputed
+}
+
+enum ParticipantStatus {
+  invited
+  accepted
+  confirmed
+  declined
+  no_show
+}
+
+enum ChainProposalStatus {
+  proposed
+  accepted
+  dissolved
+  expired
+}
+
+enum ChainDecision {
+  pending
+  accepted
+  declined
+}
+
+model City {
+  id        String    @id @default(uuid()) @db.Uuid
+  name      String
+  slug      String    @unique
+  enabled   Boolean   @default(true)
+  launchAt  DateTime? @map("launch_at")
+  flags     Json      @default("{}")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  users     User[]
+
+  @@map("cities")
+}
+
+model Category {
+  id               String     @id @default(uuid()) @db.Uuid
+  parentId         String?    @map("parent_id") @db.Uuid
+  name             String
+  slug             String     @unique
+  restricted       Boolean    @default(false)
+  attributesSchema Json       @default("{}") @map("attributes_schema")
+  createdAt        DateTime   @default(now()) @map("created_at")
+  updatedAt        DateTime   @updatedAt @map("updated_at")
+  parent           Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children         Category[] @relation("CategoryHierarchy")
+  items            Item[]
+
+  @@map("categories")
+}
+
+model User {
+  id                String            @id @default(uuid()) @db.Uuid
+  phoneE164         String            @unique @map("phone_e164")
+  email             String?           @unique
+  name              String
+  avatarUrl         String?           @map("avatar_url")
+  bio               String?
+  homeCellLat       Float?            @map("home_cell_lat")
+  homeCellLng       Float?            @map("home_cell_lng")
+  cityId            String?           @map("city_id") @db.Uuid
+  status            UserStatus        @default(active)
+  ratingAvg         Decimal           @default(0.00) @map("rating_avg") @db.Decimal(3, 2)
+  ratingCount       Int               @default(0) @map("rating_count")
+  tradesCompleted   Int               @default(0) @map("trades_completed")
+  verificationLevel VerificationLevel @default(phone) @map("verification_level")
+  locale            String            @default("en-IN")
+  lastSeenAt        DateTime?         @map("last_seen_at")
+  createdAt         DateTime          @default(now()) @map("created_at")
+  updatedAt         DateTime          @updatedAt @map("updated_at")
+  deletedAt         DateTime?         @map("deleted_at")
+
+  city       City?          @relation(fields: [cityId], references: [id])
+  identities UserIdentity[]
+  sessions   UserSession[]
+  items      Item[]
+
+  @@map("users")
+}
+
+
+model UserIdentity {
+  id          String       @id @default(uuid()) @db.Uuid
+  userId      String       @map("user_id") @db.Uuid
+  provider    AuthProvider
+  providerUid String       @map("provider_uid")
+  createdAt   DateTime     @default(now()) @map("created_at")
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerUid])
+  @@map("user_identities")
+}
+
+model UserSession {
+  id          String    @id @default(uuid()) @db.Uuid
+  userId      String    @map("user_id") @db.Uuid
+  refreshHash String    @map("refresh_hash")
+  deviceId    String    @map("device_id")
+  platform    String
+  pushToken   String?   @map("push_token")
+  expiresAt   DateTime  @map("expires_at")
+  revokedAt   DateTime? @map("revoked_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_sessions")
+}
+
+model Item {
+  id               String        @id @default(uuid()) @db.Uuid
+  ownerId          String        @map("owner_id") @db.Uuid
+  title            String
+  description      String
+  categoryId       String        @map("category_id") @db.Uuid
+  condition        ItemCondition
+  estValuePaise    BigInt        @map("est_value_paise")
+  estValueMinPaise BigInt        @map("est_value_min_paise")
+  estValueMaxPaise BigInt        @map("est_value_max_paise")
+  valueSource      ValueSource   @default(user) @map("value_source")
+  valueConfidence  Decimal?      @map("value_confidence") @db.Decimal(3, 2)
+  locationLat      Float         @map("location_lat")
+  locationLng      Float         @map("location_lng")
+  locationLabel    String        @map("location_label")
+  status           ItemStatus    @default(draft)
+  lockedByTradeId  String?       @map("locked_by_trade_id") @db.Uuid
+  expiresAt        DateTime?     @map("expires_at")
+  publishedAt      DateTime?     @map("published_at")
+  createdAt        DateTime      @default(now()) @map("created_at")
+  updatedAt        DateTime      @updatedAt @map("updated_at")
+  deletedAt        DateTime?     @map("deleted_at")
+
+  owner    User               @relation(fields: [ownerId], references: [id])
+  category Category           @relation(fields: [categoryId], references: [id])
+  images   ItemImage[]
+  wants    WantedPreference[]
+
+  @@index([categoryId, status, publishedAt(sort: Desc)])
+  @@map("items")
+}
+
+model ItemImage {
+  id        String   @id @default(uuid()) @db.Uuid
+  itemId    String   @map("item_id") @db.Uuid
+  url       String
+  width     Int
+  height    Int
+  position  Int
+  nsfwScore Decimal? @map("nsfw_score") @db.Decimal(4, 3)
+  phash     String?
+  createdAt DateTime @default(now()) @map("created_at")
+  item      Item     @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@map("item_images")
+}
+
+model WantedPreference {
+  id             String         @id @default(uuid()) @db.Uuid
+  itemId         String         @map("item_id") @db.Uuid
+  categoryId     String?        @map("category_id") @db.Uuid
+  keywords       String[]
+  itemType       String?        @map("item_type")
+  minCondition   ItemCondition? @map("min_condition")
+  maxValuePaise  BigInt?        @map("max_value_paise")
+  openToCash     Boolean        @default(true) @map("open_to_cash")
+  openToAnything Boolean        @default(false) @map("open_to_anything")
+  maxDistanceM   Int            @default(8000) @map("max_distance_m")
+  createdAt      DateTime       @default(now()) @map("created_at")
+  item           Item           @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@map("wanted_preferences")
+}
+
+model Offer {
+  id            String        @id @default(uuid()) @db.Uuid
+  threadId      String        @map("thread_id") @db.Uuid
+  version       Int           @default(1)
+  proposerId    String        @map("proposer_id") @db.Uuid
+  recipientId   String        @map("recipient_id") @db.Uuid
+  status        OfferStatus   @default(pending)
+  cashPaise     BigInt        @default(0) @map("cash_paise")
+  cashDirection CashDirection @default(none) @map("cash_direction")
+  message       String?
+  expiresAt     DateTime      @map("expires_at")
+  parentOfferId String?       @map("parent_offer_id") @db.Uuid
+  origin        OfferOrigin   @default(manual)
+  createdAt     DateTime      @default(now()) @map("created_at")
+  updatedAt     DateTime      @updatedAt @map("updated_at")
+
+  @@map("offers")
+}
+
+model Trade {
+  id              String      @id @default(uuid()) @db.Uuid
+  kind            TradeKind
+  chainId         String?     @map("chain_id") @db.Uuid
+  status          TradeStatus @default(scheduling)
+  sourceOfferId   String?     @map("source_offer_id") @db.Uuid
+  scheduledAt     DateTime?   @map("scheduled_at")
+  meetupPlace     Json?       @map("meetup_place")
+  cancelledReason String?     @map("cancelled_reason")
+  completedAt     DateTime?   @map("completed_at")
+  createdAt       DateTime    @default(now()) @map("created_at")
+  updatedAt       DateTime    @updatedAt @map("updated_at")
+
+  @@map("trades")
+}
+
+model ChainProposal {
+  id          String              @id @default(uuid()) @db.Uuid
+  status      ChainProposalStatus @default(proposed)
+  score       Decimal             @db.Decimal(5, 2)
+  expiresAt   DateTime            @map("expires_at")
+  explanation Json                @default("{}")
+  createdAt   DateTime            @default(now()) @map("created_at")
+  updatedAt   DateTime            @updatedAt @map("updated_at")
+
+  @@map("chain_proposals")
+}
+
+model OutboxEvent {
+  id            String    @id @default(uuid()) @db.Uuid
+  aggregateType String    @map("aggregate_type")
+  aggregateId   String    @map("aggregate_id") @db.Uuid
+  eventType     String    @map("event_type")
+  payload       Json
+  publishedAt   DateTime? @map("published_at")
+  createdAt     DateTime  @default(now()) @map("created_at")
+
+  @@map("outbox_events")
+}

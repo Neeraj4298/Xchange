@@ -1,0 +1,120 @@
+/**
+ * OpenAPI 3.1 Specification Generator (BE-0.4)
+ * Generates apps/api/openapi.json as the contract source of truth for @xchange/api-sdk.
+ */
+
+import fs from "node:fs";
+import path from "node:path";
+
+export function buildOpenApiSpec() {
+  return {
+    openapi: "3.1.0",
+    info: {
+      title: "Xchange Modular Monolith API",
+      version: "0.0.1",
+      description:
+        "Peer-to-peer circular exchange marketplace API (2-way & 3-way smart barter cycles). Contract-first OpenAPI specification.",
+    },
+    servers: [
+      {
+        url: "http://localhost:4000",
+        description: "Local development server",
+      },
+    ],
+    paths: {
+      "/health": {
+        get: {
+          operationId: "getHealth",
+          summary: "Service health and infrastructure readiness probe",
+          responses: {
+            "200": { description: "Healthy status" },
+          },
+        },
+      },
+      "/v1/config": {
+        get: {
+          operationId: "getConfig",
+          summary: "City and version feature flags & limits",
+          responses: {
+            "200": { description: "Platform configuration and feature flags" },
+          },
+        },
+      },
+      "/v1/cities": {
+        get: {
+          operationId: "getCities",
+          summary: "List launch cities and active clusters",
+          responses: {
+            "200": { description: "Array of cities" },
+          },
+        },
+      },
+      "/v1/categories": {
+        get: {
+          operationId: "getCategories",
+          summary: "List marketplace categories",
+          responses: {
+            "200": { description: "Array of categories" },
+          },
+        },
+      },
+      "/v1/showcase": {
+        get: {
+          operationId: "getShowcase",
+          summary: "Discovery showcase with featured Bengaluru listings and 3-way chain cycle",
+          responses: {
+            "200": { description: "Showcase payload" },
+          },
+        },
+      },
+      "/v1/auth/otp/request": {
+        post: {
+          operationId: "requestOtp",
+          summary: "Request a 6-digit phone OTP (5-min expiry, 5/hr rate limit, 30s cooldown)",
+          responses: {
+            "200": { description: "OTP dispatched" },
+            "422": { description: "Validation problem+json" },
+            "429": { description: "Rate limited problem+json" },
+          },
+        },
+      },
+      "/v1/auth/otp/verify": {
+        post: {
+          operationId: "verifyOtp",
+          summary: "Verify 6-digit OTP and issue JWT access token",
+          responses: {
+            "200": { description: "Authenticated session & JWT" },
+            "401": { description: "Invalid or expired OTP problem+json" },
+          },
+        },
+      },
+      "/v1/me": {
+        get: {
+          operationId: "getMe",
+          summary: "Protected endpoint returning the authenticated trader profile (Phase 0 Exit Gate)",
+          security: [{ bearerAuth: [] }],
+          responses: {
+            "200": { description: "Authenticated user profile" },
+            "401": { description: "Unauthorized problem+json" },
+          },
+        },
+      },
+    },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+  };
+}
+
+if (require.main === module) {
+  const spec = buildOpenApiSpec();
+  const outPath = path.join(__dirname, "../../openapi.json");
+  fs.writeFileSync(outPath, JSON.stringify(spec, null, 2) + "\n", "utf8");
+  console.log(`Generated OpenAPI 3.1 contract at: ${outPath}`);
+}

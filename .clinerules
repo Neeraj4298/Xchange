@@ -1,0 +1,12 @@
+# Xchange — Agent Engineering Rules (from docs/03-system-design.md Section 18)
+
+1. Read `docs/03-system-design.md` and the relevant platform doc (`docs/04-web-spec.md`, `docs/01-prd.md`, `docs/02-brd.md`) before coding.
+2. Work one task ID at a time (`BE-x.y` or `WEB-x.y`); one logical unit per task; include automated tests.
+3. Never access another module's tables directly; always go through its exported NestJS service or domain events.
+4. Never write money-movement, wallet, credit, or escrow code; cash adjustment (`cash_paise`, `cash_direction`) is recorded metadata only.
+5. Every state transition must run inside a database transaction, write an append-only `trade_events` audit entry, and emit an `outbox_events` domain event.
+6. All API endpoints must enforce DTO validation (Zod / class-validator), authorisation policy checks (`can(user, action, resource)`), and rate-limit decorators.
+7. Never log PII (phone numbers, emails, exact coordinates) or raw JWT/refresh/OTP tokens.
+8. Use the generated `@xchange/api-sdk` on clients (`apps/web`, `apps/mobile`); do not hand-write raw untyped `fetch` calls in feature components.
+9. Prefer clean, strictly typed TypeScript code (`no any` without explicit justification comment); no new dependencies without architectural justification.
+10. Document every single file and line change in `docs/PHASE-0-IMPLEMENTATION-LOG.md` and `CHANGELOG.md`.

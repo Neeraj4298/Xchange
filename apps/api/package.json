@@ -1,0 +1,27 @@
+{
+  "name": "@xchange/api",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Xchange Modular Monolith API Service (Phase 0 — v0.0)",
+  "main": "./dist/main.js",
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "start": "tsx src/main.ts",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "openapi:generate": "tsx src/openapi/generate-openapi.ts",
+    "db:seed": "tsx prisma/seed.ts",
+    "test": "tsx --test src/api.test.ts"
+  },
+  "dependencies": {
+    "@xchange/shared": "*",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@xchange/tsconfig": "*",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
