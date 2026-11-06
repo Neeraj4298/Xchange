@@ -17,6 +17,7 @@ const NAV_ITEMS = [
   { href: "/offers", label: "Offers Inbox", badge: "Lock" },
   { href: "/trades", label: "Trades & Code", badge: "6-Digit" },
   { href: "/plus", label: "Plus & ID Verify", badge: "₹149" },
+  { href: "/scale", label: "Scale & 4-Way", badge: "v2.0" },
   { href: "/admin", label: "Admin Console", badge: "Mod" },
 ];
 

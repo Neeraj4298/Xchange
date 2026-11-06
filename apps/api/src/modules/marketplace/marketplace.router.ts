@@ -11,6 +11,7 @@ import { ChatAdminService } from "./chat-admin.service";
 import { MatchingService } from "./matching.service";
 import { AiAssistService } from "./ai.service";
 import { ChainsAndLaunchService } from "./chains.service";
+import { ScaleService } from "./scale.service";
 
 export function createMarketplaceRouter(authService: AuthService) {
   const store = createInitialMarketplaceStore();
@@ -23,6 +24,7 @@ export function createMarketplaceRouter(authService: AuthService) {
   const matching = new MatchingService(store);
   const aiAssist = new AiAssistService(store);
   const chainsAndLaunch = new ChainsAndLaunchService(store);
+  const scale = new ScaleService(store);
 
   return async function handleMarketplaceRoute(
     method: string,
@@ -331,6 +333,41 @@ export function createMarketplaceRouter(authService: AuthService) {
     if (method === "POST" && pathname === "/v1/promotions") {
       const body = await readJsonBody(req);
       sendJson(res, 201, chainsAndLaunch.promoteListing(String(body.itemId || ""), Number(body.days || 7)));
+      return true;
+    }
+
+    // Phase 5 Scale (v1.5..v2.0): i18n, Multi-City, 4-Way Chains, Delivery, B2B Bulk & Weight Tuning (BE-5.1..BE-5.5)
+    if (method === "GET" && pathname === "/v1/scale/overview") {
+      sendJson(res, 200, scale.getOverview());
+      return true;
+    }
+    const enableCityMatch = pathname.match(/^\/v1\/scale\/cities\/([^/]+)\/enable$/);
+    if (method === "POST" && enableCityMatch) {
+      sendJson(res, 200, scale.enableCity(enableCityMatch[1]!));
+      return true;
+    }
+    if (method === "POST" && pathname === "/v1/scale/four-way-chains/confirm-step") {
+      const body = await readJsonBody(req);
+      sendJson(res, 200, scale.confirmFourWayStep(Number(body.step || 1)));
+      return true;
+    }
+    if (method === "POST" && pathname === "/v1/scale/delivery-quote") {
+      const body = await readJsonBody(req);
+      sendJson(res, 200, scale.getDeliveryQuote(Number(body.distanceKm || 4.2)));
+      return true;
+    }
+    if (method === "POST" && pathname === "/v1/scale/business/bulk-upload") {
+      const body = await readJsonBody(req);
+      sendJson(res, 201, scale.bulkUploadBusiness(body));
+      return true;
+    }
+    if (method === "POST" && pathname === "/v1/scale/tune-weights") {
+      const body = await readJsonBody(req);
+      sendJson(
+        res,
+        200,
+        scale.runWeightTuning(Number(body.acceptedCount || 62), Number(body.rejectedCount || 28))
+      );
       return true;
     }
     return false;

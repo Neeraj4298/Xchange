@@ -353,6 +353,48 @@ test("Phase 0 API Exit Gate: /health, /v1/config, /v1/showcase, and Phone OTP si
 
     const subRes = await fetch(`${baseUrl}/v1/billing/subscribe`, { method: "POST" });
     assert.equal(subRes.status, 200);
+
+    // 13. Phase 5 Scale (v1.5..v2.0): Multi-City Enablement, 4-Way Chain Handover, Delivery Quote, B2B Bulk Upload & ML Weight Tuning
+    const scaleRes = await fetch(`${baseUrl}/v1/scale/overview`);
+    assert.equal(scaleRes.status, 200);
+    const scaleData = (await scaleRes.json()) as {
+      locales: string[];
+      fourWayChain: { nodes: unknown[] };
+    };
+    assert.ok(scaleData.locales.includes("kn-IN"));
+    assert.ok(scaleData.locales.includes("hi-IN"));
+    assert.equal(scaleData.fourWayChain.nodes.length, 4);
+
+    const cityEnRes = await fetch(`${baseUrl}/v1/scale/cities/hyderabad/enable`, {
+      method: "POST",
+    });
+    assert.equal(cityEnRes.status, 200);
+
+    for (const step of [1, 2, 3, 4]) {
+      await fetch(`${baseUrl}/v1/scale/four-way-chains/confirm-step`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ step }),
+      });
+    }
+
+    const bulkRes = await fetch(`${baseUrl}/v1/scale/business/bulk-upload`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        businessName: "Bengaluru Refurb Hub",
+        gstin: "29AAACX4298F1Z5",
+        items: [{ title: "Refurbished ThinkPad X1", estValueInr: 45000 }],
+      }),
+    });
+    assert.equal(bulkRes.status, 201);
+
+    const tuneRes = await fetch(`${baseUrl}/v1/scale/tune-weights`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ acceptedCount: 80, rejectedCount: 20 }),
+    });
+    assert.equal(tuneRes.status, 200);
   } finally {
     await new Promise<void>((resolve) => server.close(() => resolve()));
   }

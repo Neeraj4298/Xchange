@@ -13,6 +13,7 @@ import type {
   AiTelemetryDto,
   AiValuateInput,
   AiValuationFeedbackInput,
+  BulkUploadListingInput,
   CategoryDto,
   ChainCycleNodeDto,
   ChainProposalDto,
@@ -28,7 +29,9 @@ import type {
   CreateReportInput,
   CreateReviewInput,
   CreateSavedSearchInput,
+  DeliveryPartnerQuoteDto,
   FeaturedItemDto,
+  FourWayChainDto,
   InvoiceReceiptDto,
   MarketplaceItemDto,
   MatchCandidateDto,
@@ -42,9 +45,11 @@ import type {
   ReviewDto,
   SafeMeetupPointDto,
   SavedSearchDto,
+  ScaleOverviewResponse,
   ScheduleTradeInput,
   TradeDto,
   TradeEventDto,
+  TunedMatchingWeightsDto,
   UpdateProfileInput,
   VerificationLevel,
 } from "@xchange/shared";
@@ -631,6 +636,49 @@ export class XchangeApiClient {
     return this.request("/v1/promotions", {
       method: "POST",
       body: JSON.stringify({ itemId, days }),
+    });
+  }
+
+  public getScaleOverview(): Promise<ScaleOverviewResponse> {
+    return this.request("/v1/scale/overview");
+  }
+
+  public enableSecondCity(slug: string): Promise<{ cities: CityDto[] }> {
+    return this.request(`/v1/scale/cities/${encodeURIComponent(slug)}/enable`, {
+      method: "POST",
+    });
+  }
+
+  public confirmFourWayChainStep(step: 1 | 2 | 3 | 4): Promise<{ fourWayChain: FourWayChainDto }> {
+    return this.request("/v1/scale/four-way-chains/confirm-step", {
+      method: "POST",
+      body: JSON.stringify({ step }),
+    });
+  }
+
+  public requestDeliveryQuote(distanceKm = 4.2): Promise<{ quote: DeliveryPartnerQuoteDto }> {
+    return this.request("/v1/scale/delivery-quote", {
+      method: "POST",
+      body: JSON.stringify({ distanceKm }),
+    });
+  }
+
+  public bulkUploadBusinessListings(input: BulkUploadListingInput): Promise<{
+    createdCount: number;
+    businessListingsCreated: number;
+  }> {
+    return this.request("/v1/scale/business/bulk-upload", {
+      method: "POST",
+      body: JSON.stringify(input),
+    });
+  }
+
+  public runWeightTuningJob(acceptedCount = 62, rejectedCount = 28): Promise<{
+    tunedWeights: TunedMatchingWeightsDto;
+  }> {
+    return this.request("/v1/scale/tune-weights", {
+      method: "POST",
+      body: JSON.stringify({ acceptedCount, rejectedCount }),
     });
   }
 }

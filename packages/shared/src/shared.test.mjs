@@ -56,5 +56,10 @@ test("shared package defines matching score weights (0.30, 0.25, 0.20, 0.15, 0.1
   const phase4Src = fs.readFileSync(path.join(__dirname, "phase4.ts"), "utf8");
   assert.match(phase4Src, /detectThreeWayCycles/);
   assert.match(phase4Src, /itemsLockedInOrder/);
+
+  const phase5Src = fs.readFileSync(path.join(__dirname, "phase5.ts"), "utf8");
+  assert.match(phase5Src, /kn-IN/);
+  assert.match(phase5Src, /hi-IN/);
+  assert.match(phase5Src, /tuneMatchingWeights/);
 });
 

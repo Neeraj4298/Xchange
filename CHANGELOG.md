@@ -2,6 +2,16 @@
 
 All notable changes to the **Xchange** monorepo are documented in this file.
 
+## [2.0.0] — Phase 5: Scale (`v1.5–v2.0`) — 2026-11-06
+
+### Added
+- **Kannada (`kn-IN`) & Hindi (`hi-IN`) Localisation & Multi-City Expansion (`BE-5.1`, `WEB-5.1`, `WEB-5.2`):**
+  - Added `I18N_DICTIONARY` (`en-IN`, `kn-IN` ಕನ್ನಡ, `hi-IN` हिन्दी), `POST /v1/scale/cities/:slug/enable` (enabling Hyderabad & Pune clusters), and live language & city switchers on `/scale`.
+- **4-Party Exchange Cycles (`A → B → C → D → A`) & Coordinated Handovers (`BE-5.2`, `WEB-5.3`):**
+  - Added 4-way cycle state machine, Trust Score v2 badges, and 4-step coordinated handover confirmation (`POST /v1/scale/four-way-chains/confirm-step`).
+- **Delivery Partner Abstraction, B2B Bulk Upload & ML Weight Tuning (`BE-5.3`, `BE-5.4`, `BE-5.5`, `WEB-5.4`):**
+  - Added hyperlocal courier quote & referral commission endpoint (`POST /v1/scale/delivery-quote`), B2B bulk inventory upload (`POST /v1/scale/business/bulk-upload`), and online/offline matching weight calibration (`POST /v1/scale/tune-weights`).
+
 ## [1.0.0] — Phase 4: Chains & Public Launch (`v1.0`) — 2026-11-06
 
 ### Added
