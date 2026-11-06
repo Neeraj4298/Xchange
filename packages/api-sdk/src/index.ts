@@ -18,14 +18,19 @@ import type {
   CreateOfferInput,
   CreateReportInput,
   CreateReviewInput,
+  CreateSavedSearchInput,
   FeaturedItemDto,
   MarketplaceItemDto,
+  MatchCandidateDto,
+  MatchFeedbackInput,
+  MatchingTelemetryDto,
   NotificationDto,
   OfferDto,
   OtpRequestInput,
   OtpVerifyInput,
   ReviewDto,
   SafeMeetupPointDto,
+  SavedSearchDto,
   ScheduleTradeInput,
   TradeDto,
   TradeEventDto,
@@ -448,6 +453,57 @@ export class XchangeApiClient {
     return this.request<{ report: AdminReportDto }>(`/v1/admin/reports/${reportId}/resolve`, {
       method: "POST",
       body: JSON.stringify({ action }),
+    });
+  }
+
+  public getMatches(): Promise<{
+    items: MatchCandidateDto[];
+    telemetry: MatchingTelemetryDto;
+  }> {
+    return this.request("/v1/matches");
+  }
+
+  public recordMatchFeedback(
+    matchId: string,
+    action: MatchFeedbackInput["action"]
+  ): Promise<{ match: MatchCandidateDto; telemetry: MatchingTelemetryDto }> {
+    return this.request(`/v1/matches/${matchId}/feedback`, {
+      method: "POST",
+      body: JSON.stringify({ action }),
+    });
+  }
+
+  public createOfferFromMatch(
+    matchId: string,
+    cashPaise = 0,
+    message = "1-click swap proposal from Smart Match recommendation!"
+  ): Promise<{ offer: OfferDto; telemetry: MatchingTelemetryDto }> {
+    return this.request(`/v1/matches/${matchId}/offer`, {
+      method: "POST",
+      body: JSON.stringify({ cashPaise, message }),
+    });
+  }
+
+  public getSavedSearches(): Promise<{ items: SavedSearchDto[] }> {
+    return this.request<{ items: SavedSearchDto[] }>("/v1/saved-searches");
+  }
+
+  public createSavedSearch(input: CreateSavedSearchInput): Promise<{ savedSearch: SavedSearchDto }> {
+    return this.request<{ savedSearch: SavedSearchDto }>("/v1/saved-searches", {
+      method: "POST",
+      body: JSON.stringify(input),
+    });
+  }
+
+  public toggleSavedSearchAlert(id: string): Promise<{ savedSearch: SavedSearchDto }> {
+    return this.request<{ savedSearch: SavedSearchDto }>(`/v1/saved-searches/${id}/toggle-alert`, {
+      method: "POST",
+    });
+  }
+
+  public deleteSavedSearch(id: string): Promise<{ deleted: boolean }> {
+    return this.request<{ deleted: boolean }>(`/v1/saved-searches/${id}`, {
+      method: "DELETE",
     });
   }
 }

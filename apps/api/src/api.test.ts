@@ -203,6 +203,46 @@ test("Phase 0 API Exit Gate: /health, /v1/config, /v1/showcase, and Phone OTP si
     };
     assert.ok(adminData.metrics.completedTrades >= 21);
     assert.ok(adminData.auditEvents.length >= 4);
+
+    // 10. Phase 2 Smart Matching Lite Exit Gate: 5-Factor Scoring, 2-Way Mutual Match, Saved Searches & >=30% Recommendation Offer Share
+    const matchesRes = await fetch(`${baseUrl}/v1/matches`);
+    assert.equal(matchesRes.status, 200);
+    const matchesData = (await matchesRes.json()) as {
+      items: Array<{ id: string; score: number; isMutualMatch: boolean }>;
+      telemetry: { recommendationOfferSharePercent: number; phase2ExitGatePassed: boolean };
+    };
+    assert.ok(matchesData.items.length >= 2, "Should compute smart match candidates");
+    const firstMatch = matchesData.items[0]!;
+    assert.ok(firstMatch.score >= 70);
+
+    const matchOfferRes = await fetch(`${baseUrl}/v1/matches/${firstMatch.id}/offer`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ cashPaise: 100000 }),
+    });
+    assert.equal(matchOfferRes.status, 201);
+    const matchOfferData = (await matchOfferRes.json()) as {
+      offer: { origin: string };
+      telemetry: { recommendationOfferSharePercent: number; phase2ExitGatePassed: boolean };
+    };
+    assert.equal(matchOfferData.offer.origin, "match");
+    assert.ok(
+      matchOfferData.telemetry.recommendationOfferSharePercent >= 30,
+      "Phase 2 Exit Gate: >= 30% of offers originate from a recommendation"
+    );
+    assert.equal(matchOfferData.telemetry.phase2ExitGatePassed, true);
+
+    const createSsRes = await fetch(`${baseUrl}/v1/saved-searches`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        query: "Sony WH-1000XM5",
+        categorySlug: "workstation-audio",
+        maxDistanceKm: 8,
+        notify: true,
+      }),
+    });
+    assert.equal(createSsRes.status, 201);
   } finally {
     await new Promise<void>((resolve) => server.close(() => resolve()));
   }

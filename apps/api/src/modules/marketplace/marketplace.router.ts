@@ -8,6 +8,7 @@ import { OffersService } from "./offers.service";
 import { TradesService } from "./trades.service";
 import { ReviewsService } from "./reviews.service";
 import { ChatAdminService } from "./chat-admin.service";
+import { MatchingService } from "./matching.service";
 
 export function createMarketplaceRouter(authService: AuthService) {
   const store = createInitialMarketplaceStore();
@@ -17,6 +18,7 @@ export function createMarketplaceRouter(authService: AuthService) {
   const trades = new TradesService(store);
   const reviews = new ReviewsService(store);
   const chatAdmin = new ChatAdminService(store);
+  const matching = new MatchingService(store);
 
   return async function handleMarketplaceRoute(
     method: string,
@@ -219,6 +221,49 @@ export function createMarketplaceRouter(authService: AuthService) {
           (body.action as "dismiss" | "warn" | "remove_item" | "suspend_user") || "dismiss"
         )
       );
+      return true;
+    }
+
+    // Phase 2 Smart Matching Lite & Saved Searches (BE-2.1..BE-2.4)
+    if (method === "GET" && pathname === "/v1/matches") {
+      sendJson(res, 200, matching.getMatches());
+      return true;
+    }
+    const matchAction = pathname.match(/^\/v1\/matches\/([^/]+)\/(feedback|offer)$/);
+    if (method === "POST" && matchAction) {
+      const [, matchId, act] = matchAction;
+      const body = await readJsonBody(req);
+      if (act === "feedback") {
+        sendJson(res, 200, matching.recordFeedback(matchId!, body));
+      } else {
+        sendJson(
+          res,
+          201,
+          matching.createOfferFromMatch(
+            matchId!,
+            body as { cashPaise?: number; message?: string }
+          )
+        );
+      }
+      return true;
+    }
+    if (method === "GET" && pathname === "/v1/saved-searches") {
+      sendJson(res, 200, matching.getSavedSearches());
+      return true;
+    }
+    if (method === "POST" && pathname === "/v1/saved-searches") {
+      const body = await readJsonBody(req);
+      sendJson(res, 201, matching.createSavedSearch(body));
+      return true;
+    }
+    const ssToggleMatch = pathname.match(/^\/v1\/saved-searches\/([^/]+)\/toggle-alert$/);
+    if (method === "POST" && ssToggleMatch) {
+      sendJson(res, 200, matching.toggleSavedSearchAlert(ssToggleMatch[1]!));
+      return true;
+    }
+    const ssDeleteMatch = pathname.match(/^\/v1\/saved-searches\/([^/]+)$/);
+    if (method === "DELETE" && ssDeleteMatch) {
+      sendJson(res, 200, matching.deleteSavedSearch(ssDeleteMatch[1]!));
       return true;
     }
     return false;

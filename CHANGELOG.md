@@ -2,6 +2,16 @@
 
 All notable changes to the **Xchange** monorepo are documented in this file.
 
+## [0.2.0] — Phase 2: Smart Matching Lite (`v0.2`) — 2026-11-06
+
+### Added
+- **5-Factor Smart Matching Engine (`BE-2.1`, `BE-2.2`, `WEB-2.1`, `WEB-2.2`):**
+  - Implemented $M = 0.30I + 0.25V + 0.20L + 0.15C + 0.10P$ scoring in `@xchange/shared` (`evaluatePairFactors`) and `MatchingService` (`apps/api`), automatic 2-way mutual match detection (`isMutualMatch`) with score boost, `<MatchesForYouRail />` on `/feed`, and the `/matches` studio.
+- **Saved Searches & Real-Time Alerts (`BE-2.3`, `WEB-2.3`):**
+  - `GET/POST /v1/saved-searches`, `POST /v1/saved-searches/:id/toggle-alert`, `DELETE /v1/saved-searches/:id`, and interactive Saved Search manager UI.
+- **Match Feedback & Phase 2 Exit Gate Telemetry (`BE-2.4`, `WEB-2.4`):**
+  - `POST /v1/matches/:id/feedback` (`shown`, `clicked`, `dismissed`, `offered`), 1-click recommendation offers (`POST /v1/matches/:id/offer` with `origin: "match"`), and live Phase 2 Exit Gate telemetry verifying $\ge 30\%$ of offers originate from recommendations.
+
 ## [0.1.0] — Phase 1: Core Marketplace (`v0.1 "Concierge Beta"`) — 2026-11-06
 
 ### Added

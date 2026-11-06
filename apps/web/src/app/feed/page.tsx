@@ -5,6 +5,7 @@ import { formatInrFromPaise, type MarketplaceItemDto } from "@xchange/shared";
 import { apiClient } from "@/lib/api-client";
 import { emitAnalyticsEvent } from "@/lib/observability";
 import { useAppContext } from "@/components/providers/AppProviders";
+import { MatchesForYouRail } from "@/components/matching/MatchesForYouRail";
 
 export default function DiscoveryFeedPage() {
   const { pushToast } = useAppContext();
@@ -62,6 +63,7 @@ export default function DiscoveryFeedPage() {
 
   return (
     <div className="space-y-6">
+      <MatchesForYouRail />
       <div className="xc-glass-panel rounded-3xl p-6">
         <span className="rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold text-emerald-400">
           WEB-1.6 &amp; BE-1.5 · GEO + FTS DISCOVERY FEED

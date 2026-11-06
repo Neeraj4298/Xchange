@@ -44,5 +44,9 @@ test("shared package defines matching score weights (0.30, 0.25, 0.20, 0.15, 0.1
   assert.match(src, /0\.15\s*\*\s*clamp\(factors\.conditionCompatibility\)/);
   assert.match(src, /0\.1\s*\*\s*clamp\(factors\.userPreferences\)/);
   assert.match(src, /checkProhibitedContent/);
+
+  const phase2Src = fs.readFileSync(path.join(__dirname, "phase2.ts"), "utf8");
+  assert.match(phase2Src, /evaluatePairFactors/);
+  assert.match(phase2Src, /isMutualMatch/);
 });
 
