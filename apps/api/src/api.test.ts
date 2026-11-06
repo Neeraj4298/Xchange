@@ -294,6 +294,65 @@ test("Phase 0 API Exit Gate: /health, /v1/config, /v1/showcase, and Phone OTP si
     assert.equal(semRes.status, 200);
     const semData = (await semRes.json()) as { results: Array<{ cosineSimilarity: number }> };
     assert.ok(semData.results.length >= 1);
+
+    // 12. Phase 4 Public Launch (v1.0) Exit Gate: 3-Way Chain Unanimous Ordered Lock, 3-Leg Handover, ID Verify & Billing
+    const chainsRes = await fetch(`${baseUrl}/v1/me/chain-proposals`);
+    assert.equal(chainsRes.status, 200);
+    const chainsData = (await chainsRes.json()) as {
+      proposals: Array<{ id: string; status: string }>;
+    };
+    const chainId = chainsData.proposals[0]!.id;
+
+    const chainAccRes = await fetch(`${baseUrl}/v1/chains/${chainId}/accept`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ participantCode: "C" }),
+    });
+    assert.equal(chainAccRes.status, 200);
+    const chainAccData = (await chainAccRes.json()) as {
+      proposal: { status: string; itemsLockedInOrder: string[] };
+    };
+    assert.equal(chainAccData.proposal.status, "accepted");
+    assert.equal(chainAccData.proposal.itemsLockedInOrder.length, 3);
+
+    // Confirm all 3 physical handoff legs (A->B, B->C, C->A)
+    await fetch(`${baseUrl}/v1/chains/${chainId}/confirm-handoff`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ legPosition: 1, handoverCode: "301111" }),
+    });
+    await fetch(`${baseUrl}/v1/chains/${chainId}/confirm-handoff`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ legPosition: 2, handoverCode: "301222" }),
+    });
+    const leg3Res = await fetch(`${baseUrl}/v1/chains/${chainId}/confirm-handoff`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ legPosition: 3, handoverCode: "301333" }),
+    });
+    const leg3Data = (await leg3Res.json()) as {
+      proposal: { status: string };
+      telemetry: {
+        completedChainsCount: number;
+        chainCompletionRatePercent: number;
+        phase4ExitGatePassed: boolean;
+      };
+    };
+    assert.equal(leg3Data.proposal.status, "completed");
+    assert.ok(leg3Data.telemetry.completedChainsCount >= 10);
+    assert.ok(leg3Data.telemetry.chainCompletionRatePercent > 60);
+    assert.equal(leg3Data.telemetry.phase4ExitGatePassed, true);
+
+    const idVerRes = await fetch(`${baseUrl}/v1/me/verify-id`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ documentType: "Aadhaar_DigiLocker" }),
+    });
+    assert.equal(idVerRes.status, 200);
+
+    const subRes = await fetch(`${baseUrl}/v1/billing/subscribe`, { method: "POST" });
+    assert.equal(subRes.status, 200);
   } finally {
     await new Promise<void>((resolve) => server.close(() => resolve()));
   }

@@ -15,8 +15,11 @@ import type {
   AiValuationFeedbackInput,
   CategoryDto,
   ChainCycleNodeDto,
+  ChainProposalDto,
+  ChainsTelemetryDto,
   ChatMessageDto,
   CityDto,
+  ConfirmChainHandoffInput,
   ConfirmHandoverInput,
   ConversationDto,
   CounterOfferInput,
@@ -26,6 +29,7 @@ import type {
   CreateReviewInput,
   CreateSavedSearchInput,
   FeaturedItemDto,
+  InvoiceReceiptDto,
   MarketplaceItemDto,
   MatchCandidateDto,
   MatchFeedbackInput,
@@ -34,6 +38,7 @@ import type {
   OfferDto,
   OtpRequestInput,
   OtpVerifyInput,
+  PlanDto,
   ReviewDto,
   SafeMeetupPointDto,
   SavedSearchDto,
@@ -552,6 +557,81 @@ export class XchangeApiClient {
 
   public getAiTelemetry(): Promise<{ telemetry: AiTelemetryDto }> {
     return this.request("/v1/ai/telemetry");
+  }
+
+  public getChainProposals(): Promise<{
+    proposals: ChainProposalDto[];
+    telemetry: ChainsTelemetryDto;
+  }> {
+    return this.request("/v1/me/chain-proposals");
+  }
+
+  public acceptChainProposal(
+    chainId: string,
+    participantCode: "A" | "B" | "C" = "C"
+  ): Promise<{ proposal: ChainProposalDto; telemetry: ChainsTelemetryDto }> {
+    return this.request(`/v1/chains/${chainId}/accept`, {
+      method: "POST",
+      body: JSON.stringify({ participantCode }),
+    });
+  }
+
+  public declineChainProposal(
+    chainId: string,
+    participantCode: "A" | "B" | "C" = "C"
+  ): Promise<{ proposal: ChainProposalDto; telemetry: ChainsTelemetryDto }> {
+    return this.request(`/v1/chains/${chainId}/decline`, {
+      method: "POST",
+      body: JSON.stringify({ participantCode }),
+    });
+  }
+
+  public confirmChainHandoff(
+    chainId: string,
+    input: ConfirmChainHandoffInput
+  ): Promise<{ proposal: ChainProposalDto; telemetry: ChainsTelemetryDto }> {
+    return this.request(`/v1/chains/${chainId}/confirm-handoff`, {
+      method: "POST",
+      body: JSON.stringify(input),
+    });
+  }
+
+  public verifyGovernmentId(documentType = "Aadhaar_DigiLocker"): Promise<{
+    verified: boolean;
+    verificationLevel: "id";
+    badgeLabel: string;
+  }> {
+    return this.request("/v1/me/verify-id", {
+      method: "POST",
+      body: JSON.stringify({ documentType }),
+    });
+  }
+
+  public getBillingPlans(): Promise<{
+    plans: PlanDto[];
+    activePlanCode: "free" | "xchange_plus";
+    invoices: InvoiceReceiptDto[];
+  }> {
+    return this.request("/v1/plans");
+  }
+
+  public subscribePlusPlan(): Promise<{
+    activePlanCode: "xchange_plus";
+    invoice: InvoiceReceiptDto;
+  }> {
+    return this.request("/v1/billing/subscribe", {
+      method: "POST",
+    });
+  }
+
+  public promoteListing(itemId: string, days = 7): Promise<{
+    promotedItemId: string;
+    invoice: InvoiceReceiptDto;
+  }> {
+    return this.request("/v1/promotions", {
+      method: "POST",
+      body: JSON.stringify({ itemId, days }),
+    });
   }
 }
 

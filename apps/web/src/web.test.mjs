@@ -17,6 +17,8 @@ test("Web Phase 0 & Phase 1 routes, middleware, 3-Way Cycle Studio, and Core Mar
     "app/feed/page.tsx",
     "app/matches/page.tsx",
     "app/ai-studio/page.tsx",
+    "app/chains/page.tsx",
+    "app/plus/page.tsx",
     "app/items/new/page.tsx",
     "app/my-items/page.tsx",
     "app/offers/page.tsx",

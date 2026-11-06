@@ -10,6 +10,7 @@ import { ReviewsService } from "./reviews.service";
 import { ChatAdminService } from "./chat-admin.service";
 import { MatchingService } from "./matching.service";
 import { AiAssistService } from "./ai.service";
+import { ChainsAndLaunchService } from "./chains.service";
 
 export function createMarketplaceRouter(authService: AuthService) {
   const store = createInitialMarketplaceStore();
@@ -21,6 +22,7 @@ export function createMarketplaceRouter(authService: AuthService) {
   const chatAdmin = new ChatAdminService(store);
   const matching = new MatchingService(store);
   const aiAssist = new AiAssistService(store);
+  const chainsAndLaunch = new ChainsAndLaunchService(store);
 
   return async function handleMarketplaceRoute(
     method: string,
@@ -292,6 +294,43 @@ export function createMarketplaceRouter(authService: AuthService) {
     }
     if (method === "GET" && pathname === "/v1/ai/telemetry") {
       sendJson(res, 200, { telemetry: aiAssist.getTelemetry() });
+      return true;
+    }
+
+    // Phase 4 Chains, ID Verification & Billing (BE-4.1..BE-4.7)
+    if (method === "GET" && pathname === "/v1/me/chain-proposals") {
+      sendJson(res, 200, chainsAndLaunch.getProposals());
+      return true;
+    }
+    const chainAct = pathname.match(/^\/v1\/chains\/([^/]+)\/(accept|decline|confirm-handoff)$/);
+    if (method === "POST" && chainAct) {
+      const [, chainId, act] = chainAct;
+      const body = await readJsonBody(req);
+      if (act === "accept") {
+        sendJson(res, 200, chainsAndLaunch.acceptProposal(chainId!, body));
+      } else if (act === "decline") {
+        sendJson(res, 200, chainsAndLaunch.declineProposal(chainId!, body));
+      } else {
+        sendJson(res, 200, chainsAndLaunch.confirmHandoff(chainId!, body));
+      }
+      return true;
+    }
+    if (method === "POST" && pathname === "/v1/me/verify-id") {
+      const body = await readJsonBody(req);
+      sendJson(res, 200, chainsAndLaunch.verifyGovernmentId(String(body.documentType || "Aadhaar_DigiLocker")));
+      return true;
+    }
+    if (method === "GET" && pathname === "/v1/plans") {
+      sendJson(res, 200, chainsAndLaunch.getBillingPlans());
+      return true;
+    }
+    if (method === "POST" && pathname === "/v1/billing/subscribe") {
+      sendJson(res, 200, chainsAndLaunch.subscribePlus());
+      return true;
+    }
+    if (method === "POST" && pathname === "/v1/promotions") {
+      const body = await readJsonBody(req);
+      sendJson(res, 201, chainsAndLaunch.promoteListing(String(body.itemId || ""), Number(body.days || 7)));
       return true;
     }
     return false;

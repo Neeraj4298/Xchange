@@ -52,5 +52,9 @@ test("shared package defines matching score weights (0.30, 0.25, 0.20, 0.15, 0.1
   const phase3Src = fs.readFileSync(path.join(__dirname, "phase3.ts"), "utf8");
   assert.match(phase3Src, /sanitizeUntrustedListingPrompt/);
   assert.match(phase3Src, /Estimated range, not a market price/);
+
+  const phase4Src = fs.readFileSync(path.join(__dirname, "phase4.ts"), "utf8");
+  assert.match(phase4Src, /detectThreeWayCycles/);
+  assert.match(phase4Src, /itemsLockedInOrder/);
 });
 

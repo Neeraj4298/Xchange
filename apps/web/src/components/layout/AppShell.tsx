@@ -9,14 +9,14 @@ import { useAppContext } from "@/components/providers/AppProviders";
 const CLUSTERS = ["Indiranagar", "Koramangala", "HSR Layout", "Whitefield"];
 const NAV_ITEMS = [
   { href: "/", label: "Cycle Studio", badge: "3-Way" },
+  { href: "/chains", label: "Chain Lifecycle", badge: "v1.0" },
   { href: "/feed", label: "Discovery Feed", badge: "WEB-1.6" },
   { href: "/matches", label: "Smart Matches", badge: "v0.2" },
   { href: "/ai-studio", label: "AI Vision & Vector", badge: "v0.3" },
   { href: "/items/new", label: "List Item", badge: "+Swap" },
-  { href: "/my-items", label: "My Items", badge: "CRUD" },
   { href: "/offers", label: "Offers Inbox", badge: "Lock" },
   { href: "/trades", label: "Trades & Code", badge: "6-Digit" },
-  { href: "/chat", label: "Chat & Alerts", badge: "Masked" },
+  { href: "/plus", label: "Plus & ID Verify", badge: "₹149" },
   { href: "/admin", label: "Admin Console", badge: "Mod" },
 ];
 

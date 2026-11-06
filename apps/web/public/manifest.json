@@ -1,0 +1,10 @@
+{
+  "name": "Xchange — Own less. Exchange more.",
+  "short_name": "Xchange",
+  "description": "Peer-to-peer circular exchange marketplace with 2-way and 3-way smart barter cycles.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#060B0A",
+  "theme_color": "#10B981",
+  "orientation": "portrait-primary"
+}

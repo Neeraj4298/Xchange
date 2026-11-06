@@ -2,6 +2,14 @@
 
 All notable changes to the **Xchange** monorepo are documented in this file.
 
+## [1.0.0] — Phase 4: Chains & Public Launch (`v1.0`) — 2026-11-06
+
+### Added
+- **$O(V \cdot K^2)$ 3-Way Cycle Detector & Unanimous Chain Lifecycle (`BE-4.1`, `BE-4.2`, `BE-4.3`, `WEB-4.1`, `WEB-4.2`, `WEB-4.3`):**
+  - Implemented `detectThreeWayCycles()` in `@xchange/shared` and `ChainsAndLaunchService` in `apps/api`, `GET /v1/me/chain-proposals`, `POST /v1/chains/:id/accept` (unanimous 24h consent with deadlock-free ordered item locking), `POST /v1/chains/:id/decline` (zero-penalty dissolve), `POST /v1/chains/:id/confirm-handoff` (per-leg 6-digit handover codes for `A→B`, `B→C`, `C→A`), and `/chains` studio + Phase 4 Exit Gate telemetry ($\ge 10$ completed chains, $> 60\%$ completion rate).
+- **Government ID Verification, Xchange Plus Billing & PWA (`BE-4.5`, `BE-4.6`, `WEB-4.4`, `WEB-4.5`, `WEB-4.6`):**
+  - Implemented `POST /v1/me/verify-id`, `GET /v1/plans`, `POST /v1/billing/subscribe` (`₹149/mo`), `POST /v1/promotions` (`₹99` Featured Boost) with GST invoice generation, `public/manifest.json`, and the `/plus` screen.
+
 ## [0.3.0] — Phase 3: AI Assist (`v0.3`) — 2026-11-06
 
 ### Added
