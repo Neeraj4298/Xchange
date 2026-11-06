@@ -1,0 +1,2183 @@
+For Xchange, I would recommend Modern Minimalism + Subtle Glassmorphism, with a little bit of Bento UI.
+
+I would not use full Neumorphism or heavy Glassmorphism. Both can look impressive in Dribbble shots but can make a marketplace difficult to use, especially when users need to compare products, prices, conditions and exchange offers.
+
+Xchange should feel like a premium consumer technology product, not a generic classifieds website.
+
+# 1. Which UI morphism should Xchange use?
+
+Let's compare the main styles.
+
+[UI Design — How many ‘ism’s do you know? | by Free Figma Templates | Medium](https://images.openai.com/static-rsc-4/-iqhmt7Z2HiaB-ZkXjFjbgAyQgk-QSSs1ceYRYvEjo8xXkkin34vQzujvj3a_JNhd83Orv-Xsn8h17t8n84xsKDUigHa8NFkPuVO_u5GV6nAfFPCituxTAU9i0kYKDVf5iOZZooR8tyuG3CBayD3Sg7ghBJrK5QnA_3g6H026Uk?purpose=inline)
+
+1\. Glassmorphism
+
+Use selectively
+
+- Frosted translucent surfaces.
+- Background blur.
+- Layered depth.
+- Premium futuristic appearance.
+
+Best for navigation overlays, floating controls, dialogs and special match highlights.
+
+[User interface screen mockup Images - Free Download on Magnific (formerly Freepik)](https://images.openai.com/static-rsc-4/y6gAivsdgP2AekZNOfYcSvuyhzFI5PdeazXnJ2j49gEVmail93bWhOOI5AI6VOHYZ5xZeDxvtzTIlcsY9qYM9ppG_56WtG4ukm7jCvVrGZWt2VzRNppBaqvDUuJAga4PNHFO-A_TAN84RO_uRemyoRDVL-__CcbAz-g48TNYcys?purpose=inline)
+
+2\. Neumorphism
+
+Avoid as primary style
+
+- Soft embossed surfaces.
+- Subtle shadows.
+- Low contrast.
+- Difficult to distinguish interactive elements.
+
+Looks beautiful in concepts, but can hurt readability and accessibility.
+
+[Product UI design by Bony Amin on Dribbble](https://images.openai.com/static-rsc-4/0nAzDwBH8KlyD4uIk5ep6ogSwsa_1c6IDfIVoThZAhFkRWCMrxtOBAeZZxdl5eW3Y9jLEqMVxbBz-_Uvihc0NZtoywkcbz_WvP-ZL61KMukKCL-skpbWQyPxNUO0TooFs0zglsrO5hAQuW-S1QikIw9b4SUb3HRdND_zNST7kYw?purpose=inline)
+
+3\. Modern Minimalism
+
+Primary design system
+
+- Clean layouts.
+- Strong typography.
+- Clear product imagery.
+- Excellent readability.
+- Focus on usability.
+
+Best for listings, search, product details and transactions.
+
+[Bento Grids | Aceternity UI Blocks](https://images.openai.com/static-rsc-4/2oGQDSKlMpC12P8DAUAa10mF-KmhksnPhoDEl43zaUQJ7M9i3ya79o3jl1wWYz1xeFd04jEcRhAOfTHjJUnXJzzK3sHrIYlfxMEbuDCBAcQoa1gssobBieMETu-Xup7cGsxniKf0NRiI2qrvkfh4pUDHrrlslFn6SaU9MMIQ6eA?purpose=inline)
+
+4\. Bento UI
+
+Use for dashboard sections
+
+- Modular content blocks.
+- Different card sizes.
+- Clear content grouping.
+- Great for personalized discovery.
+
+Best for home dashboard and profile insights.
+
+[Claymorphism UI design: recipe, examples, AI guidelines | Setproduct Blog](https://images.openai.com/static-rsc-4/mP_nreDs2IrUHW_310gOC45Eywuy_YAVoVQz88wdQVBMc5waN-AmWTaFwyNpTbwt6f9mWeSgGz9TbP2qfU2FYnHtBxWE8ZQ8uiEXAZH9lNdhFs47VGkMiBB2hRobNcoPnMGmW3IsLFmAvoaBxnY7uq4nTVGj95yuEnhruawegto?purpose=inline)
+
+5\. Claymorphism
+
+Limited use
+
+- Puffy 3D surfaces.
+- Soft rounded shapes.
+- Playful visual personality.
+
+Could work for onboarding illustrations, but not the core marketplace.
+
+## My final design combination
+
+# Xchange Design Language
+
+# Modern Minimalism
+
+\+ Subtle Glassmorphism + Bento Layouts
+
+70% Minimalism
+
+Foundation
+
+20% Bento UI
+
+10% Glassmorphism
+
+Suggested visual emphasis, not a technical measurement.
+
+# 2. Color palette
+
+I would give Xchange a recognizable identity rather than using the standard green-and-white marketplace design.
+
+My preferred direction is violet/indigo with neutral backgrounds.
+
+## Xchange color system
+
+Electric Violet
+
+\#7167E8 · Primary
+
+Deep Ink
+
+\#25243A · Text
+
+Soft Cloud
+
+\#F6F6FA · Background
+
+Pure White
+
+\#FFFFFF · Cards
+
+Exchange Green
+
+\#20A786 · Success
+
+Warm Amber
+
+\#F0A44B · Attention
+
+Dark mode:
+
+- Background: `#11111B`
+- Surface: `#1C1C2A`
+- Elevated surface: `#252538`
+- Primary: `#9188FF`
+- Text: `#F4F3FA`
+- Secondary text: `#AAA9BC`
+
+Make dark mode a first-class design system, not simply inverted colors.
+
+# 3. How I would design the actual application
+
+These are the six screens I would prioritize.
+
+## Screen 1 — Home / Discovery
+
+Most important screen
+
+[Forsa App Design Ecommerce App | UI/UX :: Behance](https://images.openai.com/static-rsc-4/i8zuK2hbAzRjyeHS6mlrjE6Aj--GIqXBlyOudiwtDB4bxUq4yGjqjI9Wuk3Jnkqcx3xB0NsLnKr6iStSk2EK5RPHZpoKVpPU_CtUvf8ssnwfWuUWENTM1cQMoBltz9F-kqUVrxxu-EU8JRFPAf5H-dg1Bkc-iBSPdKiTni0h8As?purpose=inline)
+
+[behance.net](https://www.behance.net/gallery/189804005/Forsa-App-Design-Ecommerce-App-UIUX?utm_source=chatgpt.com)
+
+Suggested layout:
+
+1. Xchange logo and location selector.
+2. Search bar: "What are you looking to exchange?"
+3. Personalized greeting.
+4. Your exchange opportunities.
+5. Category shortcuts.
+6. Recommended items.
+7. Nearby listings.
+8. Bottom navigation.
+
+A particularly useful feature:
+
+"Matches for your items"
+
+Instead of making users search manually, show items that people might exchange for something they already own.
+
+This is much more useful than a generic feed.
+
+## Screen 2 — Product listing cards
+
+[iF Design - fetch](https://images.openai.com/static-rsc-4/or1jbp2eh391g5AsHkyYOycFolXnHvyNPnxAHiy4dT5lTEIteXL5Sgrvm3nVRDwWXbmXKfxS3oZjfEHPLQmmyPYtohuiys0lt6zqVKGgy0lSM_ggggzZsiI3mUQXMxbTLSsOiqDwxHJ4MfPCTM-N4Xl4GRURiaAYXdaEuXzQkog?purpose=inline)
+
+[ifdesign.com](https://ifdesign.com/en/winner-ranking/project/fetch/670612?utm_source=chatgpt.com)
+
+Each card should contain:
+
+- Large product image.
+- Product name.
+- Estimated value.
+- Item condition.
+- Distance.
+- Owner reputation.
+- Small exchange compatibility indicator.
+
+Example:
+
+[Sony WH-CH720N Wireless Noise Cancelling Over-Ear Headphone \[READYSTOCK\] - MSL Digital Online Store](https://images.openai.com/static-rsc-4/yQfU6-64bxHBOjzwEDNZPYwF7I4eVUE4bxaJ5VucguvDkYKwYG80sebXGU884nnLsMZLHucAQEee2gQfG9nujPSnlvXryII4ufcfG91rrP3W3J24ju38PpDsQv1G-MGNfQQeFvU3H1DzPoapXqoG8Ctzt4fhDtLsZ5ivrXyl5KQ?purpose=inline)
+
+[msldigital.com.my](https://msldigital.com.my/product/sony-wh-ch720n-wireless-noise-cancelling-over-ear-headphone-bluetooth-5-2-dsee-high-quality-sound/?utm_source=chatgpt.com)
+
+Sony headphones
+
+Good match
+
+# ₹11,000
+
+Good condition
+
+2.4 km away
+
+Verified phone · 4.8 rating
+
+Do not put too much information on a product card. Let the product details page handle the rest.
+
+## Screen 3 — Create listing
+
+[Samuel Hoang : Facebook Marketplace Seller Experiences : Product and User Experience Designer](https://images.openai.com/static-rsc-4/TW1_FB4yn05WLYJcpoDFoZFmqmDLFYpzfzZjOxne6quNXQ4Al-i2-wlmk51QG3Isa3nfSfD_6NUg8_RsM62jr8G6_Tbkj-gfXdhWSuLu3B9EwuO69Cew-C8WKG8EqvWMTwengbCEMdxufjxqfNkIqev_iabZoU53ZS70ncnTZTs?purpose=inline)
+
+[samuelhoang.com](https://www.samuelhoang.com/portfolio/project-2019-fb-marketplace-seller-experiences.html?utm_source=chatgpt.com)
+
+Make this experience exceptionally simple.
+
+I would introduce an AI-assisted upload button:
+
+List with AI
+
+## What are you exchanging?
+
+Add product photos
+
+Upload or take a photograph
+
+AI will help identify your item
+
+Suggest a title, category, description and approximate value. You can edit everything.
+
+The important UX principle: users should not have to fill 15 fields to list a pair of headphones.
+
+## Screen 4 — Exchange proposal
+
+[Barter App Design Concept by Dmitry Lauretsky for Ronas IT | UI/UX Team on Dribbble](https://images.openai.com/static-rsc-4/CTe0gSPQm3NgsP5lM0NeXI-EQv7_LLNzgBUEVp640d9pu-ZplCXj8_RWDWbGQBTYmXKlLzyhP5g0fQuitWA-Ezb_ufXkuaOA-scE9UFSbpijBsDQPYBZe_dAhRC23tzFYp6le6X0g6_k2qJwpWjNJ3t6gis0Ivl0pSR9zXpv9yI?purpose=inline)
+
+[dribbble.com](https://dribbble.com/shots/22990933-Barter-App-Design-Concept?utm_source=chatgpt.com)
+
+This is where Xchange should look different from other marketplaces.
+
+Display both products side by side.
+
+- Your item.
+- Their item.
+- Approximate value difference.
+- Cash adjustment.
+- Handover preference.
+- Send offer button.
+
+Use a clear exchange animation, such as two product cards sliding toward each other.
+
+Avoid using a complicated financial trading dashboard aesthetic.
+
+## Screen 5 — Smart chain suggestions
+
+Signature feature
+
+[HULA — Smart bartering for neighbors](https://images.openai.com/static-rsc-4/eYyp9_nHpjMsEUtXq5RgYK7EdPMLDCtQSF0f9_2cDhTen0GAin6aOupq6Ws7hb7tjPWdKHPJBAZNC7FkB72HU4ntE02BklsqDy3WRNtGU8HEvfFP8b_dyiATZtJ5O4g6dEPdzVLlzB69HMmOSseGMjx82jsHwzHxXB8dT6Fk4Ec?purpose=inline)
+
+[hula.exchange](https://hula.exchange/?utm_source=chatgpt.com)
+
+This should become Xchange's most recognizable interface.
+
+I would use:
+
+- Circular nodes for participants.
+- Product thumbnails inside nodes.
+- Curved directional arrows.
+- A clear explanation of each exchange.
+- Estimated value differences.
+- Distance between participants.
+- A single "Review exchange chain" action.
+
+The chain visualization should be interactive, not just decorative.
+
+Users should be able to tap each participant and inspect the items and conditions.
+
+## Screen 6 — Trade management
+
+[cognicart: AI Shopping & Ecommerce App - Filter Duration UIUX by finterface on Dribbble](https://images.openai.com/static-rsc-4/gQAaQSmff8zbhqfP8EjMS1A9qz-NqsEyo_0W8-lCJgASp4yghIa0eg6ECCLVpAAeXKb1AjJXE0o7Nh4PyezNilcNW2eIpACRPvFR6vB4exxofrGnD28dji63SxLhtg1_R-D_o3-eqFv-is1Znt79fNYAjaNnxg2inYKjP8Locp4?purpose=inline)
+
+[dribbble.com](https://dribbble.com/shots/25163160-cognicart-AI-Shopping-Ecommerce-App-Filter-Duration-UIUX?utm_source=chatgpt.com)
+
+Use a timeline:
+
+1. Exchange accepted.
+2. Items confirmed.
+3. Handover arranged.
+4. First handover confirmed.
+5. Final handover confirmed.
+6. Trade completed.
+
+This screen is especially important for multi-person exchanges.
+
+# 4. Typography and components
+
+My recommendations:
+
+| Element            | Recommendation   |
+| ------------------ | ---------------- |
+| Main font          | Inter            |
+| Alternative        | Manrope          |
+| Large headings     | 28–32 px         |
+| Section headings   | 20–24 px         |
+| Body               | 14–16 px         |
+| Buttons            | 14–16 px         |
+| Card radius        | 16–20 px         |
+| Main button radius | 12–14 px         |
+| Spacing            | 4/8 px system    |
+| Shadows            | Soft and minimal |
+
+Use consistent design tokens across web and mobile.
+
+# 5. Interaction and animation
+
+Xchange should feel responsive without becoming distracting.
+
+Some ideas:
+
+- Smooth card transitions.
+- Heart animation when saving an item.
+- Subtle vibration when an offer is accepted.
+- Animated exchange arrows.
+- Skeleton loading for listings.
+- Bottom-sheet filters.
+- Drag-to-dismiss image gallery.
+- Live chat typing indicators.
+- Progress animation when a trade is completed.
+
+Use Framer Motion for web and Reanimated for React Native.
+
+Avoid animating every card or every scroll interaction. Performance matters more than visual novelty.
+
+# 6. My recommended design references
+
+These are useful places to study particular aspects of the experience.
+
+[Cycles – Linear Docs](https://images.openai.com/static-rsc-4/5FouJBA9syLKJk_V5XgM-moCMflgeqH26Wt6EyTi-K0VFIQSuttiwslSpnF7XMeoNIC-RV4mqMB_A5qnFUpGSzExQspExruQybv8qYOpsRt-JHsdFZzSGblzmATK8w4D80V5LqDn4tjrEa-eZEFNuA1RST2z2baRa1DFFOWtv4A?purpose=inline)
+
+Linear
+
+Study typography, spacing, interaction and visual consistency.
+
+[Explore Linear](https://linear.app/?utm_source=chatgpt.com)
+
+[允許房東聘用房東 Airbnb推出新功能便於房屋管理 | 社群/APP/網紅 | udn科技玩家](https://images.openai.com/static-rsc-4/IWZvAVbqa9IFSlyokc2UbKjLOteL3mTHiBhhb84HqgadbhidGAe0t_FB5FZEOjT81gBIEBWgPETzg4YpOzKP5_DaZw_TWzUZsNNk_7Yj58uSYFGSS9K9W-M1bWfnoWip_ViIoJm--h3QAckFLwCVlS_q2PtaBVi6oYoEIizCmJ0?purpose=inline)
+
+Airbnb
+
+Study discovery, filters, listing photography and trust signals.
+
+[Explore Airbnb](https://www.airbnb.com/?utm_source=chatgpt.com)
+
+[\[图\]苹果年年焕新计划现接受iPhone 12 Mini/Pro Max两款新机预订 - Apple iPhone - cnBeta.COM](https://images.openai.com/static-rsc-4/ffyWq7NtsbkSGI2LPB4BYpUgttu1-ayCo5-69XqcXwMIOrMs_xHLXqKaZOclgPs0KNpW47tnk5isG89xsqzWjk_CnT45RBib3bSRdGzDtEwrsxSMLsBdLHEdTxkNM6WINaFOwlM1U0gsAvzjCz1SebXsAM2FzNw4BdISU9E-3EE?purpose=inline)
+
+Apple Store
+
+Study product presentation and premium simplicity.
+
+[Explore Apple Store](https://www.apple.com/store?utm_source=chatgpt.com)
+
+[7 Rules for Creating Gorgeous UI – Part 2 (2024 update) – Learn UI Design](https://images.openai.com/static-rsc-4/F0QG206x6h4aFaz4T8IrKXoNDg_Bf6QUeGDie8mwC5r5do5cqS6oJpgQJVTokewX09E_2stgMaIQEXlBCchEnCUIVebc-1IBmgFZEakyycHX8bIUis_M5FbK_UXdUCJ2NfCgZzbDTSSO6UGlg-80iSE30RH38-W8iIuwyYuZxyA?purpose=inline)
+
+Mobbin
+
+Study real-world mobile patterns and screen flows.
+
+[Explore Mobbin](https://mobbin.com/?utm_source=chatgpt.com)
+
+[Marketplace Mobile App UI by Nixtio on Dribbble](https://images.openai.com/static-rsc-4/B0o5xPQk9h-jkB_AHFdps5NPn1qXhEJcnfYh3ZzyQ1UVu5e5O6CE76LWt31IbYUxyOtiko1WOBSw6ufG2Esxef2UUbbGIL7kJSr884dwfMFod5j9tvKsTJwbrLXxFrx4ojDdwHN_f_n44wZPbJh3-gWdrLDxHcR4QPCl3WHyGNs?purpose=inline)
+
+Dribbble
+
+Explore visual concepts for marketplace and exchange interfaces.
+
+[Explore Dribbble](https://dribbble.com/?utm_source=chatgpt.com)
+
+# 7. My final design recommendation
+
+[Aesthetic marketplace by Vladimir Kulaev on Dribbble](https://images.openai.com/static-rsc-4/uYsncTTnqLnhXOarrhQ3J2GAhPENfgz1ZmwEYvniPjMtPEFDlBe50_dDNb7zPYOcEb9q1m6t8Gwp0bey8NVA1BrtcG5Ngut-cAQGRi3Ikou8FenynxOrBwUW39iL_nFa9You392CCAzQ0wpxwv6U8u8JZF1P3541gIRmu4kkxRc?purpose=inline)
+
+[dribbble.com](https://dribbble.com/shots/26496006-Aesthetic-marketplace?utm_source=chatgpt.com)
+
+# Xchange — Visual Identity
+
+Design direction: Premium, modern, minimal, intelligent.
+
+- Primary style: Modern Minimalism.
+- Secondary style: Bento UI.
+- Accent style: Glassmorphism.
+- Color: Violet and indigo.
+- Typography: Inter or Manrope.
+- Product cards: Clean, image-first.
+- Navigation: Minimal floating bottom navigation.
+- Dark mode: Fully supported.
+
+One thing I would absolutely avoid: Making Xchange look like a crypto exchange or AI dashboard. People should immediately understand that this is a place to exchange their belongings.
+
+The product itself should be the hero.
+
+## 8. Let's choose the exact visual direction
+
+Which overall aesthetic should we finalize?
+
+Premium Minimalism + subtle Glassmorphism
+
+Futuristic Glassmorphism + Bento UI
+
+Playful, colorful modern marketplace
+
+Editorial luxury marketplace
+
+Primary accent color
+
+Electric Violet / Indigo
+
+Electric Blue
+
+Emerald Green
+
+Coral / Orange
+
+Theme
+
+Light first
+
+Dark first
+
+Both, with automatic system preference
+
+Layout density
+
+Very spacious, fewer items per screen
+
+Balanced product discovery
+
+More listings visible at once
+
+Finalize visual direction
+
+My vote is Premium Minimalism + subtle Glassmorphism, Electric Violet, both themes, balanced density. It gives Xchange a distinctive identity without sacrificing usability.
+
+# Xchange Design System — Two Visual Directions
+
+
+
+Design direction finalized
+
+Figma-ready specification
+
+
+
+We're going to develop two distinct visual concepts for Xchange, using the same product architecture, brand identity and interaction patterns.
+
+The objective is to compare them properly rather than combine two styles into one inconsistent interface.
+
+# XCHANGE
+
+## Own less. Exchange more.
+
+Shared brand foundation
+
+- Primary accent: Electric Violet.
+- Theme: Light and dark.
+- Density: Balanced.
+- Typography: Manrope + Inter.
+- Platforms: Web, Android and iOS.
+
+## 1. The two concepts
+
+[E-commerce Marketplace Web design by Ronas IT | UI/UX Team on Dribbble](https://images.openai.com/static-rsc-4/9BHhwaGz3ghUjIUsI2y44hBCnUuYdTy6WTJrkOXv_siOBC6y_jQWAJGvOc1Ld8iy4zPZ9j0rU0BkcZ21fOHNR8sYXhCyQSYMBC3h_Z98eT1VhBNIVxnROPQjjpi6k5_2Gr1NPRS-1z__90xVeOcwejSZEgFEmGr3JlS4dW6fIJ8?purpose=inline)
+
+[dribbble.com](https://dribbble.com/shots/26899972-E-commerce-Marketplace-Web-design?utm_source=chatgpt.com)
+
+Concept A — Xchange Pure
+
+My recommendation
+
+# Premium Minimalism
+
+Clean surfaces, product photography, elegant typography and subtle depth.
+
+Personality: Trustworthy, sophisticated, effortless.
+
+Best for a product that needs to make exchanging possessions feel as simple as shopping.
+
+[Best Deal Hunting Site Slickdeals: Evidence-Based Efficiency Analysis](https://images.openai.com/static-rsc-4/acbyKZ6I15qxEjPACe34YUFB9MbzGngJb3X0xvkxDamMxinI7SQF5oVGlNIVI-deIIrOk0lG7QP6xz30tczExogpdvCWIHp7IXTrJZU8RJYCvKgkE_3rFGbMnkbfy9vDDiJhJ40G1tnb_5kgX4vE2bnAxKV-V2BaanqJb1VEVEs?purpose=inline)
+
+[lifetips.alibaba.com](https://lifetips.alibaba.com/tech-efficiency/best-deal-hunting-site-slickdeals?utm_source=chatgpt.com)
+
+Concept B — Xchange Nova
+
+# Futuristic Glass + Bento
+
+Frosted glass, layered cards, luminous accents, modular layouts and dynamic exchange visualizations.
+
+Personality: Intelligent, innovative, futuristic.
+
+Best for showcasing Xchange's matching engine and multi-person exchange network.
+
+### Side-by-side design decisions
+
+| Design element | A — Pure               | B — Nova                          |
+| -------------- | ---------------------- | --------------------------------- |
+| Background     | Solid neutral          | Gradient / layered                |
+| Cards          | Flat, subtle shadows   | Frosted glass                     |
+| Navigation     | Clean fixed navigation | Floating translucent              |
+| Product photos | Primary focus          | Framed visual cards               |
+| Typography     | Strong and simple      | Modern and expressive             |
+| Buttons        | Solid violet           | Gradient or luminous violet       |
+| Bento layouts  | Selectively            | Prominent                         |
+| Animations     | Subtle                 | More expressive                   |
+| Accessibility  | Easier to maintain     | Requires more contrast discipline |
+| Performance    | Lightweight            | More rendering overhead           |
+
+My product recommendation: Make Concept A the foundation and borrow Concept B's visual treatment for smart matches, chain discovery, onboarding and selected dashboard sections.
+
+This is not a compromise. It gives the marketplace a dependable interface while making its unique technology feel special.
+
+## 2. Visual identity and design tokens
+
+## Xchange brand palette
+
+Electric Violet
+
+\#7167E8
+
+Deep Violet
+
+\#5549C9
+
+Ink
+
+\#25243A
+
+Cloud
+
+\#F6F6FA
+
+Exchange Green
+
+\#20A786
+
+Warm Amber
+
+\#F0A44B
+
+Dark theme
+
+Background · #11111B
+
+Surface · #1C1C2A
+
+Elevated · #252538
+
+Accent · #9188FF
+
+### Typography
+
+| Usage           | Font             | Size     |
+| --------------- | ---------------- | -------- |
+| Hero heading    | Manrope Bold     | 36–48 px |
+| Page heading    | Manrope Semibold | 28–32 px |
+| Section heading | Manrope Semibold | 20–24 px |
+| Card title      | Inter Semibold   | 16–18 px |
+| Body            | Inter Regular    | 14–16 px |
+| Metadata        | Inter Medium     | 12–13 px |
+| Buttons         | Inter Semibold   | 14–16 px |
+
+### Spacing and shape tokens
+
+| Token                  | Value    |
+| ---------------------- | -------- |
+| Base spacing           | 4 px     |
+| Small gap              | 8 px     |
+| Standard gap           | 16 px    |
+| Section gap            | 24 px    |
+| Large section gap      | 32 px    |
+| Card radius            | 16 px    |
+| Large card radius      | 24 px    |
+| Button radius          | 12 px    |
+| Pill radius            | 999 px   |
+| Input height           | 48–52 px |
+| Standard button height | 48 px    |
+
+### Shadow and glass tokens
+
+Concept A
+
+- Card shadow: `0 4px 20px rgba(25,25,50,0.05)`
+- Border: `1px solid #ECECF3`
+- Surface: `#FFFFFF`
+
+Concept B
+
+- Glass surface: `rgba(255,255,255,0.10)`
+- Glass border: `1px solid rgba(255,255,255,0.18)`
+- Blur: `16–24px`
+- Glow: `0 0 24px rgba(113,103,232,0.18)`
+
+Glass should be used only where the background makes the effect visible. Never put important text on a busy background without a sufficiently opaque surface.
+
+# 3. Component design specifications
+
+Both concepts should use the same underlying components, with separate visual variants.
+
+This is important: don't build two separate applications just to compare two visual directions.
+
+## Core component library
+
+A. Primary buttons
+
+Make an offer
+
+View details
+
+Cancel
+
+Variants: Primary, Secondary, Outline, Destructive, Disabled, Loading.
+
+B. Search component
+
+What are you looking to exchange?
+
+Variants: Default, Focused, With filters, With search history, Mobile full-screen.
+
+C. Listing card
+
+[Forsid Türkiye'nin Yapay Zeka Destekli E-Ticaret Altyapısı](https://images.openai.com/static-rsc-4/tvzoqFvaY4VIFK5-9xEjhRATv_Jby28QVtKDt5s8n1tkNUe6KvnPF3Tu_jL3hyD_g6dVwnDhAxHYklD4BAeQCb_9taUa6H1_RuITvdr6c8Cnmvfc3tpFPnZNYrxtflvv-LWmoFmnm2rnXNwfGRIXadkkWYOgp4ZloSdZcIw2Mrg?purpose=inline)
+
+Mirrorless camera
+
+# ₹35,000
+
+Good
+
+Match 92%
+
+3 km away · 4.8 rating
+
+Variants: Standard, Featured, Saved, Own listing, Reserved, Exchanged, Match recommended.
+
+D. Exchange status
+
+Pending
+
+Accepted
+
+Rejected
+
+In progress
+
+Completed
+
+Use both text and color to communicate status. Never rely on color alone.
+
+E. Glass floating navigation — Nova only
+
+Use a solid fallback surface for devices or situations where backdrop blur is unavailable.
+
+### Component inventory for Figma
+
+| Component group | Required components                                     |
+| --------------- | ------------------------------------------------------- |
+| Navigation      | Sidebar, header, bottom bar, tabs                       |
+| Inputs          | Text field, search, select, OTP, textarea               |
+| Buttons         | Primary, secondary, icon, floating                      |
+| Marketplace     | Listing card, category tile, product gallery            |
+| Matching        | Match score, match explanation, compatibility indicator |
+| Exchange        | Offer card, counteroffer card, item comparison          |
+| Chains          | Participant node, connection arrow, chain card          |
+| Communication   | Chat bubble, conversation preview, attachment           |
+| Trust           | Rating, verification, report, user profile              |
+| Feedback        | Toast, alert, modal, bottom sheet, skeleton             |
+| Data            | Pagination, filters, empty state, loading state         |
+
+Each component must have documented states: default, hover, pressed, focused, disabled, loading and error wherever relevant.
+
+# 4. Responsive layout specifications
+
+Use these responsive breakpoints consistently.
+
+| Device          | Width        | Layout                             |
+| --------------- | ------------ | ---------------------------------- |
+| Small mobile    | 320–374 px   | Single column                      |
+| Standard mobile | 375–767 px   | Single column                      |
+| Tablet          | 768–1023 px  | Two-column where suitable          |
+| Desktop         | 1024–1439 px | Sidebar + content                  |
+| Wide desktop    | 1440+ px     | Wider content and controlled grids |
+
+### Web layout — Concept A
+
+[Modern E-commerce App UI Design | Online Store Mobile & Web by Baxchain Network LTD on Dribbble](https://images.openai.com/static-rsc-4/xXdldmChAzZyicVOuuqsrRsZ7_TjcdMJkZzL8G4RgaXQIcBgFXoE3HMEM_yP60fhoO5IT1T3bdDkoiJzJHl8jX5644o66_pNWzjGYflQA9BtW-26DvnNcDSLnqY4MMYq-ZPrwXOF4C41y7LJeIGSjEcR0PW4NyelQX1-KO5Xe50?purpose=inline)
+
+[dribbble.com](https://dribbble.com/shots/27310216-Modern-E-commerce-App-UI-Design-Online-Store-Mobile-Web?utm_source=chatgpt.com)
+
+- Left navigation: 240 px.
+- Main content: flexible.
+- Maximum content width: 1440 px.
+- Product grid: 3–4 columns.
+- Search bar: prominent top section.
+- Right panel: optional recommendations on wide screens.
+
+### Web layout — Concept B
+
+[Why Everything Is Going Glassmorphism (And How to Do It Right) | Clay](https://images.openai.com/static-rsc-4/FGtMbuX_taluY9jadrU-6wUIYIRMrhQGT4XK0UcuS0E_ska_CmVM0u_ZSBcuxmrY_NxQyjG07ftcwEJ8j712eV1iPMNM8kl0YL44kCnrJ5RaL4Zy-y-AKOl1JbAsdTpx3ZgFlCX_KJJHs3Bp6_ben9JHYUo7G_Cp1zQi0SxQzRQ?purpose=inline)
+
+[clay.global](https://clay.global/blog/glassmorphism-ui?utm_source=chatgpt.com)
+
+- Dark gradient canvas.
+- Floating translucent navigation.
+- Bento-based dashboard.
+- Match cards with visual emphasis.
+- Glass panels with solid fallback.
+- Product grid remains readable and image-focused.
+
+### Mobile layout
+
+[Marketplace Mobile App UI — Buy, Sell & Discover Nearby Items by Terabit Projects for TERABIT IT on Dribbble](https://images.openai.com/static-rsc-4/KjB3ShB6efb7C494RGgx9Irymlf1uw97BjbzfPHnOq1Iz-uNqPHrhlYzzXMh3k0bqebZhKp-WiZNI88VDQjGbMYYux4OromeUSdUVrxEIwLlOKLu6Wcl4NXCb7sOMcrvHz37gT6HWr870PgvdVFDXWsaKkzo1MYEClDLJJeaQIQ?purpose=inline)
+
+[dribbble.com](https://dribbble.com/shots/26974871-Marketplace-Mobile-App-UI-Buy-Sell-Discover-Nearby-Items?utm_source=chatgpt.com)
+
+Both concepts must use the same mobile information architecture.
+
+- Bottom navigation with five primary destinations.
+- Search accessible from the home screen.
+- Listing creation accessible in one tap.
+- Full-screen product gallery.
+- Bottom sheets for filters and offers.
+- Chat and trade details optimized for one-handed use.
+
+# 5. Screen-by-screen Figma design brief
+
+The following screens should be designed in both visual directions, with light and dark variants.
+
+## Screen 01 — Home / Discovery
+
+[Eye-catching UI designs examples brands can’t ignore in 2025 | Ronas IT](https://images.openai.com/static-rsc-4/y12-zhDNBzEGvRTgHZaj8jgnCDsXdnMKw6cffZ3zZHwb-PguoSUuBbEZrKz2lQpxaXMPM_58AK3GpDdzb3FoK0d2Vz-rZzx6DDPNLkunyW6-PfpliuwWLjtGGo14ZKo-aK3SUiy0uxqmarV5bML8UghkEfAgDDtXWkFny_I4uGI?purpose=inline)
+
+Pure
+
+[ELEVATED - Premium Ceramic E-commerce App | Dark Mode UI by Rakib Hassan → ✉️ Hire Today on Dribbble](https://images.openai.com/static-rsc-4/3gVNIO7NfCFe28XLv2Uiz9fjxqcTFtvXfr8OX0h7fUYkrEjG9RAorioeykUgHJUSYQVJr0yTLK5Xt6WAulbZdXXKlRny9280diJvy4s8s_i7FmBT8F87ZBhC4Xd4m1R9KdE6ksEi80Bg2-FpYAtAyWerhqXC73g8MjZ3gVP6hyY?purpose=inline)
+
+Nova
+
+Required sections
+
+1. Brand header and location.
+2. Search field.
+3. Personal greeting.
+4. Matches for your items.
+5. Category shortcuts.
+6. Recommended listings.
+7. Nearby exchanges.
+8. Bottom navigation.
+
+Primary action: Explore exchanges.
+
+## Screen 02 — Explore / Search
+
+[Anstora Marketplace | Mobile App :: Behance](https://images.openai.com/static-rsc-4/kpSbmOr3EfBcIcqSOcHUa_Wz3oOnXysLABb2-sA3rMZbdmcsm5uAWJu3vOWoHDwYI--dgGEM84FrHZLeH-1ev1k1s88wC9fXsjl_R0wr9XRJJOo1vk8OkvDZ_uCFVXB2PJcCqYr3RoBg8tcw85yy-jg-UOYcu3KGUJmgttuVaH8?purpose=inline)
+
+Pure
+
+[Premium Dark E-Commerce Mobile App UI by Asad | Mobile & Web UI/UX Designer on Dribbble](https://images.openai.com/static-rsc-4/ZZmLSz7ZphMrMIQzTiauazTWBkssXRa-fN_3XRAmBjgzsm6--w8aQXB20juaEBMgQ0Mo5ZOQvwl1gbb7l7hvPTQr1V4BO-orXeaySZSaz3GUFnd5qYPHXDmQj3ETNDRufx6lar8i7kaMkY4d-tVBQfY1XoRB0gydDuqvYLNOAyk?purpose=inline)
+
+Nova
+
+Required sections
+
+- Search input and suggestions.
+- Recent searches.
+- Category and condition filters.
+- Distance selector.
+- Value range.
+- Sort options.
+- Listing grid/list toggle.
+
+Primary action: Find compatible items.
+
+## Screen 03 — Item details
+
+[Mobile App - Camera Shop by Raffialdo Bayu on Dribbble](https://images.openai.com/static-rsc-4/21eYhQlvZVh5pb2NGwFmlucCdvDEEk1JpITzTaLGqF-o5uvxhM2nXPth5X_D50lQxZ7NNToJfgvVNzxvW5Qmjpx0gTOVQWTat9s_dRgNtMfm_e0ZTkBWc8i8F33ay4Gc3bzKj6gdfr-JqJoqbulP8OLnZ7e3P0FoogXEMbGUFtQ?purpose=inline)
+
+Pure
+
+[UI/UX E-commerce HDR Camera app design (1) | Images :: Behance](https://images.openai.com/static-rsc-4/1vRnF6FUZCmDYFv0-lNTnU7fIpv_f9MwlVddS153nkqsho7FnCPiDUjccI8GUJsamI3DqkynRouX70ONvCiARfG5aeRgIKKum9Razwf7MwmOPgjaiActkozxP_CjrdgAGZnus-i9j6r-Oq-tf2RMw52Yqn6cSW1DW2tEpuVFHmI?purpose=inline)
+
+Nova
+
+Required sections
+
+- Product image carousel.
+- Product name and estimated value.
+- Condition.
+- Owner information and reputation.
+- Location.
+- Exchange preferences.
+- Potential match recommendations.
+- Report listing.
+
+Primary action: Make an offer.
+
+## Screen 04 — Create listing
+
+[Samuel Hoang : Facebook Marketplace Seller Experiences : Product and User Experience Designer](https://images.openai.com/static-rsc-4/TW1_FB4yn05WLYJcpoDFoZFmqmDLFYpzfzZjOxne6quNXQ4Al-i2-wlmk51QG3Isa3nfSfD_6NUg8_RsM62jr8G6_Tbkj-gfXdhWSuLu3B9EwuO69Cew-C8WKG8EqvWMTwengbCEMdxufjxqfNkIqev_iabZoU53ZS70ncnTZTs?purpose=inline)
+
+Pure
+
+[Shhots AI — AI Creative Studio for Ecommerce | Photos, Videos & Ads in Minutes](https://images.openai.com/static-rsc-4/xvTeH_lOQjKF45A4woWRZectjNryCGhqSbkWaUKQq7RwVP5iA6C0Ireqc5OO1lt2CwftCGfVCOQVlzRR-EZPTWAr5iq-3JmL8bJcjW8wwtYsixR2vOxXUzvFWW8A9UR7omQDFN-DewU8EdB-a2A_1fctMgec9EtEj31bjBl51U4?purpose=inline)
+
+Nova
+
+Required sections
+
+- Photo upload.
+- AI item identification.
+- Product details.
+- Condition and estimated value.
+- What I want.
+- Cash adjustment preference.
+- Handover options.
+- Publish confirmation.
+
+Primary action: Publish listing.
+
+## Screen 05 — Exchange proposal
+
+[Barter App: UI/UX by Ronas IT | UI/UX Team on Dribbble](https://images.openai.com/static-rsc-4/kHFLz7RaN6__ZHIEMKiCYurHRxgcMRC0YriemGyJSfLW00H12n_JNoxnEpJuiYgZGTJmCq9HHTKqtr0X2zUKwZ4AdfRzatOUuc8ruW6VFwDxxErJHU8evMmCuXwgLx9ZxKgIquaB7KMm7CCP4ycyn6z8gvUPo-GawRFJrkyNaoM?purpose=inline)
+
+Pure
+
+[Zèya makes swapping the new way to shop](https://images.openai.com/static-rsc-4/AbPbWHwVCTKEnWSh_Bc-7hEO6-WP9HuERSFGjeL45LtOWL5E7V7x0yoD9EMJ2Co46U_c7cVL4QWzrbERt35YuRy030t8AtWE0zoqK_bcctWm5JYWuFwaWfhQ-KUQ6fHGukZHCjJSpy-pGPXPGaFTawy0UZq6EPHG87HA4fwrl8Q?purpose=inline)
+
+Nova
+
+Required sections
+
+- Your item.
+- Their item.
+- Multi-item selection.
+- Estimated value comparison.
+- Cash adjustment.
+- Handover selection.
+- Message to owner.
+- Offer summary.
+
+Primary action: Send offer.
+
+## Screen 06 — Smart chain discovery
+
+[DeFi Crypto App design by Andrew Nesterenko - UX/UI Designer on Dribbble](https://images.openai.com/static-rsc-4/CdW1-xmHrjlj1aW-roXTlZUYHvGnjaFHzpSml8xnFoijyGGq6HNTCXs-FEgidpKpdgn78gzwpRmb37c80fR7C-S3YTEyGfThaYr7jx_Gj0UmKYgtz6ViFM8Eq1VSVIsuTXOWFDBUufw-tkQoClAFXO_gNT3t7EDQ0cdxWZ1DkkY?purpose=inline)
+
+Pure
+
+[Teamwork icon. Vector illustration in flat line style.](https://images.openai.com/static-rsc-4/wr2loD5WPCmG-sgC0hxASryrOxN6gfmqfInZoaPM7_MtFlDfCauJPOCcvvLhsLV8ot1wNPXkt_mVCf5wms5UY2J8hDDV_z-1QBXtARkfFGgwivGfVM0XKIUPLkFVM3ulVp5oa9LKUkyoNeDEiU0fTL5MblopvOt0pbl-G86j4Rxew-YBBiFfJn4BuxfRO-of?purpose=inline)
+
+Nova
+
+Required sections
+
+- Chain summary.
+- Participant nodes.
+- Item transfer direction.
+- Estimated values.
+- Distance and handover compatibility.
+- Individual participant consent.
+- Expiry information.
+
+Primary action: Review chain proposal.
+
+Never label a suggested chain as guaranteed or accepted before all participants consent.
+
+## Screen 07 — Chat and negotiation
+
+[Meet CometChat’s UI Kits V4: A New Era of Real-Time Engagement and Customization](https://images.openai.com/static-rsc-4/MXXLfzwSXesmjdicSsPQl8YOOvIKfENw6rNuw-U_WKBfslBgeYaD6II3Cdw9RUnmYxqVEah9QYuzJYxwauD4aBptBgGe4h041ta7Rd5Nl2CqvDExOjwVMyamF7FmtHsy1Dp0gkbhZcHpUL6Tu5DrlCaMX1RT2Exlo1reqQbJOGA?purpose=inline)
+
+Pure
+
+[Scalable Chat SDK & APIs for Real Time In-App Messaging](https://images.openai.com/static-rsc-4/hPURS3AaH4ICV-BZVc2MebrJ576ZgodWEveli8MTaTZPiW3nBFmq8Yb9KWseyZQyfhNXR8eVSJWPBTIwk-hZKgm8FAMHBGCDO3Brm5hvunD8LFW2sl88bdyTgXxcpIXqo86OKWKRalKCE5U0EAvycSaGjF08J4R-MKPbRRURVPk?purpose=inline)
+
+Nova
+
+Required sections
+
+- Participant details.
+- Offer summary.
+- Messages.
+- Image attachments.
+- Counteroffer.
+- Accept and reject.
+- Report and block.
+
+Primary action: Continue negotiation.
+
+## Screen 08 — Trade management
+
+[KreativeByte! on Instagram: "Delivery Timeline  #ux #ui #uiux" in 2025 | Mobile app design inspiration, Ui design principles, Web layout design](https://images.openai.com/static-rsc-4/YWZQg8HhmYtxhFeQp5fCnvzHYxHGc9d1H7NUPLma58xiJSaj7-2Mh5tcBItxy-bA1G-G9kicFaDYNrE9CCI6cUNFfOIIMhB3Ygp5a8iOplpyN4ADuPhqLRbq7aAjsbbPA8jK7ph3kBApZZAGYOqGykEiHU5XqXx78s4sFEGbjfA?purpose=inline)
+
+Pure
+
+[Browse thousands of Order Tracking App UI images for design inspiration | Dribbble](https://images.openai.com/static-rsc-4/5UNh6y8jW2ZGGwSVVoGZHpSRLeO98N50RX8UnIPRH10yXVQVt6Q-BT4BpxJDlzq99U9a8RLX74HHZ8CPOu7UpzlRDVZVPOdFZq5xmT_PtY8EjCZS42-6JNmGNvFph8C0pmtc264dnca7EjjtqAo9FRspVpjtkcA8Prg3YHxref4?purpose=inline)
+
+Nova
+
+Required sections
+
+- Trade participants.
+- Agreed items.
+- Cash agreement.
+- Handover method.
+- Timeline.
+- Sender confirmation.
+- Receiver confirmation.
+- Dispute reporting.
+
+Primary action: Confirm handover.
+
+# 6. Design states and edge cases
+
+Do not design only the happy path.
+
+Every important screen must also have:
+
+| State               | Required design                                              |
+| ------------------- | ------------------------------------------------------------ |
+| Loading             | Skeleton placeholders                                        |
+| Empty               | Helpful illustration and action                              |
+| Error               | Clear explanation and retry                                  |
+| Offline             | Connection status                                            |
+| No matches          | Alternative discovery suggestions                            |
+| Listing unavailable | Explanation and similar listings                             |
+| Offer expired       | Expiry explanation                                           |
+| Offer rejected      | Negotiation alternatives                                     |
+| Chain withdrawn     | Explain which participant withdrew, subject to privacy rules |
+| Trade disputed      | Support and next steps                                       |
+| Permission denied   | Explain required permission                                  |
+
+Mobile interactions must also account for keyboard appearance, safe areas, notches, dynamic text sizes and system navigation.
+
+# 7. Figma file organization
+
+I recommend one Figma Design file containing both directions. Don't split them into unrelated files.
+
+Use this page structure:
+
+| Page | Name            | Contents                            |
+| ---- | --------------- | ----------------------------------- |
+| 00   | Cover           | Brand and concept overview          |
+| 01   | Foundations     | Color, typography, spacing          |
+| 02   | Pure Components | Concept A library                   |
+| 03   | Nova Components | Concept B library                   |
+| 04   | Pure Web        | Responsive web screens              |
+| 05   | Nova Web        | Responsive web screens              |
+| 06   | Pure Mobile     | Android/iOS screens                 |
+| 07   | Nova Mobile     | Android/iOS screens                 |
+| 08   | Prototype Flows | Clickable user journeys             |
+| 09   | States          | Empty, error, loading, success      |
+| 10   | Handoff         | Assets, annotations, specifications |
+
+Use Figma variables and component properties.
+
+Recommended naming convention:
+
+```
+XCH/
+  Foundations/
+    Colors/
+    Typography/
+    Spacing/
+    Radius/
+    Shadows/
+    Effects/
+
+  Components/
+    Buttons/
+    Inputs/
+    Cards/
+    Navigation/
+    Marketplace/
+    Matching/
+    Exchange/
+    Chat/
+    Feedback/
+
+  Screens/
+    Pure/
+      Web/
+      Mobile/
+    Nova/
+      Web/
+      Mobile/
+```
+
+### Responsive frames to create
+
+| Platform | Frame widths     |
+| -------- | ---------------- |
+| Mobile   | 360, 390, 430 px |
+| Tablet   | 768, 1024 px     |
+| Desktop  | 1280, 1440 px    |
+
+Design the 390 px mobile and 1440 px desktop versions first, then use auto layout and constraints to produce the intermediate sizes.
+
+# 8. Figma-ready design brief
+
+The following is the handoff specification to use when creating the actual Figma file.
+
+# XCHANGE — FIGMA DESIGN BRIEF
+
+**Project:** Xchange\
+**Design version:** 1.0\
+**Product:** Peer-to-peer exchange marketplace\
+**Platforms:** Responsive web, Android and iOS\
+**Design concepts:** Pure and Nova\
+**Brand tagline:** Own less. Exchange more.
+
+## 1. Design objective
+
+Create a premium, intuitive and trustworthy marketplace that allows users to exchange physical goods through direct swaps, multi-item swaps, optional cash adjustments and suggested multi-person exchange chains.
+
+The design must communicate three things immediately:
+
+1. Discover things worth exchanging.
+2. Find people who want what you own.
+3. Complete exchanges safely and effortlessly.
+
+The interface must feel like a premium consumer technology product rather than a conventional classifieds website.
+
+## 2. Two visual concepts
+
+### Concept A — Xchange Pure
+
+Visual direction: Premium Minimalism.
+
+- White and soft-neutral surfaces.
+- Electric violet as the primary accent.
+- Image-first product cards.
+- Strong typography and generous whitespace.
+- Subtle borders and shadows.
+- Clean fixed navigation.
+- Minimal animation.
+- High readability and accessibility.
+
+Design inspiration: Apple Store, Linear and Airbnb.
+
+### Concept B — Xchange Nova
+
+Visual direction: Futuristic Glassmorphism + Bento UI.
+
+- Dark and light gradient backgrounds.
+- Translucent frosted-glass panels.
+- Floating navigation.
+- Modular bento dashboard.
+- Violet luminous accents.
+- Animated exchange network visualizations.
+- More expressive transitions.
+- Layered interface depth.
+
+Design inspiration: Modern futuristic dashboards and premium glass interfaces.
+
+### Shared design requirements
+
+Both concepts must use identical product functionality, navigation hierarchy, data structures, screen content and interaction rules.
+
+Only visual presentation should differ.
+
+## 3. Brand and design tokens
+
+Primary violet: #7167E8\
+Deep violet: #5549C9\
+Ink: #25243A\
+Cloud: #F6F6FA\
+White: #FFFFFF\
+Exchange green: #20A786\
+Warm amber: #F0A44B
+
+Dark theme:
+
+- Background: #11111B
+- Surface: #1C1C2A
+- Elevated surface: #252538
+- Accent: #9188FF
+- Primary text: #F4F3FA
+- Secondary text: #AAA9BC
+
+Typography:
+
+- Manrope: display headings and page titles.
+- Inter: body, labels, controls and metadata.
+
+Spacing:
+
+- Base: 4 px.
+- Small: 8 px.
+- Standard: 16 px.
+- Section: 24 px.
+- Large: 32 px.
+
+Radius:
+
+- Buttons: 12 px.
+- Cards: 16 px.
+- Large cards: 24 px.
+- Pills: 999 px.
+
+## 4. Design concepts and variants
+
+Create Figma variables for:
+
+- Color primitives.
+- Semantic colors.
+- Typography.
+- Spacing.
+- Corner radius.
+- Shadows.
+- Glass effects.
+- Light and dark themes.
+
+Create two component collections:
+
+1. Xchange Pure.
+2. Xchange Nova.
+
+Each collection must support light and dark themes.
+
+Avoid duplicating business logic or creating different interaction behavior between the concepts.
+
+## 5. Component library
+
+Required components:
+
+**Navigation**
+
+- Desktop sidebar.
+- Mobile bottom navigation.
+- Top application header.
+- Search navigation.
+- Tabs.
+
+**Buttons**
+
+- Primary.
+- Secondary.
+- Outline.
+- Destructive.
+- Icon.
+- Floating action.
+- Loading.
+
+**Inputs**
+
+- Text field.
+- Search.
+- Dropdown.
+- Category selector.
+- OTP.
+- Textarea.
+- Value range.
+- Location selector.
+
+**Marketplace**
+
+- Product card.
+- Featured listing card.
+- Category tile.
+- Product gallery.
+- Condition badge.
+- Estimated value.
+- Location indicator.
+- User reputation.
+
+**Matching**
+
+- Compatibility score.
+- Match explanation.
+- Recommended item.
+- Match summary.
+
+**Exchange**
+
+- Offer card.
+- Counteroffer card.
+- Item comparison.
+- Cash adjustment.
+- Handover selection.
+- Trade timeline.
+
+**Smart chains**
+
+- Participant node.
+- Item node.
+- Directional connector.
+- Chain summary.
+- Participant consent.
+- Chain status.
+
+**Communication**
+
+- Chat bubble.
+- Message attachment.
+- Conversation preview.
+- Offer preview.
+
+**Feedback**
+
+- Toast.
+- Modal.
+- Bottom sheet.
+- Empty state.
+- Loading skeleton.
+- Error state.
+- Confirmation dialog.
+
+All interactive components must have appropriate hover, focus, pressed, disabled, loading and error variants.
+
+## 6. Required screens
+
+Design each screen for both Pure and Nova.
+
+1. Splash and onboarding.
+2. Phone authentication.
+3. Profile setup.
+4. Home and discovery.
+5. Explore and search.
+6. Search filters.
+7. Product details.
+8. Create listing.
+9. AI-assisted listing.
+10. Exchange preferences.
+11. Offer creation.
+12. Offer details.
+13. Counteroffer.
+14. Chat.
+15. Incoming and outgoing offers.
+16. Trade management.
+17. Handover confirmation.
+18. Chain discovery.
+19. Chain proposal details.
+20. Reviews.
+21. Saved items.
+22. Notifications.
+23. User profile.
+24. Admin moderation.
+
+## 7. Home screen requirements
+
+The home screen must prioritize discovery and exchange opportunities.
+
+Required content:
+
+- Xchange branding.
+- Location selector.
+- Search bar.
+- Personalized greeting.
+- Matches for your items.
+- Category shortcuts.
+- Nearby items.
+- Recommended listings.
+- Recently listed items.
+- Bottom navigation.
+
+The primary home-screen section should be "Matches for your items", not a generic trending feed.
+
+## 8. Product details requirements
+
+- Product photography.
+- Product title.
+- Estimated value.
+- Condition.
+- Description.
+- Owner profile.
+- Reputation and completed trades.
+- Approximate location.
+- Exchange preferences.
+- Cash adjustment preference.
+- Similar listings.
+- Report functionality.
+
+Primary CTA: Make an offer.
+
+## 9. Exchange proposal requirements
+
+The interface must clearly compare:
+
+- Items being offered.
+- Items being requested.
+- Estimated value differences.
+- Optional cash adjustment.
+- Payer and recipient.
+- Handover preference.
+- Negotiation message.
+
+Primary CTA: Send offer.
+
+## 10. Chain discovery requirements
+
+The chain interface is a signature Xchange experience.
+
+Use a circular network visualization showing:
+
+- Participants.
+- Items owned.
+- Items wanted.
+- Direction of exchange.
+- Approximate item values.
+- Compatibility.
+- Location.
+- Individual consent status.
+
+A chain must never appear confirmed before every participant has agreed to the same proposal.
+
+Primary CTA: Review exchange chain.
+
+## 11. Responsive requirements
+
+Design for:
+
+Mobile:
+
+- 360 px.
+- 390 px.
+- 430 px.
+
+Tablet:
+
+- 768 px.
+- 1024 px.
+
+Desktop:
+
+- 1280 px.
+- 1440 px.
+
+Use responsive grids, auto layout, constraints and reusable components.
+
+Mobile must support one-handed operation, safe areas, keyboard visibility and accessible touch targets.
+
+## 12. Prototype flows
+
+Create the following clickable prototypes:
+
+Flow A: New user registration to profile setup.
+
+Flow B: Create a listing and publish it.
+
+Flow C: Browse another listing and send an offer.
+
+Flow D: Receive an offer and negotiate.
+
+Flow E: Accept an offer and complete a trade.
+
+Flow F: Discover a three-person exchange chain.
+
+Flow G: Review a proposed chain and approve or reject it.
+
+Flow H: Confirm handover and submit a review.
+
+## 13. Accessibility requirements
+
+- WCAG 2.2 AA target.
+- Minimum readable contrast.
+- Visible focus indicators.
+- Keyboard navigation on web.
+- Screen-reader labels.
+- Accessible form validation.
+- Color-independent status indicators.
+- Reduced-motion support.
+- Scalable text.
+- Appropriate mobile touch targets.
+
+Glass surfaces must have sufficient contrast against their backgrounds.
+
+## 14. Figma file structure
+
+00 — Cover\
+01 — Foundations\
+02 — Pure Components\
+03 — Nova Components\
+04 — Pure Web\
+05 — Nova Web\
+06 — Pure Mobile\
+07 — Nova Mobile\
+08 — Prototype Flows\
+09 — States and Edge Cases\
+10 — Developer Handoff
+
+## 15. Design deliverables
+
+- Two complete visual directions.
+- Shared design token system.
+- Light and dark themes.
+- Reusable component library.
+- Responsive web screens.
+- Android and iOS screens.
+- Interactive prototype.
+- Empty, loading, success and error states.
+- Component documentation.
+- Developer handoff annotations.
+- Export-ready icons and illustrations.
+
+## 16. Design acceptance criteria
+
+The design is approved only when:
+
+1. Both concepts cover the same essential user journeys.
+2. All screens use consistent components.
+3. Light and dark themes are complete.
+4. Mobile, tablet and desktop layouts are responsive.
+5. No critical user journey has missing screens.
+6. Offer and trade statuses are visually clear.
+7. Chain consent is understandable.
+8. Accessibility requirements are considered.
+9. Prototype interactions work.
+10. Components are ready for developer handoff.
+
+**Final design recommendation:** Use Xchange Pure as the primary marketplace experience. Use Xchange Nova for smart matching, chain discovery and distinctive feature highlights.
+
+The goal is to make Xchange feel premium, intelligent and trustworthy without compromising everyday usability.
+
+# 9. How I would execute the Figma project
+
+I would not design all 24 screens twice immediately. That is unnecessary design work.
+
+Use this sequence:
+
+## Design execution sequence
+
+1. Foundation and branding
+
+   Finalize colors, typography, tokens, icons and layout rules.
+2. Build shared components
+
+   Buttons, cards, navigation, inputs and marketplace components.
+3. Create the two home-screen concepts
+
+   Pure and Nova. Compare them at actual mobile and desktop sizes.
+4. Design the critical marketplace journey
+
+   Listing → discovery → offer → negotiation → accepted trade.
+5. Design the signature chain experience
+
+   Build the three-person exchange visualization.
+6. Create remaining screens and states
+
+   Profile, notifications, moderation, empty states and errors.
+7. Prototype and hand off
+
+   Validate complete journeys and deliver specifications to development.
+
+## 10. What I want you to compare before choosing
+
+Don't choose based on which screenshot looks more futuristic.
+
+Test both concepts against these criteria:
+
+| Evaluation              | Weight |
+| ----------------------- | ------ |
+| Product discoverability | 25%    |
+| Trust and clarity       | 25%    |
+| Ease of exchange        | 20%    |
+| Visual identity         | 15%    |
+| Accessibility           | 10%    |
+| Performance             | 5%     |
+
+My expected outcome is that Pure wins for ordinary shopping and exchanges, while Nova wins for the chain experience.
+
+One final recommendation: Make the exchange-chain visualization the signature visual identity of Xchange. Most marketplaces show product grids. Xchange should also show how one person's unwanted item can unlock something valuable for another person, and how that can connect an entire community.
+
+That is the experience worth making memorable.
+
+# Xchange — Pure Premium Minimalism Design System
+
+
+
+Selected design direction
+
+Design specification v1.0
+
+
+
+We're dropping Glassmorphism, Neumorphism, futuristic effects, glowing elements and translucent surfaces entirely.
+
+Xchange will use Pure Premium Minimalism.
+
+The goal is to create an interface that feels sophisticated, clean, intelligent and effortless — something between the simplicity of Apple, the usability of Airbnb and the precision of Linear.
+
+[E-commerce Marketplace Web design by Ronas IT | UI/UX Team on Dribbble](https://images.openai.com/static-rsc-4/9BHhwaGz3ghUjIUsI2y44hBCnUuYdTy6WTJrkOXv_siOBC6y_jQWAJGvOc1Ld8iy4zPZ9j0rU0BkcZ21fOHNR8sYXhCyQSYMBC3h_Z98eT1VhBNIVxnROPQjjpi6k5_2Gr1NPRS-1z__90xVeOcwejSZEgFEmGr3JlS4dW6fIJ8?purpose=inline)
+
+[dribbble.com](https://dribbble.com/shots/26899972-E-commerce-Marketplace-Web-design?utm_source=chatgpt.com)
+
+# XCHANGE
+
+## Own less. Exchange more.
+
+Less decoration. More discovery. Better exchanges.
+
+## 1. Design philosophy
+
+The interface should follow five principles.
+
+1. Content over decoration: Products and people are the heroes, not UI effects.
+2. Clarity over complexity: Every action should be immediately understandable.
+3. Whitespace over clutter: Give product photography and information room to breathe.
+4. Consistency over novelty: Reusable components across web and mobile.
+5. Purposeful interactions: Animation should communicate an action, not merely look attractive.
+
+### What we will and won't use
+
+| Use                       | Avoid                        |
+| ------------------------- | ---------------------------- |
+| Solid backgrounds         | Glass backgrounds            |
+| Subtle shadows            | Glowing shadows              |
+| Thin borders              | Embossed surfaces            |
+| Rounded cards             | Excessively rounded cards    |
+| Clean typography          | Decorative fonts             |
+| Violet accents            | Multiple competing gradients |
+| Product photography       | Decorative 3D objects        |
+| Minimal animations        | Excessive motion             |
+| Bento layouts selectively | Overloaded dashboards        |
+
+Important: Minimalism doesn't mean making everything white, empty and boring. It means removing anything that doesn't improve the user's experience.
+
+# 2. Visual identity
+
+# Xchange brand identity
+
+# XCHANGE
+
+## Own less. Exchange more.
+
+Brand personality
+
+- Sophisticated.
+- Trustworthy.
+- Intelligent.
+- Friendly.
+- Modern.
+- Approachable.
+
+  Visual signature
+
+Electric violet accent, generous whitespace, high-quality product photography and clear typography.
+
+## 3. Color system
+
+Violet will be the signature color. We should use it selectively so that important actions stand out.
+
+Primary colors
+
+Electric Violet
+
+\#7167E8
+
+Primary buttons, links, active states
+
+Deep Violet
+
+\#5549C9
+
+Hover and pressed states
+
+Light theme
+
+White · #FFFFFF
+
+Cloud · #F6F6FA
+
+Ink · #25243A
+
+Secondary · #77768A
+
+Semantic colors
+
+Success
+
+Warning
+
+Error
+
+### Dark theme
+
+| Token            | Color     |
+| ---------------- | --------- |
+| Background       | `#11111B` |
+| Primary surface  | `#1C1C2A` |
+| Elevated surface | `#252538` |
+| Primary text     | `#F4F3FA` |
+| Secondary text   | `#AAA9BC` |
+| Primary accent   | `#9188FF` |
+| Border           | `#343448` |
+
+Dark mode must use solid surfaces. No glass effects, background blur or luminous gradients.
+
+## 4. Typography system
+
+I recommend Manrope + Inter.
+
+DISPLAY · MANROPE BOLD
+
+# Exchange something.
+
+# Discover something better.
+
+SECTION · MANROPE SEMIBOLD
+
+# Find your next exchange
+
+BODY · INTER REGULAR
+
+Browse items people nearby are willing to exchange. Find something you need and offer something you own.
+
+METADATA · INTER MEDIUM
+
+GOOD CONDITION · 2.4 KM AWAY · LISTED 2 HOURS AGO
+
+| Typography role | Size     | Weight |
+| --------------- | -------- | ------ |
+| Hero            | 48 px    | 700    |
+| Page title      | 32 px    | 700    |
+| Section title   | 24 px    | 600    |
+| Card title      | 18 px    | 600    |
+| Body            | 16 px    | 400    |
+| Secondary body  | 14 px    | 400    |
+| Metadata        | 12 px    | 500    |
+| Button          | 14–16 px | 600    |
+
+Use responsive typography rather than forcing desktop font sizes onto mobile.
+
+# 5. Layout, spacing and shapes
+
+## Spacing system
+
+Use an 8-point spacing system, with 4 px for fine adjustments.
+
+| Token | Value | Application            |
+| ----- | ----- | ---------------------- |
+| XS    | 4 px  | Icon spacing           |
+| SM    | 8 px  | Compact elements       |
+| MD    | 16 px | Standard spacing       |
+| LG    | 24 px | Card sections          |
+| XL    | 32 px | Section spacing        |
+| 2XL   | 48 px | Major separation       |
+| 3XL   | 64 px | Hero sections          |
+| 4XL   | 80 px | Large desktop sections |
+
+## Corner radius
+
+| Element       | Radius |
+| ------------- | ------ |
+| Small inputs  | 8 px   |
+| Buttons       | 12 px  |
+| Product cards | 16 px  |
+| Large panels  | 20 px  |
+| Dialogs       | 20 px  |
+| Image gallery | 16 px  |
+| Pills         | 999 px |
+
+Avoid making every element excessively rounded. A consistent 12–20 px radius gives a more mature product identity.
+
+## Shadows and borders
+
+Use shadows only to establish hierarchy.
+
+```
+/* Product card */
+box-shadow: 0 4px 16px rgba(25, 25, 50, 0.04);
+
+/* Dropdown */
+box-shadow: 0 8px 24px rgba(25, 25, 50, 0.08);
+
+/* Modal */
+box-shadow: 0 16px 40px rgba(25, 25, 50, 0.12);
+
+/* Borders */
+border: 1px solid #ECECF3;
+```
+
+In dark mode, prefer visible solid borders over large shadows.
+
+# 6. Web application design
+
+Primary desktop direction
+
+[E-Commerce Shop - Product Listing & Filter UI by Abdur Rahim on Dribbble](https://images.openai.com/static-rsc-4/0WdslUyI2Ma-WlZbnk06jgcbEtjdGTNXlTUSaY-OCqHQjv5b9Nwq9GN_rqgMsnhKQy-VQWLGkIutTEW5g2WI4CgtjEveeOkMLAXKcv3NlC0hUpHDBD4u_pOO79Mm1DRbK0r53IyRzyVUQzWTRIqw7Fu2f5vHdpwGENSaqLoUPU0?purpose=inline)
+
+[dribbble.com](https://dribbble.com/shots/27157497-E-Commerce-Shop-Product-Listing-Filter-UI?utm_source=chatgpt.com)
+
+## Desktop layout
+
+Use three primary structural regions:
+
+- Left navigation: 240 px.
+- Main content: flexible.
+- Optional right contextual panel: 280–320 px on wider screens.
+
+The page should have a maximum content width around 1440 px.
+
+### Desktop navigation
+
+# Xchange
+
+Home
+
+Active
+
+Explore
+
+Create listing
+
+My exchanges
+
+Messages
+
+Saved items
+
+Profile
+
+Use a fixed sidebar on desktop. On mobile, use bottom navigation.
+
+## Desktop home page layout
+
+The home screen should prioritize exchange opportunities.
+
+# Good morning!
+
+Discover something worth exchanging.
+
+What are you looking to exchange?
+
+Matches for your items
+
+3 new potential exchange opportunities
+
+[Black wireless headphones isolated on white.](https://images.openai.com/static-rsc-4/Zf-3yW5ixIh3l72iZkzbc8buv-x4u2P6wApwa1aMRKXUxbCI15gXYovc71cCJEOxwisLS0FDnt1nblyBTgbjdQhxv7myJ2_o7tSgFlV6MXGqLhl8FOrpRST80qpxQ_OGphDUhxzePGmp4QnrwobLviYP_OgavTQDf2lk9cSrW4kIedlb921Rvf3UUBV2owZ0?purpose=inline)
+
+[HXSJ 87-key Mechanical Keyboard Wired Keyboard RGB Backlit Keyboard Blue Switch/ 26-key Rollover/ Multimedia Combination Keys White | Daraz.com.bd](https://images.openai.com/static-rsc-4/YDJYd4dB56PwyHLq0WyuFDCFMigryzxenz8WeRoeNz2HKGytYQAwHdHcBRaaI3M9VrDy4OkEFTPQ-H4j0kaRdDg3HAdZ3wyGeKRfTT9rY_lC8VHS4bQc40_pNY_CQf6LyGdRbv0Hp-kBLf-BbQW0xmNwKUcTTsPih79MLphu1Xs?purpose=inline)
+
+[Digital Smart Sport Watch - Universal Hour](https://images.openai.com/static-rsc-4/e0dNUg2DRWu5WxYCxqZ0JOxOx3ZHV6kq5focI_8cWGIxnmEIz6wXNlSWygZWnzBKCdv3eEr3SiIBjjzxVzLGMJwHrNkGR3QF2Fy1eJ0n3TKTekMdFXKwBX4n0bJlSn7ZBfMyl-ZW0ZHkTh2a9JCZv7WQEeQJANIgGohDolRStY4?purpose=inline)
+
+## Explore categories
+
+Electronics
+
+Furniture
+
+Books
+
+Cycles
+
+## Recently listed
+
+[Modern and brand new mirrorless camera isolated on a white background with soft shadow](https://images.openai.com/static-rsc-4/1mjDgFYe2Pcp8yDBSX_aJe-UqauImAHKCzx3anho2vLKGTG5Q80X--BKatB48VUUdh_czLuXeUVfU28TAoGenyZjOa8XzUHoImS3VV5ADrpct-_ojjvyxGPx8uJ-9-MZ5DvF9ZXIUXYyAXutprA_Pqpv-hW5qqmM2hpbjpkc8jLOU0CLiirWKzZEMS0G6tFx?purpose=inline)
+
+Mirrorless camera
+
+₹35,000 · Good
+
+[C1                      – Drag Bicycles](https://images.openai.com/static-rsc-4/gDXQZ7bkfo02DLX6MEoL4b9eeVHcd13CTJpHLCPYHaGXl3sSO0xeL8lZl134u7rBfqP2JrAeDRVoKt2BL9JK74Du3tB9MzmUZvC2CNIB4-TVqIfFbtEuIAtKyIDSxi5ZHTPcMweWgni_L-gHC9d4EvgqhZKAzULD6wDNang0KrU?purpose=inline)
+
+Mountain bicycle
+
+₹12,000 · Like new
+
+Illustrative interface content, not live listings.
+
+The matches section should be personalized based on the user's own listings and preferences. Do not display fake match counts or match percentages.
+
+# 7. Mobile application design
+
+Android + iOS
+
+[Eye-catching UI designs examples brands can’t ignore in 2025 | Ronas IT](https://images.openai.com/static-rsc-4/y12-zhDNBzEGvRTgHZaj8jgnCDsXdnMKw6cffZ3zZHwb-PguoSUuBbEZrKz2lQpxaXMPM_58AK3GpDdzb3FoK0d2Vz-rZzx6DDPNLkunyW6-PfpliuwWLjtGGo14ZKo-aK3SUiy0uxqmarV5bML8UghkEfAgDDtXWkFny_I4uGI?purpose=inline)
+
+[ronasit.com](https://ronasit.com/blog/stunning-ui-design-examples/?utm_source=chatgpt.com)
+
+### Mobile navigation
+
+Five primary destinations:
+
+| Tab       | Icon        |
+| --------- | ----------- |
+| Home      | House       |
+| Explore   | Search      |
+| List      | Plus circle |
+| Exchanges | Repeat      |
+| Profile   | User        |
+
+Messages and notifications should be accessible from the top area or relevant exchange screens.
+
+The central listing action can be visually emphasized with a solid violet button, but it should remain consistent with the other navigation controls.
+
+### Mobile dimensions
+
+| Element                 | Specification      |
+| ----------------------- | ------------------ |
+| Base frame              | 390 × 844 px       |
+| Minimum supported width | 320 px             |
+| Horizontal padding      | 16–20 px           |
+| Bottom navigation       | Safe-area aware    |
+| Touch target            | Minimum 44 × 44 px |
+| Input height            | 48–52 px           |
+| Card spacing            | 12–16 px           |
+| Product grid            | 2 columns          |
+
+On mobile, avoid putting a permanent sidebar or right contextual panel.
+
+# 8. Core screen specifications
+
+## Screen 01 — Home
+
+[E-commerce Mobile App – UI/UX Design by Lumeaf Designs on Dribbble](https://images.openai.com/static-rsc-4/TSKYaGTKtAohV1RDJ7UhoHInuVK3KrNWUTDSbBEh4wOFTIjZT2M2L_f5cUqh1xh0ib98k-bJqWPD9-jqhkFwgnW9plJwyO23uWp_Pc7L2tYtpWla_QecGxr9GK20jRon8S2aVBsm8Do1VUj8dgVt3LNrI4o6sLk_-1GJEPGnQmw?purpose=inline)
+
+[dribbble.com](https://dribbble.com/shots/27015985-E-commerce-Mobile-App-UI-UX-Design?utm_source=chatgpt.com)
+
+Required:
+
+- Logo.
+- Location selector.
+- Search bar.
+- Notifications.
+- Matches for your items.
+- Categories.
+- Recommended listings.
+- Nearby listings.
+- Bottom navigation.
+
+## Screen 02 — Explore
+
+[Anstora Marketplace | Mobile App :: Behance](https://images.openai.com/static-rsc-4/kpSbmOr3EfBcIcqSOcHUa_Wz3oOnXysLABb2-sA3rMZbdmcsm5uAWJu3vOWoHDwYI--dgGEM84FrHZLeH-1ev1k1s88wC9fXsjl_R0wr9XRJJOo1vk8OkvDZ_uCFVXB2PJcCqYr3RoBg8tcw85yy-jg-UOYcu3KGUJmgttuVaH8?purpose=inline)
+
+[behance.net](https://www.behance.net/gallery/232134853/Anstora-Marketplace-Mobile-App?utm_source=chatgpt.com)
+
+Required:
+
+- Search.
+- Category filters.
+- Distance filter.
+- Estimated value filter.
+- Condition.
+- Sort options.
+- Grid/list toggle.
+
+## Screen 03 — Product details
+
+[Second-hand Marketplace Mobile App by Shiby Ghosh for UX Crate Lab on Dribbble](https://images.openai.com/static-rsc-4/unA_mTk_BUYEg-I6OVR8-rzioinIZMS3mclZByGnpTPanga6_59X_TcQpnHuu_6UT-vEzIESBg8OMfpqy4jNgvjKP5DT6nUZOiu1nDFRKx0ZssLKd1mA6NIpYAifVmWuItcrINBChb7QjtPOEoHYkO_0waL5-FpoRA0gWKhW3g8?purpose=inline)
+
+[dribbble.com](https://dribbble.com/shots/27207542-Second-hand-Marketplace-Mobile-App?utm_source=chatgpt.com)
+
+Required:
+
+- Image gallery.
+- Product title.
+- Estimated value.
+- Condition.
+- Location.
+- Owner profile.
+- Reputation.
+- What the owner wants.
+- Similar items.
+- Make an offer CTA.
+
+## Screen 04 — Create listing
+
+[Samuel Hoang : Facebook Marketplace Seller Experiences : Product and User Experience Designer](https://images.openai.com/static-rsc-4/TW1_FB4yn05WLYJcpoDFoZFmqmDLFYpzfzZjOxne6quNXQ4Al-i2-wlmk51QG3Isa3nfSfD_6NUg8_RsM62jr8G6_Tbkj-gfXdhWSuLu3B9EwuO69Cew-C8WKG8EqvWMTwengbCEMdxufjxqfNkIqev_iabZoU53ZS70ncnTZTs?purpose=inline)
+
+[samuelhoang.com](https://www.samuelhoang.com/portfolio/project-2019-fb-marketplace-seller-experiences.html?utm_source=chatgpt.com)
+
+Required:
+
+- Upload photos.
+- Product name.
+- Category.
+- Description.
+- Condition.
+- Estimated value.
+- What I want.
+- Cash adjustment preference.
+- Handover method.
+- Publish.
+
+## Screen 05 — Exchange proposal
+
+[SwipSwap, l'app per scambiare oggetti con uno swipe](https://images.openai.com/static-rsc-4/bCZqOs63bAld_RrWo3XBGP6KoRZiizJ6kLgpwkaKw6V8r8oaaLWLLan3E9M0TpEg3EMPU68TpCtPG08nTKzOM3N-kfWRdsL3gnh0_Hi7YMpnBIt9Cq2fjpt-jS2I73FaessSXzPyxZBaHVVsf4mQrq29slpxWWlQJtDPatX-CnM?purpose=inline)
+
+[swipswap.it](https://www.swipswap.it/?utm_source=chatgpt.com)
+
+Required:
+
+- Your items.
+- Their items.
+- Estimated value comparison.
+- Cash adjustment.
+- Message.
+- Handover preferences.
+- Send offer.
+
+## Screen 06 — Exchange chain
+
+[Vision and Values — Cheshire Ireland](https://images.openai.com/static-rsc-4/uxF6WiZccxsm6mywDznX0_wUsZnFbbk2hbbavDC9bM1TgfmVgGUcrot19HUkAnh7j6nUupdfrwmQDkW6sx6UH37D8Nrpyjg_B2P0UStYepAebTAWTdk62fRIdqUJl9PlX0XwASkT8a3t_eJ7uIb_qUP2pDVNKvj8xi61GO7P7jc?purpose=inline)
+
+[cheshire.ie](https://www.cheshire.ie/vision-and-values?utm_source=chatgpt.com)
+
+This screen should use a clean 2D vector-style network diagram.
+
+- Three participant cards.
+- Circular directional arrows.
+- Item thumbnails.
+- Value information.
+- Individual consent.
+- Chain status.
+
+No glowing connections, glass panels or 3D effects.
+
+## Screen 07 — Trade management
+
+[KreativeByte! on Instagram: "Delivery Timeline  #ux #ui #uiux" in 2025 | Mobile app design inspiration, Ui design principles, Web layout design](https://images.openai.com/static-rsc-4/YWZQg8HhmYtxhFeQp5fCnvzHYxHGc9d1H7NUPLma58xiJSaj7-2Mh5tcBItxy-bA1G-G9kicFaDYNrE9CCI6cUNFfOIIMhB3Ygp5a8iOplpyN4ADuPhqLRbq7aAjsbbPA8jK7ph3kBApZZAGYOqGykEiHU5XqXx78s4sFEGbjfA?purpose=inline)
+
+[id.pinterest.com](https://id.pinterest.com/pin/46936021113432121/?utm_source=chatgpt.com)
+
+Required:
+
+- Trade summary.
+- Participants.
+- Items exchanged.
+- Handover method.
+- Progress timeline.
+- Confirmation buttons.
+- Report issue.
+
+# 9. Reusable component library
+
+The following components should be built once and used throughout the application.
+
+| Component       | Variants                                 |
+| --------------- | ---------------------------------------- |
+| Button          | Primary, secondary, outline, destructive |
+| Input           | Default, focused, error, disabled        |
+| Search          | Default, active, suggestions             |
+| Product card    | Standard, featured, saved, own           |
+| Category tile   | Icon, image                              |
+| Condition badge | New, like new, good, fair                |
+| Value label     | Estimated, negotiated                    |
+| Match indicator | Strong, possible, incompatible           |
+| Offer card      | Incoming, outgoing, countered            |
+| Trade card      | Pending, accepted, completed             |
+| Chat bubble     | Incoming, outgoing, attachment           |
+| Review card     | Rating, text                             |
+| Modal           | Confirmation, information, destructive   |
+| Bottom sheet    | Filters, offer, selection                |
+| Toast           | Success, warning, error                  |
+| Empty state     | No items, no offers, no matches          |
+
+### Component interaction rules
+
+- Hover: Slight background change on desktop.
+- Press: Subtle opacity change.
+- Focus: Visible violet outline.
+- Disabled: Reduced contrast, clearly non-interactive.
+- Loading: Small progress indicator.
+- Error: Inline explanation and recovery action.
+
+No unnecessary bounce animations or exaggerated transitions.
+
+# 10. Responsive design
+
+| Breakpoint   | Layout        |
+| ------------ | ------------- |
+| 320–374 px   | Single column |
+| 375–767 px   | Mobile layout |
+| 768–1023 px  | Tablet        |
+| 1024–1439 px | Desktop       |
+| 1440+ px     | Wide desktop  |
+
+Desktop:
+
+- Fixed navigation.
+- 3–4 product columns.
+- Wider content area.
+- Optional contextual side panel.
+
+Tablet:
+
+- Collapsible sidebar.
+- 2–3 product columns.
+
+Mobile:
+
+- Bottom navigation.
+- Two-column product grid.
+- Full-screen image gallery.
+- Bottom-sheet filters.
+- Full-width primary actions.
+
+# 11. Design states
+
+Design every core workflow with:
+
+- Loading.
+- Empty.
+- Error.
+- Success.
+- Disabled.
+- Offline.
+- Expired.
+- Rejected.
+- Reserved.
+- Disputed.
+
+Do not rely only on color to convey transaction states.
+
+# 12. Accessibility
+
+Target WCAG 2.2 AA.
+
+- Clear text contrast.
+- Visible keyboard focus.
+- Screen-reader labels.
+- Minimum touch target of 44 × 44 px.
+- Scalable typography.
+- Reduced-motion support.
+- Accessible validation messages.
+- No color-only status communication.
+
+# 13. Figma file structure
+
+00 — Cover\
+01 — Brand foundations\
+02 — Color and typography\
+03 — Spacing and layout\
+04 — Components\
+05 — Web screens\
+06 — Mobile screens\
+07 — Dark theme\
+08 — Prototype flows\
+09 — States and edge cases\
+10 — Developer handoff
+
+Use Figma variables, auto layout, component variants and responsive constraints.
+
+# 14. Design acceptance criteria
+
+The design is complete when:
+
+- All required screens exist.
+- Light and dark themes work.
+- Web and mobile layouts are responsive.
+- All components are reusable.
+- Product information is readable.
+- Exchange proposals are understandable.
+- Chain diagrams communicate direction clearly.
+- Every core flow has a prototype.
+- Empty, loading and error states exist.
+- Accessibility has been reviewed.
+- Developers can inspect dimensions, spacing and component properties.
+
+Final decision: Xchange uses Pure Premium Minimalism exclusively. No Glassmorphism, no Neumorphism, no decorative gradients, no glow effects and no futuristic surface treatments. Violet, whitespace, typography, photography and excellent interaction design define the brand.
+
+# 10. The exact component styling I would freeze
+
+Here is the final visual reference for the three most important UI elements.
+
+## Primary action
+
+Make an offer
+
+## Product card
+
+[Red Dot Design Award: ILCE-7/ILCE-7R](https://images.openai.com/static-rsc-4/1kb4ZgxiwOl8XSc6bgZYxYd20add5Zz06lhnqmkFxobI3mIf1fIaerHjMBMPxarFqPQPecrmyvfOkbSWXUpygbAT4ZObBPqRNi4LU6DzZIQ2WIvYfwC2HAZ9IEQR9gtNmBUOqTSl-GH9GH3Gyf-5tVksIy-zkaDZoXUN-U8WGrk?purpose=inline)
+
+[red-dot.org](https://www.red-dot.org/project/ilce-7ilce-7r-32306/?utm_source=chatgpt.com)
+
+Sony Mirrorless Camera
+
+# ₹35,000
+
+Good condition
+
+3 km away
+
+Estimated value · Owner rating 4.8
+
+View exchange
+
+## Exchange comparison
+
+[black wireless acoustic stereo headphones isolated on white background](https://images.openai.com/static-rsc-4/4n9kpEHIr2RXZEFa2QDMJV076yNMJr699M5bi0Vv01qfCfj0PqYFPBtejTP8KT4KuazLPtB61Np5sDCvdZrSB-asCAWDkpUSJ39ysDBxZaYBHFMyCxFJ4zDdVHLvtEc-3o1vgbxwHdwQWlpL0bTpOaEX7QFg_XkHHTjT2H1rD0Hh0kpENC0NjAuJaYyf-YZx?purpose=inline)
+
+Your item
+
+## ₹12,000
+
+[PEJE Official Store](https://images.openai.com/static-rsc-4/VdTjtPWMn_s_YAKHsI5z9wrT0EKGyqTqOYiTryOW8o3ZgJOEJxA4ySGGAV5L1AswE9BuyEH37I2eSqRFfuB7SUSbnk0tM868LLlmZyej_aSorGlw_eIdCUDC7NrPtLnZl_xrinEE52O12vi2vEw9j-Lg1_YaoKREDzF4Y5H_xi4?purpose=inline)
+
+Their item
+
+## ₹11,000
+
+Suggested adjustment
+
+₹1,000
+
+# 11. Implementation rules for your frontend developer
+
+I would freeze these rules:
+
+- Next.js + Tailwind CSS for web.
+- React Native + NativeWind for mobile.
+- Shared semantic design tokens.
+- Lucide icons.
+- Manrope and Inter fonts.
+- CSS variables for light and dark themes.
+- No CSS backdrop-filter.
+- No glass or blur-based components.
+- No decorative gradient backgrounds.
+- Framer Motion only for meaningful transitions.
+- React Native Reanimated for mobile transitions.
+- Consistent component naming and variants.
+
+A simple starting token file:
+
+```
+
+:root {
+  --brand-primary: #7167E8;
+  --brand-primary-hover: #5549C9;
+
+  --background: #FFFFFF;
+  --surface: #F6F6FA;
+  --foreground: #25243A;
+  --muted: #77768A;
+
+  --border: #ECECF3;
+
+  --success: #20A786;
+  --warning: #E7A13E;
+  --danger: #D94B55;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  --shadow-card:
+    0 4px 16px rgba(25, 25, 50, 0.04);
+
+  --font-heading: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+[data-theme="dark"] {
+  --background: #11111B;
+  --surface: #1C1C2A;
+  --foreground: #F4F3FA;
+  --muted: #AAA9BC;
+  --border: #343448;
+  --brand-primary: #9188FF;
+}
+
+```
+
+# 12. My final design decision
+
+Design direction locked
+
+# Xchange Pure
+
+[Create an E-Commerce Product Showcase Website: Step by Step | Koder.ai](https://images.openai.com/static-rsc-4/fSmilViJC8LzFlzxTYn48dT_7cK5Icuv9cHmbDfhBFC-Eb-uUe0oIb38kvsr463yHLAFUeA2X0s_RaOdwoAS7Kl8QxTD47rMUZS1P5H8ziNIPplyRCBnrVLKURQora8_EvH3D2oR9hFlt_GxLZWwEngzuqDCAejpwhaEOCi8wBA?purpose=inline)
+
+[koder.ai](https://koder.ai/blog/create-website-ecommerce-product-showcases?utm_source=chatgpt.com)
+
+The visual identity:
+
+- Premium minimalism.
+- Electric violet.
+- White and charcoal surfaces.
+- Manrope + Inter.
+- Balanced product grids.
+- Subtle borders and shadows.
+- Light and dark modes.
+- Clean 2D exchange-chain diagrams.
+- Responsive web and mobile.
+
+No Glassmorphism. No Neumorphism. No glowing effects.
+
+My advice: Don't spend more time exploring design trends now. Freeze this system, create the Figma components, and prototype the three most important journeys: listing an item, making an exchange offer, and completing an exchange. Those three experiences will determine whether Xchange feels genuinely premium or merely looks premium.
+
+Next step: Build the Figma foundation and Home, Explore, Item Details and Create Listing screens first. Once those are approved, extend the same system across offers, chat, trades and exchange chains.

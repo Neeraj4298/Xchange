@@ -5,79 +5,114 @@
 
 @layer base {
   html {
-    background-color: var(--xc-bg-canvas);
-    color: var(--xc-text-primary);
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
     scroll-behavior: smooth;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
   body {
-    background-color: var(--xc-bg-canvas);
-    color: var(--xc-text-primary);
-    transition: background-color 320ms var(--xc-ease-out-expo),
-      color 320ms var(--xc-ease-out-expo);
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
+    transition: background-color 160ms ease, color 160ms ease;
     overflow-x: hidden;
   }
 
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+  }
+
   :focus-visible {
-    outline: 2px solid var(--xc-brand-primary);
-    outline-offset: 3px;
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+
+  input,
+  select,
+  textarea {
+    background-color: var(--background) !important;
+    color: var(--foreground) !important;
+    border-color: var(--border) !important;
+    border-radius: var(--radius-sm);
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: var(--brand-primary) !important;
+    outline: none;
   }
 }
 
-/* Kinetic Circular Craft Atmospheric Surfaces & Animations */
+/* ============================================================================
+ * Xchange Pure — Pure Premium Minimalism Surfaces (Section 1, 5, 11)
+ * Solid backgrounds, subtle 1px borders (#ECECF3 / #343448), quiet hierarchy.
+ * Strictly NO backdrop-filter, NO glassmorphism, NO decorative gradients.
+ * ============================================================================ */
+
 .xc-mesh-backdrop {
-  background-image: radial-gradient(
-      circle at 14% 16%,
-      rgba(16, 185, 129, 0.16) 0%,
-      transparent 42%
-    ),
-    radial-gradient(
-      circle at 86% 22%,
-      rgba(6, 182, 212, 0.13) 0%,
-      transparent 38%
-    ),
-    radial-gradient(
-      circle at 52% 84%,
-      rgba(245, 158, 11, 0.11) 0%,
-      transparent 45%
-    );
+  background-color: var(--background);
 }
 
 .xc-glass-panel {
-  background: var(--xc-bg-glass);
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  border: 1px solid var(--xc-border-subtle);
-  transition: transform 340ms var(--xc-ease-out-expo),
-    border-color 340ms var(--xc-ease-out-expo),
-    box-shadow 340ms var(--xc-ease-out-expo);
+  background-color: var(--elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  transition: border-color 160ms ease, background-color 160ms ease;
 }
 
 .xc-glass-panel:hover {
-  border-color: var(--xc-border-strong);
+  border-color: var(--brand-primary);
 }
 
 .xc-card-lift {
-  transition: transform 380ms var(--xc-ease-spring),
-    box-shadow 380ms var(--xc-ease-out-expo),
-    border-color 280ms ease;
+  border-radius: var(--radius-lg);
+  transition: border-color 160ms ease, background-color 160ms ease;
 }
 
 .xc-card-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 42px -14px rgba(16, 185, 129, 0.22);
+  border-color: var(--brand-primary);
 }
 
-@keyframes svgDashFlow {
-  to {
-    stroke-dashoffset: -48;
-  }
+.xc-pure-surface {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
 }
 
-.xc-svg-flow {
-  stroke-dasharray: 8 6;
-  animation: svgDashFlow 1.8s linear infinite;
+.xc-btn-primary {
+  background-color: var(--brand-primary);
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: background-color 150ms ease, opacity 150ms ease;
+}
+
+.xc-btn-primary:hover {
+  background-color: var(--brand-primary-hover);
+}
+
+.xc-btn-primary:active {
+  opacity: 0.9;
+}
+
+.xc-btn-secondary {
+  background-color: var(--surface);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.xc-btn-secondary:hover {
+  border-color: var(--brand-primary);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -90,3 +125,4 @@
     scroll-behavior: auto !important;
   }
 }
+

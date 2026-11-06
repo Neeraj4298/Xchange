@@ -1,41 +1,62 @@
-/* Xchange Design System CSS Custom Properties (Light & Dark Themes) */
+/* ============================================================================
+ * Xchange Pure — Pure Premium Minimalism Token System (Section 11 Frozen Spec)
+ * Rules:
+ * - Solid surfaces only (no backdrop-filter, no glassmorphism, no neon glows)
+ * - Electric Violet (#7167E8) & Deep Violet (#5549C9)
+ * - Deep Ink (#25243A), Soft Cloud (#F6F6FA), Pure White (#FFFFFF)
+ * - Exchange Green (#20A786), Warm Amber (#E7A13E), Danger (#D94B55)
+ * ============================================================================ */
+
 :root,
-[data-theme="dark"] {
-  --xc-bg-canvas: #060b0a;
-  --xc-bg-surface: #0c1513;
-  --xc-bg-elevated: #12201d;
-  --xc-bg-glass: rgba(18, 32, 29, 0.72);
-  --xc-border-subtle: rgba(167, 243, 208, 0.12);
-  --xc-border-strong: rgba(52, 211, 153, 0.34);
-  --xc-text-primary: #f2fbf7;
-  --xc-text-secondary: #9bb8ae;
-  --xc-text-muted: #607d73;
-  --xc-brand-primary: #10b981;
-  --xc-brand-hover: #34d399;
-  --xc-accent-amber: #f59e0b;
-  --xc-accent-cyan: #06b6d4;
-  --xc-success: #10b981;
-  --xc-warning: #f59e0b;
-  --xc-danger: #ef4444;
-  --xc-ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --xc-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+[data-theme="light"] {
+  --brand-primary: #7167e8;
+  --brand-primary-hover: #5549c9;
+  --brand-tint: #f1f0ff;
+
+  --background: #ffffff;
+  --surface: #f6f6fa;
+  --elevated: #ffffff;
+  --foreground: #25243a;
+  --muted: #77768a;
+
+  --border: #ececf3;
+
+  --success: #20a786;
+  --warning: #e7a13e;
+  --danger: #d94b55;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  --shadow-card: 0 4px 16px rgba(25, 25, 50, 0.04);
+  --shadow-dropdown: 0 8px 24px rgba(25, 25, 50, 0.08);
+  --shadow-modal: 0 16px 40px rgba(25, 25, 50, 0.12);
+
+  --font-heading: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-[data-theme="light"] {
-  --xc-bg-canvas: #f7faf8;
-  --xc-bg-surface: #ffffff;
-  --xc-bg-elevated: #edf5f1;
-  --xc-bg-glass: rgba(255, 255, 255, 0.84);
-  --xc-border-subtle: rgba(6, 78, 59, 0.11);
-  --xc-border-strong: rgba(5, 150, 105, 0.30);
-  --xc-text-primary: #071713;
-  --xc-text-secondary: #3b574f;
-  --xc-text-muted: #68857c;
-  --xc-brand-primary: #059669;
-  --xc-brand-hover: #10b981;
-  --xc-accent-amber: #d97706;
-  --xc-accent-cyan: #0891b2;
-  --xc-success: #059669;
-  --xc-warning: #d97706;
-  --xc-danger: #dc2626;
+[data-theme="dark"] {
+  --brand-primary: #9188ff;
+  --brand-primary-hover: #7167e8;
+  --brand-tint: #252538;
+
+  --background: #11111b;
+  --surface: #1c1c2a;
+  --elevated: #252538;
+  --foreground: #f4f3fa;
+  --muted: #aaa9bc;
+
+  --border: #343448;
+
+  --success: #20a786;
+  --warning: #f0a44b;
+  --danger: #d94b55;
+
+  --shadow-card: none;
+  --shadow-dropdown: 0 8px 24px rgba(0, 0, 0, 0.32);
+  --shadow-modal: 0 16px 40px rgba(0, 0, 0, 0.45);
 }
+

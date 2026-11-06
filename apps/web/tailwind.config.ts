@@ -13,41 +13,66 @@ const config: Config = {
       "2xl": "1440px",
     },
     extend: {
+      fontFamily: {
+        heading: ["var(--font-heading)"],
+        sans: ["var(--font-body)"],
+      },
       colors: {
-        canvas: "var(--xc-bg-canvas)",
-        surface: "var(--xc-bg-surface)",
-        elevated: "var(--xc-bg-elevated)",
+        canvas: "var(--background)",
+        surface: "var(--surface)",
+        elevated: "var(--elevated)",
+        ink: "var(--foreground)",
+        muted: "var(--muted)",
+        line: "var(--border)",
         brand: {
-          DEFAULT: "#10B981",
-          light: "#34D399",
-          dark: "#059669",
+          DEFAULT: "var(--brand-primary)",
+          hover: "var(--brand-primary-hover)",
+          tint: "var(--brand-tint)",
         },
-        copper: {
-          DEFAULT: "#F59E0B",
-          light: "#FBBF24",
+        exchange: {
+          green: "var(--success)",
+          amber: "var(--warning)",
+          danger: "var(--danger)",
+        },
+        // Map legacy utility classes cleanly to Xchange Pure Electric Violet & Soft Cloud palette
+        emerald: {
+          50: "#F1F0FF",
+          100: "#E4E2FF",
+          200: "#CBC7FF",
+          300: "#7167E8",
+          400: "#7167E8",
+          500: "#7167E8",
+          600: "#5549C9",
+          950: "#F6F6FA",
+        },
+        teal: {
+          300: "#20A786",
+          400: "#5549C9",
+          500: "#20A786",
+          950: "#F6F6FA",
+        },
+        amber: {
+          200: "#9A6214",
+          300: "#B87518",
+          400: "#F0A44B",
+          500: "#E7A13E",
+        },
+        slate: {
+          950: "#FFFFFF",
         },
       },
-      transitionTimingFunction: {
-        "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
-        spring: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+      borderRadius: {
+        sm: "8px",
+        md: "12px",
+        lg: "16px",
+        xl: "20px",
+        "2xl": "16px",
+        "3xl": "20px",
       },
-      keyframes: {
-        floatSlow: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-6px)" },
-        },
-        pulseGlow: {
-          "0%, 100%": { opacity: "0.55", transform: "scale(1)" },
-          "50%": { opacity: "1", transform: "scale(1.06)" },
-        },
-        dashFlow: {
-          to: { strokeDashoffset: "-48" },
-        },
-      },
-      animation: {
-        "float-slow": "floatSlow 5s ease-in-out infinite",
-        "pulse-glow": "pulseGlow 3.2s ease-in-out infinite",
-        "dash-flow": "dashFlow 2.2s linear infinite",
+      boxShadow: {
+        card: "var(--shadow-card)",
+        dropdown: "var(--shadow-dropdown)",
+        modal: "var(--shadow-modal)",
       },
     },
   },
@@ -55,3 +80,4 @@ const config: Config = {
 };
 
 export default config;
+

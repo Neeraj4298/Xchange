@@ -111,48 +111,58 @@ export default function DiscoveryFeedPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {items.map((item) => (
-          <article
-            key={item.id}
-            className="xc-glass-panel xc-card-lift rounded-3xl p-5 flex flex-col justify-between"
-          >
-            <div>
-              <div
-                className={`h-24 rounded-2xl bg-gradient-to-br ${item.imageGradient} p-3 flex justify-between items-start border border-white/10`}
-              >
-                <span className="rounded-full bg-slate-950/80 px-2.5 py-0.5 text-[11px] font-bold text-emerald-400">
-                  Match {item.matchScore}% · 📍 {item.neighbourhood}
-                </span>
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((item) => {
+          const midpoint = Math.round((item.estValueMinPaise + item.estValueMaxPaise) / 2);
+          return (
+            <article
+              key={item.id}
+              className="xc-glass-panel xc-card-lift p-5 flex flex-col justify-between"
+            >
+              <div>
+                <div className="h-32 rounded-[12px] bg-[var(--surface)] border border-[var(--border)] p-3.5 flex justify-between items-start">
+                  <span
+                    className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold"
+                    style={{
+                      backgroundColor: "rgba(32, 167, 134, 0.12)",
+                      color: "var(--success)",
+                    }}
+                  >
+                    Good match · {item.matchScore}%
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => handleToggleSave(item.id)}
+                    className="rounded-full border border-[var(--border)] bg-[var(--elevated)] px-2.5 py-0.5 text-xs font-medium"
+                  >
+                    {item.savedByMe ? "♥ Saved" : "♡ Save"}
+                  </button>
+                </div>
+                <h2 className="mt-4 font-heading text-[18px] font-semibold">{item.title}</h2>
+                <p className="mt-1.5 font-heading text-2xl font-bold">
+                  {formatInrFromPaise(midpoint)}
+                </p>
+                <p className="mt-1 text-xs font-medium text-[var(--muted)]">
+                  {item.condition.replace("_", " ")} condition · {item.distanceKm} km away (
+                  {item.neighbourhood})
+                </p>
+                <p className="mt-1 text-xs text-[var(--muted)]">
+                  Estimated value · Owner rating {item.ownerRating} ★
+                </p>
+              </div>
+              <div className="mt-5 flex items-center justify-between border-t border-[var(--border)] pt-3.5">
+                <span className="text-xs font-medium text-[var(--muted)]">{item.ownerName}</span>
                 <button
                   type="button"
-                  onClick={() => handleToggleSave(item.id)}
-                  className="rounded-full bg-slate-950/80 px-2.5 py-0.5 text-xs"
+                  onClick={() => handleQuickOffer(item)}
+                  className="xc-btn-primary px-4 py-2 text-xs"
                 >
-                  {item.savedByMe ? "♥" : "♡"}
+                  Make an offer
                 </button>
               </div>
-              <h2 className="mt-3 text-base font-bold">{item.title}</h2>
-              <p className="mt-1 text-xs opacity-75">{item.description}</p>
-              <p className="mt-2 font-mono text-xs font-bold text-emerald-400">
-                Est. Range: {formatInrFromPaise(item.estValueMinPaise)} –{" "}
-                {formatInrFromPaise(item.estValueMaxPaise)}
-              </p>
-            </div>
-            <div className="mt-4 flex items-center justify-between border-t border-emerald-500/15 pt-3">
-              <span className="text-xs font-semibold">
-                {item.ownerName} · ★ {item.ownerRating}
-              </span>
-              <button
-                type="button"
-                onClick={() => handleQuickOffer(item)}
-                className="rounded-xl bg-emerald-500 px-3.5 py-1.5 text-xs font-bold text-slate-950"
-              >
-                Make Offer ⇄
-              </button>
-            </div>
-          </article>
-        ))}
+            </article>
+          );
+        })}
       </div>
     </div>
   );

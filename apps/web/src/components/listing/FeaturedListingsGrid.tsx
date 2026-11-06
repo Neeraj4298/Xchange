@@ -20,38 +20,36 @@ export function FeaturedListingsGrid({ categories, items }: Props) {
       : items.filter((item) => item.categorySlug === selectedCategory);
 
   return (
-    <section className="space-y-5">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+    <section className="space-y-6">
+      <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">
-            Bengaluru Launch Cluster · Active Swap Listings
-          </h2>
-          <p className="text-sm opacity-75">
-            Locations rounded to ~1 km PostGIS grid cells. Value bands are estimates only.
+          <p className="text-xs font-medium uppercase tracking-wider text-[var(--muted)]">
+            CATEGORY SHORTCUTS &amp; NEARBY LISTINGS
           </p>
+          <h2 className="mt-1 font-heading text-2xl font-bold">Find your next exchange</h2>
         </div>
 
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-2">
           <button
             type="button"
             onClick={() => setSelectedCategory("all")}
-            className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all ${
+            className={`rounded-full px-4 py-2 text-xs font-semibold transition-colors ${
               selectedCategory === "all"
-                ? "bg-emerald-500 text-slate-950"
-                : "xc-glass-panel opacity-80 hover:opacity-100"
+                ? "bg-[var(--brand-primary)] text-white"
+                : "bg-[var(--surface)] border border-[var(--border)] text-[var(--muted)] hover:text-[var(--foreground)]"
             }`}
           >
-            All ({items.length})
+            All items ({items.length})
           </button>
           {categories.map((cat) => (
             <button
               key={cat.id}
               type="button"
               onClick={() => setSelectedCategory(cat.slug)}
-              className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all ${
+              className={`rounded-full px-4 py-2 text-xs font-semibold transition-colors ${
                 selectedCategory === cat.slug
-                  ? "bg-emerald-500 text-slate-950"
-                  : "xc-glass-panel opacity-80 hover:opacity-100"
+                  ? "bg-[var(--brand-primary)] text-white"
+                  : "bg-[var(--surface)] border border-[var(--border)] text-[var(--muted)] hover:text-[var(--foreground)]"
               }`}
             >
               {cat.name}
@@ -60,57 +58,58 @@ export function FeaturedListingsGrid({ categories, items }: Props) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((item) => (
-          <article
-            key={item.id}
-            className="xc-glass-panel xc-card-lift rounded-3xl p-5 flex flex-col justify-between"
-          >
-            <div>
-              <div
-                className={`relative h-32 w-full rounded-2xl bg-gradient-to-br ${item.imageGradient} p-4 flex flex-col justify-between border border-white/10`}
-              >
-                <div className="flex items-center justify-between">
-                  <span className="rounded-full bg-slate-950/75 px-2.5 py-1 text-[11px] font-bold text-emerald-400">
-                    {item.badge || "Active Swap"}
-                  </span>
-                  <span className="rounded-full bg-slate-950/75 px-2.5 py-1 font-mono text-[11px] text-amber-300">
-                    Match {item.matchScore}%
-                  </span>
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {filtered.map((item) => {
+          const midpointPaise = Math.round((item.estValueMinPaise + item.estValueMaxPaise) / 2);
+          const conditionText =
+            item.condition === "like_new"
+              ? "Like new condition"
+              : item.condition === "good"
+              ? "Good condition"
+              : "New condition";
+
+          return (
+            <article
+              key={item.id}
+              className="xc-glass-panel xc-card-lift p-5 flex flex-col justify-between"
+            >
+              <div>
+                <div className="relative h-36 w-full rounded-[12px] bg-[var(--surface)] border border-[var(--border)] p-4 flex flex-col justify-between">
+                  <div className="flex items-center justify-between">
+                    <span
+                      className="rounded-full px-2.5 py-0.5 text-[11px] font-semibold"
+                      style={{
+                        backgroundColor: "rgba(32, 167, 134, 0.12)",
+                        color: "var(--success)",
+                      }}
+                    >
+                      Good match · {item.matchScore}%
+                    </span>
+                    <span className="text-[11px] font-medium text-[var(--muted)]">
+                      {item.categoryName}
+                    </span>
+                  </div>
+
+                  <p className="text-[11px] font-medium text-[var(--muted)] truncate">
+                    Wants: {item.wantsSummary.join(", ")}
+                  </p>
                 </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="font-medium">{item.categoryName}</span>
-                  <span className="font-mono opacity-85">📍 {item.neighbourhood}</span>
-                </div>
-              </div>
 
-              <h3 className="mt-4 text-base font-bold leading-snug">{item.title}</h3>
+                <h3 className="mt-4 font-heading text-[18px] font-semibold leading-snug text-[var(--foreground)] line-clamp-2">
+                  {item.title}
+                </h3>
 
-              <div className="mt-2 flex items-center justify-between rounded-xl bg-emerald-500/10 px-3 py-2 text-xs">
-                <span className="opacity-80">Estimated Range</span>
-                <span className="font-mono font-bold text-emerald-400">
-                  {formatInrFromPaise(item.estValueMinPaise)} – {formatInrFromPaise(item.estValueMaxPaise)}
-                </span>
-              </div>
-
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {item.wantsSummary.map((w) => (
-                  <span
-                    key={w}
-                    className="rounded-lg border border-emerald-500/25 px-2 py-0.5 text-xs"
-                  >
-                    ⇄ Wants: {w}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-5 flex items-center justify-between border-t border-emerald-500/15 pt-3.5">
-              <div className="text-xs">
-                <p className="font-semibold">
-                  {item.ownerName} · ★ {item.ownerRating}
+                <p className="mt-2 font-heading text-2xl font-bold text-[var(--foreground)]">
+                  {formatInrFromPaise(midpointPaise)}
                 </p>
-                <p className="opacity-70">{item.distanceKm} km away</p>
+
+                <p className="mt-1 text-xs font-medium text-[var(--muted)]">
+                  {conditionText} · {item.distanceKm} km away ({item.neighbourhood})
+                </p>
+
+                <p className="mt-1 text-xs text-[var(--muted)]">
+                  Estimated value · Verified {item.ownerVerified} · {item.ownerRating} rating
+                </p>
               </div>
 
               <button
@@ -118,18 +117,17 @@ export function FeaturedListingsGrid({ categories, items }: Props) {
                 onClick={() => {
                   emitAnalyticsEvent("item_viewed", { itemId: item.id });
                   pushToast({
-                    title: `Swap Offer Drafted`,
-                    description: `72h expiry (FR-OFF-4) for ${item.title.slice(0, 28)}...`,
-                    tone: "success",
+                    title: "Make an offer",
+                    description: `Opening exchange proposal for ${item.title.slice(0, 28)}...`,
                   });
                 }}
-                className="rounded-xl bg-emerald-500 px-3.5 py-2 text-xs font-bold text-slate-950 transition-transform hover:scale-105"
+                className="xc-btn-primary mt-5 w-full py-2.5 text-sm"
               >
-                Propose Swap ⇄
+                Make an offer
               </button>
-            </div>
-          </article>
-        ))}
+            </article>
+          );
+        })}
       </div>
     </section>
   );

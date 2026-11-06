@@ -17,12 +17,16 @@ DOC_MAPPING = {
     "Xchange — Business Requirements Document (BRD).docx": "02-brd.md",
     "Xchange — System Design & Architecture.docx": "03-system-design.md",
     "Xchange — Web Application Build Spec (Next.js).docx": "04-web-spec.md",
+    "ui_suggestion.docx": "05-ui-suggestion.md",
 }
 
 NS = {"w": "http://schemas.openxmlformats.org/wordprocessingml/2006/main"}
 
 
 def extract_docx_to_markdown(docx_path: str) -> str:
+    if not zipfile.is_zipfile(docx_path):
+        with open(docx_path, "r", encoding="utf-8") as f:
+            return f.read().strip() + "\n"
     lines: list[str] = []
     with zipfile.ZipFile(docx_path) as zf:
         tree = ET.fromstring(zf.read("word/document.xml"))

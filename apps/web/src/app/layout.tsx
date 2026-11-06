@@ -4,15 +4,23 @@ import { AppProviders } from "@/components/providers/AppProviders";
 import { AppShell } from "@/components/layout/AppShell";
 
 export const metadata: Metadata = {
-  title: "Xchange — Own less. Exchange more. | 2-Way & 3-Way Smart Barter Marketplace",
+  title: "Xchange — Own less. Exchange more.",
   description:
-    "Bengaluru's high-trust peer-to-peer circular exchange marketplace with AI-assisted valuation ranges and 3-way barter cycle discovery.",
+    "Less decoration. More discovery. Better exchanges. Peer-to-peer marketplace with direct swaps and 3-way exchange chains.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-theme="dark" suppressHydrationWarning>
-      <body className="antialiased selection:bg-emerald-500 selection:text-slate-950">
+    <html lang="en" data-theme="light" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="antialiased selection:bg-[#7167E8] selection:text-white">
         <AppProviders>
           <AppShell>{children}</AppShell>
         </AppProviders>
@@ -20,3 +28,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+

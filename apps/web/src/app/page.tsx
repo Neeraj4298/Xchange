@@ -22,70 +22,115 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="space-y-10">
-      {/* Hero Banner */}
-      <section className="relative overflow-hidden rounded-3xl border border-emerald-500/25 bg-gradient-to-br from-emerald-950/60 via-slate-950/80 to-teal-950/50 p-6 md:p-10 shadow-2xl">
-        <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-300">
-            <span>⚡ Phase 0 Foundations Complete (v0.0)</span>
-            <span>·</span>
-            <span>Bengaluru Launch Cluster</span>
-          </div>
+    <div className="space-y-12">
+      {/* Screen 1 — Home / Discovery Hero (Pure Premium Minimalism Spec Section 3 & 4) */}
+      <section className="xc-glass-panel p-8 md:p-12">
+        <div className="max-w-3xl space-y-5">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--brand-primary)]">
+            XCHANGE PURE · BENGALURU MARKETPLACE
+          </p>
 
-          <h1 className="text-3xl font-extrabold tracking-tight sm:text-5xl leading-[1.08]">
-            Own less.{" "}
-            <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-300 bg-clip-text text-transparent">
-              Exchange more.
-            </span>
+          <h1 className="font-heading text-3xl font-bold tracking-tight sm:text-[48px] sm:leading-[1.12] text-[var(--foreground)]">
+            Exchange something.
+            <br />
+            <span className="text-[var(--brand-primary)]">Discover something better.</span>
           </h1>
 
-          <p className="text-base opacity-85 sm:text-lg max-w-2xl">
-            Trade what you own for what you want—without haggling for cash first. Our graph matching
-            engine discovers <strong>2-way mutual swaps</strong> and{" "}
-            <strong>3-way barter cycles (A → B → C → A)</strong> across Indiranagar, Koramangala,
-            HSR Layout, and Whitefield.
+          <p className="text-base text-[var(--muted)] max-w-2xl">
+            Browse items people nearby are willing to exchange. Find something you need and offer
+            something you own — through direct swaps or three-person exchange chains.
           </p>
 
           <div className="flex flex-wrap gap-3 pt-2">
-            <Link
-              href="/login"
-              className="rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-400 px-5 py-3 text-sm font-bold text-slate-950 shadow-lg transition-transform hover:scale-[1.02]"
-            >
-              Verify Phone OTP &amp; Test /v1/me →
+            <Link href="/feed" className="xc-btn-primary px-6 py-3 text-sm">
+              What are you looking to exchange? →
             </Link>
-            <Link
-              href="/storybook"
-              className="xc-glass-panel rounded-2xl px-5 py-3 text-sm font-semibold hover:border-emerald-400/50"
-            >
-              Explore Design System (WEB-0.4)
+            <Link href="/items/new" className="xc-btn-secondary px-5 py-3 text-sm">
+              List an item
             </Link>
-            <Link
-              href="/trust"
-              className="xc-glass-panel rounded-2xl px-5 py-3 text-sm font-semibold hover:border-emerald-400/50"
-            >
-              DPDP Privacy &amp; Prohibited Scanner
+            <Link href="/storybook" className="xc-btn-secondary px-5 py-3 text-sm">
+              Pure Design System
             </Link>
           </div>
         </div>
+      </section>
 
-        {/* Key Metrics Strip */}
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {[
-            { label: "Active Cluster Listings", value: "642", sub: "HSR · Koramangala · Indiranagar" },
-            { label: "North Star Target", value: "≥ 8 / 100", sub: "Exchanges per 100 listings/mo" },
-            { label: "Core Swap Fee", value: "₹0 Forever", sub: "No wallet · No held funds" },
-            { label: "Privacy Grid", value: "~1.0 km", sub: "Exact GPS stripped & rounded" },
-          ].map((stat) => (
-            <div key={stat.label} className="xc-glass-panel rounded-2xl p-3.5">
-              <p className="text-xs opacity-70">{stat.label}</p>
-              <p className="mt-1 text-xl font-extrabold text-emerald-400">{stat.value}</p>
-              <p className="text-[11px] opacity-65">{stat.sub}</p>
+      {/* Primary Home Section: "Matches for your items" + Frozen Exchange Comparison (Section 7 & 10) */}
+      <section className="space-y-5">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-[var(--brand-primary)]">
+              MATCHES FOR YOUR ITEMS
+            </p>
+            <h2 className="mt-1 font-heading text-2xl font-bold">
+              People nearby who want what you already own
+            </h2>
+          </div>
+          <Link
+            href="/matches"
+            className="text-sm font-semibold text-[var(--brand-primary)] hover:underline"
+          >
+            View all matches →
+          </Link>
+        </div>
+
+        {/* Frozen Exchange Comparison Component (Section 10 of ui_suggestion.docx) */}
+        <div className="xc-glass-panel p-6 md:p-8">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-11 items-center">
+            <div className="md:col-span-4 rounded-[16px] border border-[var(--border)] bg-[var(--surface)] p-5">
+              <p className="text-xs font-medium uppercase tracking-wider text-[var(--muted)]">
+                Your item
+              </p>
+              <h3 className="mt-1 font-heading text-lg font-semibold">
+                iPad Pro 11&quot; M2 (256GB) + Apple Pencil
+              </h3>
+              <p className="mt-2 font-heading text-2xl font-bold text-[var(--foreground)]">
+                ₹61,000
+              </p>
+              <p className="mt-1 text-xs text-[var(--muted)]">
+                Like new condition · HSR Layout
+              </p>
             </div>
-          ))}
+
+            <div className="md:col-span-3 flex flex-col items-center justify-center text-center space-y-2">
+              <span
+                className="rounded-full px-3 py-1 text-xs font-semibold"
+                style={{
+                  backgroundColor: "rgba(32, 167, 134, 0.12)",
+                  color: "var(--success)",
+                }}
+              >
+                94% Mutual Match
+              </span>
+              <div className="font-heading text-sm font-semibold text-[var(--muted)]">
+                Suggested adjustment
+              </div>
+              <div className="font-heading text-xl font-bold text-[var(--brand-primary)]">
+                ₹4,000
+              </div>
+              <Link href="/offers" className="xc-btn-primary mt-1 px-5 py-2.5 text-xs">
+                Make an offer
+              </Link>
+            </div>
+
+            <div className="md:col-span-4 rounded-[16px] border border-[var(--border)] bg-[var(--surface)] p-5">
+              <p className="text-xs font-medium uppercase tracking-wider text-[var(--muted)]">
+                Their item
+              </p>
+              <h3 className="mt-1 font-heading text-lg font-semibold">
+                Fujifilm X-T30 II Mirrorless + 35mm f/2
+              </h3>
+              <p className="mt-2 font-heading text-2xl font-bold text-[var(--foreground)]">
+                ₹65,000
+              </p>
+              <p className="mt-1 text-xs text-[var(--muted)]">
+                Like new condition · 1.8 km away · Rating 4.95 ★
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Interactive 3-Way Cycle Studio */}
       <ThreeWayCycleStudio
         nodes={showcase.sampleThreeWayChain.nodes}
         meetupPointName={showcase.sampleThreeWayChain.meetupPointName}
@@ -93,7 +138,6 @@ export default function HomePage() {
         expiresInHours={showcase.sampleThreeWayChain.expiresInHours}
       />
 
-      {/* Featured Local Listings Grid */}
       <FeaturedListingsGrid
         categories={showcase.categories}
         items={showcase.featuredItems}

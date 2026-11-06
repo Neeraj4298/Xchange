@@ -33,7 +33,7 @@ export function useAppContext(): AppContextValue {
 }
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
   const [selectedNeighbourhood, setSelectedNeighbourhood] = useState<string>("Indiranagar");
   const [user, setUser] = useState<AuthenticatedUserDto | null>(null);
   const [accessToken, setAccessToken] = useState<string | null>(null);
@@ -61,7 +61,7 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
     setToasts((prev) => [...prev, { ...toast, id }]);
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
-    }, 4200);
+    }, 3800);
   }, []);
 
   return (
@@ -79,31 +79,33 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
     >
       {children}
 
-      {/* Accessible ARIA Live Toast Viewport (WCAG 2.1 AA — Web Spec Section 4) */}
+      {/* Xchange Pure Solid Toast Viewport (No blur, subtle shadow) */}
       <div
         role="status"
         aria-live="polite"
-        className="fixed bottom-20 right-4 z-50 flex max-w-sm flex-col gap-2.5 md:bottom-6 md:right-6"
+        className="fixed bottom-20 right-4 z-50 flex max-w-sm flex-col gap-2 md:bottom-6 md:right-6"
       >
         {toasts.map((t) => (
           <div
             key={t.id}
-            className="xc-glass-panel rounded-2xl px-4 py-3 shadow-2xl transition-all duration-300"
+            className="rounded-[12px] border border-[var(--border)] bg-[var(--elevated)] px-4 py-3 shadow-dropdown"
           >
             <div className="flex items-center gap-2">
               <span
-                className={`h-2.5 w-2.5 rounded-full ${
-                  t.tone === "danger"
-                    ? "bg-red-500"
-                    : t.tone === "warning"
-                    ? "bg-amber-400"
-                    : "bg-emerald-400"
-                }`}
+                className="h-2 w-2 rounded-full"
+                style={{
+                  backgroundColor:
+                    t.tone === "danger"
+                      ? "var(--danger)"
+                      : t.tone === "warning"
+                      ? "var(--warning)"
+                      : "var(--success)",
+                }}
               />
-              <p className="text-sm font-semibold">{t.title}</p>
+              <p className="text-sm font-semibold text-[var(--foreground)]">{t.title}</p>
             </div>
             {t.description && (
-              <p className="mt-1 text-xs opacity-80">{t.description}</p>
+              <p className="mt-1 text-xs text-[var(--muted)]">{t.description}</p>
             )}
           </div>
         ))}

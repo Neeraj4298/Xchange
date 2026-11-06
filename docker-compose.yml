@@ -61,6 +61,7 @@ services:
       dockerfile: Dockerfile
       target: api
     container_name: xchange-api
+    user: "1000:1000"
     restart: unless-stopped
     depends_on:
       postgres:
@@ -93,6 +94,7 @@ services:
       dockerfile: Dockerfile
       target: web
     container_name: xchange-web
+    user: "1000:1000"
     restart: unless-stopped
     depends_on:
       api:

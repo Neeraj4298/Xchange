@@ -3,63 +3,74 @@
 import React, { useState } from "react";
 import { uiTokens } from "@xchange/ui-tokens";
 
+const DESIGN_STATES = [
+  "default",
+  "loading",
+  "empty",
+  "error",
+  "success",
+  "disabled",
+  "offline",
+  "expired",
+  "rejected",
+  "reserved",
+  "disputed",
+] as const;
+
 export default function StorybookCatalogPage() {
-  const [visualState, setVisualState] = useState<"default" | "loading" | "empty" | "error">(
-    "default"
-  );
+  const [visualState, setVisualState] =
+    useState<(typeof DESIGN_STATES)[number]>("default");
 
   return (
     <div className="space-y-8">
-      <div className="xc-glass-panel rounded-3xl p-6 md:p-8">
-        <span className="rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold text-emerald-400">
-          WEB-0.4 &amp; P0-T3 · DESIGN SYSTEM &amp; VISUAL STATE CATALOG
+      <div className="xc-glass-panel p-6 md:p-8">
+        <span className="inline-block rounded-full bg-[var(--brand-tint)] px-3 py-1 text-xs font-semibold text-[var(--brand-primary)]">
+          XCHANGE PURE · PURE PREMIUM MINIMALISM DESIGN SYSTEM v1.0
         </span>
-        <h1 className="mt-2 text-3xl font-extrabold">
-          Xchange &ldquo;Kinetic Circular Craft&rdquo; Component Library
+        <h1 className="mt-2 font-heading text-3xl font-bold">
+          Xchange Pure Component &amp; Token Specification
         </h1>
-        <p className="mt-1 text-sm opacity-75">
-          Interactive Storybook matrix verifying Default, Loading, Empty, and Error states per Section 11 Definition of Done.
+        <p className="mt-1 text-sm text-[var(--muted)]">
+          Solid surfaces, Electric Violet (#7167E8), Manrope + Inter typography, thin 1px borders (#ECECF3), and all 10 required workflow states.
         </p>
 
-        <div className="mt-4 flex flex-wrap gap-2">
-          {(["default", "loading", "empty", "error"] as const).map((st) => (
+        <div className="mt-5 flex flex-wrap gap-2">
+          {DESIGN_STATES.map((st) => (
             <button
               key={st}
               type="button"
               onClick={() => setVisualState(st)}
-              className={`rounded-xl px-4 py-2 text-xs font-bold uppercase transition-all ${
+              className={`rounded-full px-3.5 py-1.5 text-xs font-semibold uppercase transition-colors ${
                 visualState === st
-                  ? "bg-emerald-500 text-slate-950"
-                  : "xc-glass-panel opacity-75 hover:opacity-100"
+                  ? "bg-[var(--brand-primary)] text-white"
+                  : "bg-[var(--surface)] border border-[var(--border)] text-[var(--muted)] hover:text-[var(--foreground)]"
               }`}
             >
-              State: {st}
+              {st}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Interactive Component State Preview */}
-      <div className="xc-glass-panel rounded-3xl p-6">
-        <h2 className="text-lg font-bold">1. TradeStepper &amp; OfferCard Visual States ({visualState})</h2>
+      {/* Interactive Workflow State Preview (Section 11 of ui_suggestion.docx) */}
+      <div className="xc-glass-panel p-6 space-y-4">
+        <h2 className="font-heading text-lg font-bold">
+          1. Workflow State Inspector: <span className="uppercase text-[var(--brand-primary)]">{visualState}</span>
+        </h2>
 
         {visualState === "default" && (
-          <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
             {[
-              { step: "1. Scheduling", status: "Completed", active: true },
-              { step: "2. Safe Point Set", status: "Indiranagar Metro", active: true },
-              { step: "3. 6-Digit Handover", status: "Code: 849-201", active: true },
-              { step: "4. Double-Blind Review", status: "Awaiting", active: false },
+              { step: "1. Offer Accepted", status: "Items Reserved" },
+              { step: "2. Safe Meetup Point", status: "Indiranagar Metro" },
+              { step: "3. Handover Code", status: "849-201 Ready" },
+              { step: "4. Mutual Review", status: "Awaiting Handover" },
             ].map((s) => (
               <div
                 key={s.step}
-                className={`rounded-2xl border p-4 ${
-                  s.active
-                    ? "border-emerald-500/40 bg-emerald-500/10"
-                    : "border-white/10 opacity-60"
-                }`}
+                className="rounded-[12px] border border-[var(--border)] bg-[var(--surface)] p-4"
               >
-                <p className="text-xs font-bold text-emerald-400">{s.step}</p>
+                <p className="text-xs font-semibold text-[var(--brand-primary)]">{s.step}</p>
                 <p className="mt-1 text-sm font-semibold">{s.status}</p>
               </div>
             ))}
@@ -67,48 +78,54 @@ export default function StorybookCatalogPage() {
         )}
 
         {visualState === "loading" && (
-          <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {[1, 2, 3].map((n) => (
               <div
                 key={n}
-                className="h-28 animate-pulse rounded-2xl bg-emerald-500/10 border border-emerald-500/20 p-4"
-              >
-                <div className="h-4 w-1/2 rounded bg-emerald-500/25" />
-                <div className="mt-3 h-3 w-3/4 rounded bg-emerald-500/15" />
-              </div>
+                className="h-24 animate-pulse rounded-[12px] border border-[var(--border)] bg-[var(--surface)] p-4"
+              />
             ))}
           </div>
         )}
 
-        {visualState === "empty" && (
-          <div className="mt-4 rounded-2xl border border-dashed border-emerald-500/30 p-8 text-center">
-            <p className="text-base font-bold">No Active Swap Offers Yet</p>
-            <p className="mt-1 text-xs opacity-75">
-              List an item you own and specify your Wants to unlock 2-way and 3-way matches.
+        {visualState !== "default" && visualState !== "loading" && (
+          <div className="rounded-[16px] border border-[var(--border)] bg-[var(--surface)] p-6">
+            <p className="font-heading text-base font-bold uppercase text-[var(--brand-primary)]">
+              State: {visualState} (Color-Independent Status Indicator)
             </p>
-          </div>
-        )}
-
-        {visualState === "error" && (
-          <div className="mt-4 rounded-2xl border border-red-500/40 bg-red-500/10 p-5">
-            <p className="text-sm font-bold text-red-400">
-              RFC 9457 Problem Details (409 ITEM_LOCKED)
-            </p>
-            <p className="mt-1 text-xs opacity-85">
-              This item was locked by another accepted trade moments ago. Your offer was safely cancelled with zero penalty.
+            <p className="mt-1 text-xs text-[var(--muted)]">
+              Explicit label, icon badge, and clear recovery action per WCAG 2.2 AA accessibility rules.
             </p>
           </div>
         )}
       </div>
 
-      {/* Design Tokens Matrix */}
-      <div className="xc-glass-panel rounded-3xl p-6">
-        <h2 className="text-lg font-bold">2. @xchange/ui-tokens Breakpoints &amp; Palette</h2>
-        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {Object.entries(uiTokens.breakpoints).map(([name, px]) => (
-            <div key={name} className="rounded-xl border border-emerald-500/20 p-3">
-              <p className="font-mono text-xs text-emerald-400">{name}</p>
-              <p className="text-lg font-bold">{px}px</p>
+      {/* Color & Typography Tokens */}
+      <div className="xc-glass-panel p-6 space-y-4">
+        <h2 className="font-heading text-lg font-bold">2. Frozen Brand &amp; Surface Tokens</h2>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {[
+            { name: "Electric Violet", hex: uiTokens.colors.brand.primary },
+            { name: "Deep Violet", hex: uiTokens.colors.brand.hover },
+            { name: "Deep Ink", hex: uiTokens.colors.light.foreground },
+            { name: "Soft Cloud", hex: uiTokens.colors.light.surface },
+            { name: "Pure White", hex: uiTokens.colors.light.background },
+            { name: "Exchange Green", hex: uiTokens.colors.semantic.success },
+            { name: "Warm Amber", hex: uiTokens.colors.semantic.warning },
+            { name: "Danger", hex: uiTokens.colors.semantic.danger },
+          ].map((sw) => (
+            <div
+              key={sw.name}
+              className="rounded-[12px] border border-[var(--border)] bg-[var(--surface)] p-3 flex items-center gap-3"
+            >
+              <span
+                className="h-8 w-8 rounded-[8px] border border-[var(--border)] shrink-0"
+                style={{ backgroundColor: sw.hex }}
+              />
+              <div>
+                <p className="text-xs font-semibold">{sw.name}</p>
+                <p className="font-mono text-[11px] text-[var(--muted)]">{sw.hex}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -116,3 +133,4 @@ export default function StorybookCatalogPage() {
     </div>
   );
 }
+

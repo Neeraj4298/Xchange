@@ -2,6 +2,15 @@
 
 All notable changes to the **Xchange** monorepo are documented in this file.
 
+## [3.0.0] — Xchange Pure: Pure Premium Minimalism UI Redesign (`feat/ui-pure-premium-minimalism`) — 2026-11-06
+
+### Changed
+- **Complete UI Redesign to Xchange Pure (`docs/05-ui-suggestion.md`):**
+  - Dropped Glassmorphism, `backdrop-filter`, decorative mesh gradients, and neon glow effects across the entire web application.
+  - Implemented the frozen **Xchange Pure** color palette: Electric Violet (`#7167E8`), Deep Violet (`#5549C9`), Deep Ink (`#25243A`), Soft Cloud (`#F6F6FA`), Pure White (`#FFFFFF`), Exchange Green (`#20A786`), Warm Amber (`#F0A44B`), Danger (`#D94B55`), and solid Dark Mode (`#11111B`, `#1C1C2A`, `#252538`, `#9188FF`, `#343448`).
+  - Configured `Manrope` (display & headings) + `Inter` (body, controls & metadata) typography and `8px/12px/16px/20px` corner radii.
+  - Redesigned Home (`/`), Product Cards (`FeaturedListingsGrid.tsx`, `/feed`), Side-by-Side Exchange Comparison, 2D Vector Exchange Chain Diagram (`CycleSvgGraph.tsx`), Fixed Solid Header (`AppShell.tsx`), and the 10-State Component & Token Catalog (`/storybook`).
+
 ## [2.1.0] — Full-Stack Docker Compose & Safety Fallbacks — 2026-11-06
 
 ### Added

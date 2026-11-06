@@ -61,72 +61,90 @@ export function ThreeWayCycleStudio({
   };
 
   return (
-    <section className="xc-glass-panel rounded-3xl p-5 md:p-8 shadow-2xl">
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-emerald-500/15 pb-5">
+    <section className="xc-glass-panel p-6 md:p-8">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border)] pb-5">
         <div>
-          <span className="rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold text-emerald-400">
-            LIVE 3-WAY CYCLE ENGINE · {expiresInHours}h TTL · Score {liveScore}%
+          <span className="inline-block rounded-full bg-[var(--brand-tint)] px-3 py-1 text-xs font-semibold text-[var(--brand-primary)]">
+            SIGNATURE EXPERIENCE · 3-WAY EXCHANGE CHAIN ({expiresInHours}H WINDOW)
           </span>
-          <h2 className="mt-2 text-2xl font-bold tracking-tight">
-            Interactive 3-Party Exchange Cycle (A → B → C → A)
+          <h2 className="mt-2 font-heading text-2xl font-bold tracking-tight">
+            Three-Person Exchange Chain (A → B → C → A)
           </h2>
+          <p className="mt-1 text-sm text-[var(--muted)]">
+            A chain never locks items until every participant explicitly approves the same proposal.
+          </p>
         </div>
 
-        <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-right">
-          <p className="text-[11px] uppercase opacity-75">Lock State</p>
-          <p className="text-sm font-bold text-emerald-400">
-            {allAccepted ? "🔒 ALL 3 ITEMS LOCKED" : "⏳ AWAITING UNANIMOUS CONSENT"}
+        <div className="rounded-[12px] border border-[var(--border)] bg-[var(--surface)] px-4 py-2.5 text-right">
+          <p className="text-[11px] font-medium uppercase tracking-wider text-[var(--muted)]">
+            Chain Status
+          </p>
+          <p
+            className="text-sm font-semibold"
+            style={{ color: allAccepted ? "var(--success)" : "var(--brand-primary)" }}
+          >
+            {allAccepted ? "Confirmed · All 3 Items Reserved" : "Awaiting Unanimous Consent (2/3)"}
           </p>
         </div>
       </div>
 
-      <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-12 items-center">
-        <div className="lg:col-span-6 flex flex-col items-center">
+      <div className="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-12 items-center">
+        <div className="lg:col-span-6 flex flex-col items-center rounded-[16px] border border-[var(--border)] bg-[var(--surface)] p-4">
           <CycleSvgGraph activeCode={activeCode} onSelectNode={setActiveCode} liveScore={liveScore} />
         </div>
 
         <div className="lg:col-span-6 space-y-4">
-          <div className="rounded-2xl border border-emerald-500/25 bg-emerald-950/20 p-4">
-            <div className="flex items-center justify-between text-xs text-emerald-400 font-bold">
-              <span>Node {selectedNode.participantCode} · {selectedNode.neighbourhood}</span>
-              <span>★ {selectedNode.rating}</span>
+          <div className="rounded-[16px] border border-[var(--border)] bg-[var(--surface)] p-5">
+            <div className="flex items-center justify-between text-xs font-medium text-[var(--muted)]">
+              <span>
+                PARTICIPANT {selectedNode.participantCode} · {selectedNode.neighbourhood.toUpperCase()}
+              </span>
+              <span>Rating {selectedNode.rating} ★</span>
             </div>
-            <h3 className="mt-1 text-lg font-bold">{selectedNode.userName}</h3>
-            <p className="mt-1 text-sm">
-              <strong className="text-emerald-400">Gives:</strong> {selectedNode.givesItemTitle} (
-              {selectedNode.givesValueRangeInr})
+            <h3 className="mt-1 font-heading text-lg font-bold">{selectedNode.userName}</h3>
+            <p className="mt-2 text-sm">
+              <span className="font-semibold text-[var(--foreground)]">Gives:</span>{" "}
+              {selectedNode.givesItemTitle} ({selectedNode.givesValueRangeInr})
             </p>
             <p className="mt-1 text-sm">
-              <strong className="text-amber-400">Receives from {selectedNode.receivesFromCode}:</strong>{" "}
+              <span className="font-semibold text-[var(--brand-primary)]">
+                Receives from {selectedNode.receivesFromCode}:
+              </span>{" "}
               {selectedNode.wantsDescription}
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-2.5">
+          <div className="grid grid-cols-3 gap-3">
             {(["A", "B", "C"] as const).map((code) => (
               <button
                 key={code}
                 type="button"
                 onClick={() => toggleConsent(code)}
-                className={`rounded-xl border p-3 text-left transition-all ${
+                className={`rounded-[12px] border p-3 text-left transition-colors ${
                   accepted[code]
-                    ? "border-emerald-500/50 bg-emerald-500/15"
-                    : "border-amber-500/40 bg-amber-500/10"
+                    ? "border-[var(--brand-primary)] bg-[var(--brand-tint)]"
+                    : "border-[var(--border)] bg-[var(--surface)]"
                 }`}
               >
-                <div className="flex items-center justify-between text-xs font-bold">
-                  <span>Trader {code}</span>
-                  <span>{accepted[code] ? "✓" : "⏳"}</span>
+                <div className="flex items-center justify-between text-xs font-semibold">
+                  <span>Participant {code}</span>
+                  <span
+                    style={{
+                      color: accepted[code] ? "var(--success)" : "var(--warning)",
+                    }}
+                  >
+                    {accepted[code] ? "Approved" : "Pending"}
+                  </span>
                 </div>
-                <p className="mt-1 text-[11px] opacity-75">Toggle consent</p>
+                <p className="mt-1 text-[11px] text-[var(--muted)]">Click to toggle</p>
               </button>
             ))}
           </div>
 
-          <div className="rounded-2xl border border-emerald-500/15 p-3.5">
-            <div className="flex justify-between text-xs">
-              <span>Peer Cash Balancer (Metadata Only, Max ₹5,000)</span>
-              <span className="font-mono font-bold text-emerald-400">₹{cashSlider}</span>
+          <div className="rounded-[16px] border border-[var(--border)] bg-[var(--surface)] p-4">
+            <div className="flex justify-between text-xs font-medium">
+              <span>Suggested cash adjustment</span>
+              <span className="font-semibold text-[var(--brand-primary)]">₹{cashSlider}</span>
             </div>
             <input
               type="range"
@@ -135,11 +153,11 @@ export function ThreeWayCycleStudio({
               step={250}
               value={cashSlider}
               onChange={(e) => setCashSlider(Number(e.target.value))}
-              aria-label="Peer cash balancer"
-              className="mt-2 w-full accent-emerald-500"
+              aria-label="Suggested cash adjustment"
+              className="mt-2 w-full accent-[#7167E8]"
             />
-            <p className="mt-1 text-[11px] opacity-70">
-              📍 Safe Meetup: <strong>{meetupPointName}</strong> ({meetupDistanceKm} km)
+            <p className="mt-1.5 text-xs text-[var(--muted)]">
+              Safe handover point: <strong>{meetupPointName}</strong> ({meetupDistanceKm} km away)
             </p>
           </div>
         </div>
