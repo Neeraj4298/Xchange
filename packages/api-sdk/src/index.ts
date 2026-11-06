@@ -5,12 +5,31 @@
  */
 
 import type {
+  AdminMetricsDto,
+  AdminReportDto,
   CategoryDto,
   ChainCycleNodeDto,
+  ChatMessageDto,
   CityDto,
+  ConfirmHandoverInput,
+  ConversationDto,
+  CounterOfferInput,
+  CreateItemInput,
+  CreateOfferInput,
+  CreateReportInput,
+  CreateReviewInput,
   FeaturedItemDto,
+  MarketplaceItemDto,
+  NotificationDto,
+  OfferDto,
   OtpRequestInput,
   OtpVerifyInput,
+  ReviewDto,
+  SafeMeetupPointDto,
+  ScheduleTradeInput,
+  TradeDto,
+  TradeEventDto,
+  UpdateProfileInput,
   VerificationLevel,
 } from "@xchange/shared";
 
@@ -215,6 +234,220 @@ export class XchangeApiClient {
     return this.request<{ user: AuthenticatedUserDto }>("/v1/me", {
       method: "GET",
       headers,
+    });
+  }
+
+  public googleSignIn(input: { email: string; name: string }): Promise<OtpVerifyResponse> {
+    return this.request<OtpVerifyResponse>("/v1/auth/google", {
+      method: "POST",
+      body: JSON.stringify(input),
+    });
+  }
+
+  public updateProfile(input: UpdateProfileInput): Promise<{ user: AuthenticatedUserDto }> {
+    return this.request<{ user: AuthenticatedUserDto }>("/v1/me", {
+      method: "PATCH",
+      body: JSON.stringify(input),
+    });
+  }
+
+  public exportMyData(): Promise<{ exportedAt: string; data: Record<string, unknown> }> {
+    return this.request<{ exportedAt: string; data: Record<string, unknown> }>("/v1/me/export", {
+      method: "POST",
+    });
+  }
+
+  public requestUploadUrl(filename: string): Promise<{ mediaId: string; uploadUrl: string; publicUrl: string }> {
+    return this.request("/v1/media/upload-url", {
+      method: "POST",
+      body: JSON.stringify({ filename }),
+    });
+  }
+
+  public getFeed(params?: {
+    tab?: string;
+    q?: string;
+    category?: string;
+    condition?: string;
+    maxDistanceKm?: number;
+  }): Promise<{ items: MarketplaceItemDto[]; total: number }> {
+    const qs = new URLSearchParams();
+    if (params?.tab) qs.set("tab", params.tab);
+    if (params?.q) qs.set("q", params.q);
+    if (params?.category) qs.set("category", params.category);
+    if (params?.condition) qs.set("condition", params.condition);
+    if (params?.maxDistanceKm) qs.set("maxDistanceKm", String(params.maxDistanceKm));
+    const queryString = qs.toString() ? `?${qs.toString()}` : "";
+    return this.request<{ items: MarketplaceItemDto[]; total: number }>(`/v1/feed${queryString}`);
+  }
+
+  public getItemById(id: string): Promise<{ item: MarketplaceItemDto }> {
+    return this.request<{ item: MarketplaceItemDto }>(`/v1/items/${id}`);
+  }
+
+  public getMyItems(): Promise<{ items: MarketplaceItemDto[] }> {
+    return this.request<{ items: MarketplaceItemDto[] }>("/v1/me/items");
+  }
+
+  public createItem(input: CreateItemInput, idempotencyKey?: string): Promise<{ item: MarketplaceItemDto }> {
+    return this.request<{ item: MarketplaceItemDto }>("/v1/items", {
+      method: "POST",
+      body: JSON.stringify(input),
+      idempotencyKey,
+    });
+  }
+
+  public updateItemStatus(id: string, action: "publish" | "pause" | "delete"): Promise<{ item: MarketplaceItemDto }> {
+    return this.request<{ item: MarketplaceItemDto }>(`/v1/items/${id}/${action}`, {
+      method: "POST",
+    });
+  }
+
+  public toggleSaveItem(id: string): Promise<{ saved: boolean; savedIds: string[] }> {
+    return this.request<{ saved: boolean; savedIds: string[] }>(`/v1/saved-items/${id}`, {
+      method: "POST",
+    });
+  }
+
+  public getOffers(tab?: string): Promise<{ items: OfferDto[] }> {
+    const qs = tab ? `?tab=${encodeURIComponent(tab)}` : "";
+    return this.request<{ items: OfferDto[] }>(`/v1/offers${qs}`);
+  }
+
+  public createOffer(
+    input: {
+      recipientItemId: string;
+      offeredItemIds: string[];
+      cash: { amountPaise: number; direction: "none" | "proposer_pays" | "recipient_pays" };
+      message?: string;
+    },
+    idempotencyKey?: string
+  ): Promise<{ offer: OfferDto }> {
+    return this.request<{ offer: OfferDto }>("/v1/offers", {
+      method: "POST",
+      body: JSON.stringify(input),
+      idempotencyKey,
+    });
+  }
+
+  public counterOffer(id: string, input: CounterOfferInput): Promise<{ offer: OfferDto }> {
+    return this.request<{ offer: OfferDto }>(`/v1/offers/${id}/counter`, {
+      method: "POST",
+      body: JSON.stringify(input),
+    });
+  }
+
+  public acceptOffer(id: string, idempotencyKey?: string): Promise<{ offer: OfferDto; trade: TradeDto }> {
+    return this.request<{ offer: OfferDto; trade: TradeDto }>(`/v1/offers/${id}/accept`, {
+      method: "POST",
+      idempotencyKey,
+    });
+  }
+
+  public rejectOffer(id: string): Promise<{ offer: OfferDto }> {
+    return this.request<{ offer: OfferDto }>(`/v1/offers/${id}/reject`, {
+      method: "POST",
+    });
+  }
+
+  public withdrawOffer(id: string): Promise<{ offer: OfferDto }> {
+    return this.request<{ offer: OfferDto }>(`/v1/offers/${id}/withdraw`, {
+      method: "POST",
+    });
+  }
+
+  public getTrades(): Promise<{ items: TradeDto[]; safePoints: SafeMeetupPointDto[] }> {
+    return this.request<{ items: TradeDto[]; safePoints: SafeMeetupPointDto[] }>("/v1/trades");
+  }
+
+  public getTradeById(id: string): Promise<{ trade: TradeDto; safePoints: SafeMeetupPointDto[] }> {
+    return this.request<{ trade: TradeDto; safePoints: SafeMeetupPointDto[] }>(`/v1/trades/${id}`);
+  }
+
+  public scheduleTrade(id: string, input: ScheduleTradeInput): Promise<{ trade: TradeDto }> {
+    return this.request<{ trade: TradeDto }>(`/v1/trades/${id}/schedule`, {
+      method: "POST",
+      body: JSON.stringify(input),
+    });
+  }
+
+  public confirmTradeHandover(id: string, input: ConfirmHandoverInput): Promise<{ trade: TradeDto }> {
+    return this.request<{ trade: TradeDto }>(`/v1/trades/${id}/confirm`, {
+      method: "POST",
+      body: JSON.stringify(input),
+    });
+  }
+
+  public cancelTrade(id: string, reason: string): Promise<{ trade: TradeDto }> {
+    return this.request<{ trade: TradeDto }>(`/v1/trades/${id}/cancel`, {
+      method: "POST",
+      body: JSON.stringify({ reason }),
+    });
+  }
+
+  public disputeTrade(id: string, reason: string): Promise<{ trade: TradeDto; report: AdminReportDto }> {
+    return this.request<{ trade: TradeDto; report: AdminReportDto }>(`/v1/trades/${id}/dispute`, {
+      method: "POST",
+      body: JSON.stringify({ reason }),
+    });
+  }
+
+  public getConversations(): Promise<{ items: ConversationDto[] }> {
+    return this.request<{ items: ConversationDto[] }>("/v1/conversations");
+  }
+
+  public getMessages(conversationId: string): Promise<{ items: ChatMessageDto[]; tradeAccepted: boolean }> {
+    return this.request<{ items: ChatMessageDto[]; tradeAccepted: boolean }>(
+      `/v1/conversations/${conversationId}/messages`
+    );
+  }
+
+  public sendMessage(conversationId: string, body: string): Promise<{ message: ChatMessageDto }> {
+    return this.request<{ message: ChatMessageDto }>(`/v1/conversations/${conversationId}/messages`, {
+      method: "POST",
+      body: JSON.stringify({ body }),
+    });
+  }
+
+  public submitReview(tradeId: string, input: CreateReviewInput): Promise<{ reviews: ReviewDto[] }> {
+    return this.request<{ reviews: ReviewDto[] }>(`/v1/trades/${tradeId}/reviews`, {
+      method: "POST",
+      body: JSON.stringify(input),
+    });
+  }
+
+  public getNotifications(): Promise<{ items: NotificationDto[] }> {
+    return this.request<{ items: NotificationDto[] }>("/v1/notifications");
+  }
+
+  public markNotificationsRead(): Promise<{ ok: boolean }> {
+    return this.request<{ ok: boolean }>("/v1/notifications/read", {
+      method: "POST",
+    });
+  }
+
+  public createReport(input: CreateReportInput): Promise<{ report: AdminReportDto }> {
+    return this.request<{ report: AdminReportDto }>("/v1/reports", {
+      method: "POST",
+      body: JSON.stringify(input),
+    });
+  }
+
+  public getAdminDashboard(): Promise<{
+    metrics: AdminMetricsDto;
+    reports: AdminReportDto[];
+    auditEvents: TradeEventDto[];
+  }> {
+    return this.request("/v1/admin/dashboard");
+  }
+
+  public resolveAdminReport(
+    reportId: string,
+    action: "dismiss" | "warn" | "remove_item" | "suspend_user"
+  ): Promise<{ report: AdminReportDto }> {
+    return this.request<{ report: AdminReportDto }>(`/v1/admin/reports/${reportId}/resolve`, {
+      method: "POST",
+      body: JSON.stringify({ action }),
     });
   }
 }

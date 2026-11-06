@@ -2,6 +2,22 @@
 
 All notable changes to the **Xchange** monorepo are documented in this file.
 
+## [0.1.0] — Phase 1: Core Marketplace (`v0.1 "Concierge Beta"`) — 2026-11-06
+
+### Added
+- **Listings, Media & Wants (`BE-1.3`, `BE-1.4`, `WEB-1.3`, `WEB-1.4`, `WEB-1.5`):**
+  - Signed R2 upload URL endpoint (`POST /v1/media/upload-url`), Listing CRUD (`POST/GET /v1/items`, `GET /v1/me/items`, `POST /v1/items/:id/publish|pause|delete`), prohibited-item screening (`422 PROHIBITED_ITEM`), and `/items/new` + `/my-items` screens.
+- **Discovery, Search & Wishlist (`BE-1.5`, `WEB-1.6`):**
+  - `GET /v1/feed` & `GET /v1/search` with `for_you` (match score), `nearby` (PostGIS distance), and `new` sorting, category/condition/radius filters, wishlist save toggle (`POST /v1/saved-items/:id`), and `/feed` screen.
+- **Offers, Counteroffers & Atomic Item Locking (`BE-1.6`, `WEB-1.8`):**
+  - `GET/POST /v1/offers`, versioned counteroffers (`POST /v1/offers/:id/counter`), reject/withdraw, and `POST /v1/offers/:id/accept` (atomically locks items, cancels competing pending offers, and creates a `scheduling` trade) + `/offers` screen.
+- **Trade State Machine, Safe Meetup Points & 6-Digit Handover Codes (`BE-1.7`, `WEB-1.10`):**
+  - Curated Bengaluru Safe Meetup Points, `POST /v1/trades/:id/schedule`, two-party 6-digit handover code confirmation (`POST /v1/trades/:id/confirm`), cancel/dispute flows, append-only `trade_events` audit log, and `/trades` studio.
+- **Real-Time Chat with Pre-Accept Phone/URL Masking (`BE-1.8`, `BE-1.9`, `WEB-1.9`, `WEB-1.12`):**
+  - `GET /v1/conversations`, `GET/POST /v1/conversations/:id/messages` enforcing `FR-CHT-2` phone/link masking until trade acceptance, notifications center (`GET/POST /v1/notifications`), and `/chat` screen.
+- **Double-Blind Reviews, Moderation & Admin Console (`BE-1.10`–`BE-1.13`, `WEB-1.11`, `WEB-1.13`, `WEB-1.14`):**
+  - `POST /v1/trades/:id/reviews` double-blind reveal, `POST /v1/reports`, `GET /v1/admin/dashboard`, `POST /v1/admin/reports/:id/resolve`, `Idempotency-Key` support, and `/admin` console.
+
 ## [0.0.1] — Phase 0: Foundations (`v0.0`) — 2026-11-06
 
 ### Added

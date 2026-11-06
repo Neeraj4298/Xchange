@@ -203,4 +203,62 @@ export class AuthService {
     const { phoneE164: _hidden, ...publicUser } = user;
     return { user: publicUser };
   }
+
+  public googleSignIn(rawInput: { email?: string; name?: string }) {
+    const phoneKey = "+919876543210";
+    let user = this.userStore.get(phoneKey);
+    if (!user) {
+      user = {
+        id: "user-demo-aarav",
+        phoneE164: phoneKey,
+        phoneMasked: this.maskPhone(phoneKey),
+        name: rawInput.name || "Aarav Verma (Google Verified)",
+        neighbourhood: "HSR Layout Sector 2",
+        citySlug: "bengaluru",
+        verificationLevel: "phone",
+        ratingAvg: 4.92,
+        tradesCompleted: 6,
+        joinedAt: new Date().toISOString(),
+      };
+      this.userStore.set(phoneKey, user);
+    }
+    const accessToken = signHmacJwt(
+      {
+        sub: user.id,
+        phoneE164: user.phoneE164,
+        exp: Math.floor(Date.now() / 1000) + this.config.jwtAccessTtlSeconds,
+      },
+      this.config.jwtAccessSecret
+    );
+    const { phoneE164: _hidden, ...publicUser } = user;
+    return {
+      accessToken,
+      expiresInSeconds: this.config.jwtAccessTtlSeconds,
+      user: publicUser,
+    };
+  }
+
+  public updateProfile(rawInput: { name?: string; neighbourhood?: string }) {
+    const phoneKey = "+919876543210";
+    let user = this.userStore.get(phoneKey);
+    if (!user) {
+      user = {
+        id: "user-demo-aarav",
+        phoneE164: phoneKey,
+        phoneMasked: this.maskPhone(phoneKey),
+        name: "Aarav Verma",
+        neighbourhood: "HSR Layout Sector 2",
+        citySlug: "bengaluru",
+        verificationLevel: "phone",
+        ratingAvg: 4.92,
+        tradesCompleted: 6,
+        joinedAt: new Date().toISOString(),
+      };
+    }
+    if (rawInput.name) user.name = rawInput.name;
+    if (rawInput.neighbourhood) user.neighbourhood = rawInput.neighbourhood;
+    this.userStore.set(phoneKey, user);
+    const { phoneE164: _hidden, ...publicUser } = user;
+    return { user: publicUser };
+  }
 }

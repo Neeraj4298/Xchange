@@ -81,6 +81,128 @@ test("Phase 0 API Exit Gate: /health, /v1/config, /v1/showcase, and Phone OTP si
     };
     assert.equal(meData.user.citySlug, "bengaluru");
     assert.equal(meData.user.phoneMasked, "+9198•••••210");
+
+    // 6. Phase 1 End-to-End Flow: Prohibited-Item Guard (422) + Create & Publish Listing
+    const blockedRes = await fetch(`${baseUrl}/v1/items`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: "Imported vape kit and whiskey",
+        description: "Brand new sealed item for quick trade",
+        categorySlug: "workstation-audio",
+        condition: "new",
+        estValueMinPaise: 50000,
+        estValueMaxPaise: 80000,
+      }),
+    });
+    assert.equal(blockedRes.status, 422);
+
+    const createItemRes = await fetch(`${baseUrl}/v1/items`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Idempotency-Key": "idem-create-item-1",
+      },
+      body: JSON.stringify({
+        title: "Keychron Q1 Pro Mechanical Keyboard",
+        description: "CNC aluminum body, tactile switches, mint condition in HSR Layout",
+        categorySlug: "workstation-audio",
+        condition: "like_new",
+        estValueMinPaise: 1400000,
+        estValueMaxPaise: 1650000,
+        neighbourhood: "HSR Layout",
+        wants: { keywords: ["Sony WH-1000XM5", "4K Monitor"] },
+      }),
+    });
+    assert.equal(createItemRes.status, 201);
+    const createdItem = (await createItemRes.json()) as { item: { id: string; status: string } };
+    assert.equal(createdItem.item.status, "active");
+
+    // 7. Pre-accept Chat Masking Check (FR-CHT-2)
+    const maskedChatRes = await fetch(`${baseUrl}/v1/conversations/conv-seed-101/messages`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        body: "Call me on +91 9876543210 or visit https://myshop.com",
+      }),
+    });
+    assert.equal(maskedChatRes.status, 201);
+    const maskedChat = (await maskedChatRes.json()) as {
+      message: { body: string; maskedWarning: boolean };
+    };
+    assert.equal(maskedChat.message.maskedWarning, true);
+    assert.match(maskedChat.message.body, /\[Phone hidden until trade accepted\]/);
+    assert.match(maskedChat.message.body, /\[Link hidden until trade accepted\]/);
+
+    // 8. Counteroffer -> Accept Offer (Atomic Item Locking) -> Schedule -> Handover Codes -> Complete -> Double-Blind Review
+    const counterRes = await fetch(`${baseUrl}/v1/offers/offer-seed-101/counter`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        cash: { amountPaise: 250000, direction: "recipient_pays" },
+        message: "Counteroffer v2",
+      }),
+    });
+    assert.equal(counterRes.status, 200);
+    const counterData = (await counterRes.json()) as { offer: { id: string; version: number } };
+    assert.equal(counterData.offer.version, 2);
+
+    const acceptRes = await fetch(`${baseUrl}/v1/offers/${counterData.offer.id}/accept`, {
+      method: "POST",
+    });
+    assert.equal(acceptRes.status, 200);
+    const acceptData = (await acceptRes.json()) as {
+      offer: { status: string };
+      trade: { id: string; status: string };
+    };
+    assert.equal(acceptData.offer.status, "accepted");
+    assert.equal(acceptData.trade.status, "scheduling");
+
+    const tradeId = acceptData.trade.id;
+    const schedRes = await fetch(`${baseUrl}/v1/trades/${tradeId}/schedule`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        safePointId: "sp-indiranagar-metro",
+        scheduledAt: new Date().toISOString(),
+      }),
+    });
+    assert.equal(schedRes.status, 200);
+
+    const confirm1 = await fetch(`${baseUrl}/v1/trades/${tradeId}/confirm`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ handoverCode: "849201" }),
+    });
+    const confirm1Data = (await confirm1.json()) as { trade: { status: string } };
+    assert.equal(confirm1Data.trade.status, "partially_confirmed");
+
+    const confirm2 = await fetch(`${baseUrl}/v1/trades/${tradeId}/confirm`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ handoverCode: "512904" }),
+    });
+    const confirm2Data = (await confirm2.json()) as { trade: { status: string } };
+    assert.equal(confirm2Data.trade.status, "completed");
+
+    const revRes = await fetch(`${baseUrl}/v1/trades/${tradeId}/reviews`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ stars: 5, tags: ["accurate_listing", "punctual"] }),
+    });
+    assert.equal(revRes.status, 201);
+    const revData = (await revRes.json()) as { reviews: Array<{ revealed: boolean }> };
+    assert.equal(revData.reviews[0]?.revealed, true);
+
+    // 9. Admin Dashboard & Moderation Queue
+    const adminRes = await fetch(`${baseUrl}/v1/admin/dashboard`);
+    assert.equal(adminRes.status, 200);
+    const adminData = (await adminRes.json()) as {
+      metrics: { completedTrades: number };
+      auditEvents: unknown[];
+    };
+    assert.ok(adminData.metrics.completedTrades >= 21);
+    assert.ok(adminData.auditEvents.length >= 4);
   } finally {
     await new Promise<void>((resolve) => server.close(() => resolve()));
   }

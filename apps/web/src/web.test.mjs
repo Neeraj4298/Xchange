@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-test("Web Phase 0 routes, middleware, 3-Way Cycle Studio, and Storybook catalog exist", () => {
+test("Web Phase 0 & Phase 1 routes, middleware, 3-Way Cycle Studio, and Core Marketplace screens exist", () => {
   const requiredFiles = [
     "middleware.ts",
     "app/layout.tsx",
@@ -14,6 +14,13 @@ test("Web Phase 0 routes, middleware, 3-Way Cycle Studio, and Storybook catalog 
     "app/login/page.tsx",
     "app/storybook/page.tsx",
     "app/trust/page.tsx",
+    "app/feed/page.tsx",
+    "app/items/new/page.tsx",
+    "app/my-items/page.tsx",
+    "app/offers/page.tsx",
+    "app/trades/page.tsx",
+    "app/chat/page.tsx",
+    "app/admin/page.tsx",
     "components/layout/AppShell.tsx",
     "components/chain/ThreeWayCycleStudio.tsx",
     "components/chain/CycleSvgGraph.tsx",

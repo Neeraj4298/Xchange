@@ -9,15 +9,16 @@ import { HealthService } from "./modules/health/health.service";
 import { CatalogService } from "./modules/catalog/catalog.service";
 import { AuthService, AuthServiceError } from "./modules/auth/auth.service";
 import { buildOpenApiSpec } from "./openapi/generate-openapi";
+import { createMarketplaceRouter } from "./modules/marketplace/marketplace.router";
 
-async function readJsonBody(req: IncomingMessage): Promise<unknown> {
+async function readJsonBody(req: IncomingMessage): Promise<Record<string, unknown>> {
   const chunks: Buffer[] = [];
   for await (const chunk of req) {
     chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
   }
   const raw = Buffer.concat(chunks).toString("utf8").trim();
   if (!raw) return {};
-  return JSON.parse(raw);
+  return JSON.parse(raw) as Record<string, unknown>;
 }
 
 export function createApiServer() {
@@ -25,6 +26,7 @@ export function createApiServer() {
   const healthService = new HealthService();
   const catalogService = new CatalogService();
   const authService = new AuthService();
+  const handleMarketplaceRoute = createMarketplaceRouter(authService);
 
   const server = http.createServer(async (req: IncomingMessage, res: ServerResponse) => {
     const method = req.method || "GET";
@@ -97,6 +99,16 @@ export function createApiServer() {
         sendJson(res, 200, result);
         return;
       }
+
+      const handled = await handleMarketplaceRoute(
+        method,
+        pathname,
+        urlObj,
+        req,
+        res,
+        readJsonBody
+      );
+      if (handled) return;
 
       sendProblemJson(res, {
         status: 404,

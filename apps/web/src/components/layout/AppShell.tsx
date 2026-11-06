@@ -8,10 +8,14 @@ import { useAppContext } from "@/components/providers/AppProviders";
 
 const CLUSTERS = ["Indiranagar", "Koramangala", "HSR Layout", "Whitefield"];
 const NAV_ITEMS = [
-  { href: "/", label: "Cycle Studio & Feed", badge: "3-Way" },
-  { href: "/login", label: "OTP Auth Gate", badge: "P0-T5" },
-  { href: "/storybook", label: "Design System", badge: "WEB-0.4" },
-  { href: "/trust", label: "Trust & Legal", badge: "DPDP" },
+  { href: "/", label: "Cycle Studio", badge: "3-Way" },
+  { href: "/feed", label: "Discovery Feed", badge: "WEB-1.6" },
+  { href: "/items/new", label: "List Item", badge: "+Swap" },
+  { href: "/my-items", label: "My Items", badge: "CRUD" },
+  { href: "/offers", label: "Offers Inbox", badge: "Lock" },
+  { href: "/trades", label: "Trades & Code", badge: "6-Digit" },
+  { href: "/chat", label: "Chat & Alerts", badge: "Masked" },
+  { href: "/admin", label: "Admin Console", badge: "Mod" },
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
