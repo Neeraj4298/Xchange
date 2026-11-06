@@ -67,6 +67,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+    volumes:
+      - ../:/app
     environment:
       NODE_ENV: development
       API_PORT: 4000
@@ -89,6 +91,8 @@ services:
     restart: unless-stopped
     depends_on:
       - api
+    volumes:
+      - ../:/app
     environment:
       NODE_ENV: production
       PORT: 3000
